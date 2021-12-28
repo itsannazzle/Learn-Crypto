@@ -2,4 +2,9 @@
     <string name="app_name">Learn Crypto</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboard_message">Learn about crypto and how it works. \n No login needed, just learn</string>
+    <string name="learn_now">Learn Now</string>
+    <string name="more">More</string>
+    <string name="crypto_exchange">Crypto Exchange</string>
+    <string name="before_you_begin">Before you begin</string>
 </resources>

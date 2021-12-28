@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.view.utils
+package com.nextint.learncrypto.app.features.utils
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

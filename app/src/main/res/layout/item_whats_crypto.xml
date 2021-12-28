@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/primaryAccent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_16"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/title24"
+            android:textColor="@color/black"
+            android:text="What is crypto?"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minLines="5"
+            android:ellipsize="end"
+            tools:text="@tools:sample/lorem"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

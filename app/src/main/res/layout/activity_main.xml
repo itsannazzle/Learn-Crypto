@@ -2,25 +2,75 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivityContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnTest"
-        android:text="Hit me"
+    <ImageView
+        android:id="@+id/topImg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/middleImg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+
+        android:layout_marginTop="208dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/bottomImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="160dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topImg"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/inter_regular"
+        android:text="@string/onboard_message"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        style="@style/primaryButton" />
+        app:layout_constraintTop_toBottomOf="@+id/bottomImg" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLearnNow"
+        style="@style/primaryButton16"
+        android:text="@string/learn_now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
