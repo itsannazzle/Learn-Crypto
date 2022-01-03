@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.model.source.remote
+package com.nextint.learncrypto.app.model.source.remote.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
