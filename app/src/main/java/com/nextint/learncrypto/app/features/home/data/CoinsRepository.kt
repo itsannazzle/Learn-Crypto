@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.features.home.di
+package com.nextint.learncrypto.app.features.home.data
 
 import com.nextint.learncrypto.app.core.domain.repository.ICoinsRepository
 import com.nextint.learncrypto.app.core.source.remote.ApiResponse

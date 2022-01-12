@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.core.source.remote.di
 
 import com.nextint.learncrypto.app.core.domain.repository.ICoinsRepository
-import com.nextint.learncrypto.app.features.home.di.CoinsRepository
+import com.nextint.learncrypto.app.features.home.data.CoinsRepository
 import dagger.Binds
 import dagger.Module
 

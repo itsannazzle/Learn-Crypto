@@ -30,10 +30,6 @@ fun ImageView.circleImage(url: String){
         .into(this)
 }
 
-fun View.makeVisible(){
-    this.visibility = View.VISIBLE
-}
-
-fun View.makeGone(){
-    this.visibility = View.GONE
+fun setVisibility(visibile : Boolean) : Int {
+    return if (visibile) View.VISIBLE else View.GONE
 }
