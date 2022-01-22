@@ -7,4 +7,7 @@
     <string name="more">More</string>
     <string name="crypto_exchange">Crypto Exchange</string>
     <string name="before_you_begin">Before you begin</string>
+    <string name="type">Type : %1$s</string>
+    <string name="rank">Rank</string>
+    <string name="status_new">New</string>
 </resources>

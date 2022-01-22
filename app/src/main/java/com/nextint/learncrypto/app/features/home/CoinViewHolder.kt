@@ -1,5 +1,6 @@
 package com.nextint.learncrypto.app.features.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +25,14 @@ class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
             findViewById<TextView>(R.id.coin_name).text = coinsResponseItem.name
             findViewById<TextView>(R.id.coin_rank).text = coinsResponseItem.rank.toString()
             findViewById<TextView>(R.id.coin_symbol).text = coinsResponseItem.symbol
-            findViewById<TextView>(R.id.coin_type).text = coinsResponseItem.type
-            findViewById<CardView>(R.id.status_new).findViewById<TextView>(R.id.textViewStatus).text = if (coinsResponseItem.isNew) "new" else null
-            findViewById<CardView>(R.id.status_active).findViewById<TextView>(R.id.textViewStatus).text = if (coinsResponseItem.isActive) "active" else null
+            findViewById<TextView>(R.id.label_coin_type).text = resources.getString(R.string.type, coinsResponseItem.type)
+            if (coinsResponseItem.isNew) {
+                findViewById<CardView>(R.id.status_new).findViewById<TextView>(R.id.textViewStatus).text = "New"
+                findViewById<CardView>(R.id.status_new).setCardBackgroundColor(resources.getColor(R.color.teal_700))
+            } else {
+                findViewById<CardView>(R.id.status_new).findViewById<TextView>(R.id.textViewStatus).visibility = View.GONE
+            }
+            findViewById<CardView>(R.id.status_active).findViewById<TextView>(R.id.textViewStatus).text = if (coinsResponseItem.isActive) "active" else "inactive"
         }
     }
 

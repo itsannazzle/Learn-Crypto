@@ -42,6 +42,7 @@ fun replaceFragment(fragmentManager: FragmentManager, fragment: Fragment, bundle
     fragment.arguments = bundle
     fragmentManager.beginTransaction()
         .replace(R.id.mainActivityContainer, fragment)
+        .addToBackStack(null)
         .commit()
 }
 

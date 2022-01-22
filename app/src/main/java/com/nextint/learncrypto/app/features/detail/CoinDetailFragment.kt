@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.databinding.FragmentCoinDetailBinding
 import timber.log.Timber
 
 class CoinDetailFragment : Fragment() {
+    private var _binding : FragmentCoinDetailBinding? = null
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,7 +21,9 @@ class CoinDetailFragment : Fragment() {
 
         val idCoin = arguments?.getString("ID_COIN")
         Timber.d(idCoin ?: "something")
-        return inflater.inflate(R.layout.fragment_coin_detail, container, false)
+        _binding = FragmentCoinDetailBinding.inflate(inflater,container,false)
+        binding?.textViewIdCoin?.text = idCoin
+        return binding?.root
     }
 
 }

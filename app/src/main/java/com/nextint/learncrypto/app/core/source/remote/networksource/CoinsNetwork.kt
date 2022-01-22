@@ -20,6 +20,8 @@ class CoinsNetwork @Inject constructor(private val coinsSerivce: Coins) {
             try {
                 val response = coinsSerivce.getAllCoins()
                 if (response.isNotEmpty()){
+                    val newCoinByRanked = response.filter { it.isNew }.take(99).sortedBy { it.rank }
+                    //emit(ApiResponse.Success(newCoinByRanked))
                     emit(ApiResponse.Success(response.take(99)))
                 } else {
                     emit(ApiResponse.Empty)
