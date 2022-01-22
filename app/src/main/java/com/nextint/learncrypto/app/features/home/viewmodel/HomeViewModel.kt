@@ -40,20 +40,22 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    init {
+        getCoins()
+    }
 
-
-//    fun getCoins() {
-//        viewModelScope.launch {
-//            try {
-//                useCase.getAllCoins().collect {
-//                    _coins.postValue(it)
-//                }
-//            } catch (e: Exception) {
-//                _message.value = e.message
-//            }
-//            _loading.value = false
-//        }
-//    }
+    fun getCoins() {
+        viewModelScope.launch {
+            try {
+                useCase.getAllCoins().collect {
+                    _coins.postValue(it)
+                }
+            } catch (e: Exception) {
+                _message.value = e.message
+            }
+            _loading.value = false
+        }
+    }
 
 
 }

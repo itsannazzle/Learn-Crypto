@@ -11,16 +11,22 @@ import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.ApiResponse
+import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.databinding.FragmentHomeBinding
+import com.nextint.learncrypto.app.features.detail.CoinDetailFragment
 import com.nextint.learncrypto.app.features.home.viewmodel.HomeViewModel
 import com.nextint.learncrypto.app.features.home.viewmodel.HomeViewModelFactory
+import com.nextint.learncrypto.app.features.utils.replaceFragment
+import com.nextint.learncrypto.app.features.utils.setVertical
 import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.util.BaseAdapter
 import timber.log.Timber
 import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
+    private lateinit var coinAdapter : BaseAdapter<CoinsResponseItem,CoinViewHolder>
 
     @Inject
     lateinit var factory : HomeViewModelFactory
@@ -39,42 +45,43 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
-//        binding.pb.visibility = View.VISIBLE
+        setupAdapter()
+        displayHome()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        homeViewModel.getCoins()
-//        homeViewModel.coins.observe(viewLifecycleOwner,{ response ->
-//            when(response){
-//                is ApiResponse.Success -> {
-//                    Timber.d(response.data[1].name)
-//                }
-//                is ApiResponse.Error -> {
-//                    Timber.d(response.message)
-//
-//                }
-//                is ApiResponse.Empty -> {
-//                    Timber.d("empty")
-//                }
-//                else -> {
-//                    Timber.d("else")
-//                }
-//            }
-//        })
+        //homeViewModel.getCoins()
+        homeViewModel.coins.observe(viewLifecycleOwner,{ response ->
+            when(response){
+                is ApiResponse.Success -> {
+                    coinAdapter.safeAddAll(response.data)
+                }
+                is ApiResponse.Error -> {
+                    Timber.d(response.message)
+
+                }
+                is ApiResponse.Empty -> {
+                    Timber.d("empty")
+                }
+                else -> {
+                    Timber.d("else")
+                }
+            }
+        })
 
         homeViewModel.message.observe(viewLifecycleOwner,{
             Timber.d("msg $it")
         })
-
-        homeViewModel.coinsData.observe(viewLifecycleOwner,{ response ->
-            when(response){
-                is ApiResponse.Success -> Timber.d("res suc ${response.data[0].name}")
-                is ApiResponse.Empty -> Timber.d("empty")
-                is ApiResponse.Error -> Timber.d("error ${response.message}")
-            }
-        })
+//
+//        homeViewModel.coinsData.observe(viewLifecycleOwner,{ response ->
+//            when(response){
+//                is ApiResponse.Success -> coinAdapter.safeAddAll(response.data)
+//                is ApiResponse.Empty -> Timber.d("empty")
+//                is ApiResponse.Error -> Timber.d("error ${response.message}")
+//            }
+//        })
 
         homeViewModel.loading.observe(viewLifecycleOwner,{
             binding.pb.visibility = setVisibility(it)
@@ -82,4 +89,24 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun setupAdapter()
+    {
+        coinAdapter = BaseAdapter({parent, viewType -> CoinViewHolder.inflate(parent) }, {
+                viewHolder, _, item ->
+            viewHolder.bind(item)
+            viewHolder.setCoinAction {
+                val bundle = Bundle()
+                bundle.putString("ID_COIN",item.id)
+                replaceFragment(parentFragmentManager,CoinDetailFragment(),bundle)
+            }
+        })
+    }
+
+    private fun displayHome()
+    {
+        binding.recyclerView.apply {
+            setVertical()
+            adapter = coinAdapter
+        }
+    }
 }
