@@ -23,4 +23,7 @@ interface Coins {
     suspend fun getMarketByCoinId(
         @Path("coin_id") coinId: String
     ) : MarketsByCoinIdResponse
+
+    @GET("global")
+    suspend fun getMarketOverview() : MarketOverviewResponse
 }

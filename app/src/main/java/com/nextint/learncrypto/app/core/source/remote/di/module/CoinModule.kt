@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.core.source.remote.di
+package com.nextint.learncrypto.app.core.source.remote.di.module
 
 import com.nextint.learncrypto.app.core.domain.repository.ICoinsRepository
 import com.nextint.learncrypto.app.features.home.data.CoinsRepository
@@ -9,5 +9,5 @@ import dagger.Module
 abstract class CoinModule {
 
     @Binds //what?
-    abstract fun provideRepository(coinsRepostiory : CoinsRepository) : ICoinsRepository
+    abstract fun provideRepository(coinsRepository : CoinsRepository) : ICoinsRepository
 }

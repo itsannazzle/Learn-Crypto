@@ -28,4 +28,8 @@ class CoinsRepository @Inject constructor(private val remoteData : CoinsNetwork)
     override suspend fun getMarketByCoin(coinId: String): List<MarketsByCoinIdResponseItem> {
         return remoteData.getMarketByCoinId(coinId)
     }
+
+    override suspend fun getMaketOverview(): Flow<ApiResponse<MarketOverviewResponse>> {
+        return remoteData.getMarketOverview()
+    }
 }

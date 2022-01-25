@@ -7,5 +7,5 @@ interface CryptoAppDeps {
     fun cryptoExcangeService() : CryptoExchange
     fun peopleService() : People
     fun  searchService() : Search
-    fun vocabularyService() : Vocabulary
+    fun vocabularyService() : Tags
 }

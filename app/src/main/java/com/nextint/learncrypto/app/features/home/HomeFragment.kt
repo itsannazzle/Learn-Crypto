@@ -13,13 +13,13 @@ import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.databinding.FragmentHomeBinding
+import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.detail.CoinDetailFragment
 import com.nextint.learncrypto.app.features.home.viewmodel.HomeViewModel
 import com.nextint.learncrypto.app.features.home.viewmodel.HomeViewModelFactory
-import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.features.utils.setVertical
-import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.features.utils.*
 import com.nextint.learncrypto.app.util.BaseAdapter
+import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //homeViewModel.getCoins()
         homeViewModel.coins.observe(viewLifecycleOwner,{ response ->
             when(response){
                 is ApiResponse.Success -> {
@@ -74,18 +73,37 @@ class HomeFragment : Fragment() {
         homeViewModel.message.observe(viewLifecycleOwner,{
             Timber.d("msg $it")
         })
-//
-//        homeViewModel.coinsData.observe(viewLifecycleOwner,{ response ->
-//            when(response){
-//                is ApiResponse.Success -> coinAdapter.safeAddAll(response.data)
-//                is ApiResponse.Empty -> Timber.d("empty")
-//                is ApiResponse.Error -> Timber.d("error ${response.message}")
-//            }
-//        })
 
         homeViewModel.loading.observe(viewLifecycleOwner,{
+            if(it){
+                setupMarketOverview()
+            }
             binding.pb.visibility = setVisibility(it)
             Timber.d(it.toString())
+        })
+    }
+
+    private fun setupMarketOverview(){
+        homeViewModel.marketOverview.observe(viewLifecycleOwner,{ response ->
+            when(response){
+                is ApiResponse.Success -> {
+                    binding.textViewCapitalization.text = getString(R.string.crypto_exchange,
+                        convertToUSD(response.data.marketCapUsd),
+                        convertToUSD(response.data.volume24hUsd),
+                        convertToPercentage(response.data.bitcoinDominancePercentage),
+                        response.data.cryptocurrenciesNumber.toString())
+                }
+                is ApiResponse.Error -> {
+                    Timber.d(response.message)
+
+                }
+                is ApiResponse.Empty -> {
+                    Timber.d("empty")
+                }
+                else -> {
+                    Timber.d("else")
+                }
+            }
         })
     }
 
@@ -96,7 +114,7 @@ class HomeFragment : Fragment() {
             viewHolder.bind(item)
             viewHolder.setCoinAction {
                 val bundle = Bundle()
-                bundle.putString("ID_COIN",item.id)
+                bundle.putString(ID_COIN_CONSTANT,item.id)
                 replaceFragment(parentFragmentManager,CoinDetailFragment(),bundle)
             }
         })
@@ -107,6 +125,10 @@ class HomeFragment : Fragment() {
         binding.recyclerView.apply {
             setVertical()
             adapter = coinAdapter
+        }
+
+        binding.textViewConcept.setOnClickListener {
+            replaceFragment(parentFragmentManager,ConceptFragment())
         }
     }
 }

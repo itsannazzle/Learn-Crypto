@@ -13,12 +13,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CoinsNetwork @Inject constructor(private val coinsSerivce: Coins) {
+class CoinsNetwork @Inject constructor(private val coinsService: Coins) {
 
     suspend fun getAllCoins(): Flow<ApiResponse<List<CoinsResponseItem>>> {
         return flow {
             try {
-                val response = coinsSerivce.getAllCoins()
+                val response = coinsService.getAllCoins()
                 if (response.isNotEmpty()){
                     val newCoinByRanked = response.filter { it.isNew }.take(99).sortedBy { it.rank }
                     //emit(ApiResponse.Success(newCoinByRanked))
@@ -33,14 +33,26 @@ class CoinsNetwork @Inject constructor(private val coinsSerivce: Coins) {
     }
 
     suspend fun getCoinsById(coinId: String): CoinByIdResponse {
-        return coinsSerivce.getCoinById(coinId)
+        return coinsService.getCoinById(coinId)
     }
 
     suspend fun getExchangeByCoin(coinId: String): List<ExchangeByCoinIdResponseItem> {
-        return coinsSerivce.getExchangesByCoinId(coinId).exchangeByCoinIdResponse
+        return coinsService.getExchangesByCoinId(coinId).exchangeByCoinIdResponse
     }
 
     suspend fun getMarketByCoinId(coinId: String): List<MarketsByCoinIdResponseItem> {
-        return coinsSerivce.getMarketByCoinId(coinId).marketsByCoinIdResponse
+        return coinsService.getMarketByCoinId(coinId).marketsByCoinIdResponse
+    }
+
+    suspend fun getMarketOverview() : Flow<ApiResponse<MarketOverviewResponse>> {
+        return flow {
+            try {
+                val response = coinsService.getMarketOverview()
+                emit(ApiResponse.Success(response))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }
+
     }
 }

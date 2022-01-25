@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.di
 
-import android.content.Context
 import com.nextint.learncrypto.app.core.di.CoreComponent
+import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.home.HomeFragment
 import dagger.Component
 
@@ -18,4 +18,6 @@ interface AppComponent {
     }
 
     fun inject(fragment: HomeFragment)
+
+    fun inject(fragment : ConceptFragment)
 }

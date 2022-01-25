@@ -15,6 +15,8 @@ interface CoinsUseCase {
     suspend fun getExchangesByCoinId(coinId : String) : List<ExchangeByCoinIdResponseItem>
 
     suspend fun getMarketByCoin(coinId: String) : List<MarketsByCoinIdResponseItem>
+
+    suspend fun getMarketOverview() : Flow<ApiResponse<MarketOverviewResponse>>
 }
 interface ICoinsRepository {
     suspend fun getAllCoins() : Flow<ApiResponse<List<CoinsResponseItem>>>
@@ -24,6 +26,8 @@ interface ICoinsRepository {
     suspend fun getExchangesByCoinId(coinId : String) : List<ExchangeByCoinIdResponseItem>
 
     suspend fun getMarketByCoin(coinId: String) : List<MarketsByCoinIdResponseItem>
+
+    suspend fun getMaketOverview() : Flow<ApiResponse<MarketOverviewResponse>>
 }
 
 class CoinsUseCaseImpl @Inject constructor(private val coinsRepository: ICoinsRepository) : CoinsUseCase{
@@ -41,5 +45,9 @@ class CoinsUseCaseImpl @Inject constructor(private val coinsRepository: ICoinsRe
 
     override suspend fun getMarketByCoin(coinId: String): List<MarketsByCoinIdResponseItem> {
         return coinsRepository.getMarketByCoin(coinId)
+    }
+
+    override suspend fun getMarketOverview(): Flow<ApiResponse<MarketOverviewResponse>> {
+        return coinsRepository.getMaketOverview()
     }
 }

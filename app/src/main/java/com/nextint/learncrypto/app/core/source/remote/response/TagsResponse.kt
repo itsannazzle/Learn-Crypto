@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class VocabularyResponse(
+data class TagsResponse(
 
 	@field:SerializedName("VocabularyResponse")
-	val vocabularyResponse: List<VocabularyResponseItem>
+	val vocabularyResponse: List<TagsResponseItem>
 ) : Parcelable
 
 @Parcelize
-data class VocabularyResponseItem(
+data class TagsResponseItem(
 
 	@field:SerializedName("name")
 	val name: String,

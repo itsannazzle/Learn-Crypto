@@ -8,48 +8,66 @@
     android:scrollbars="none"
     tools:context=".features.home.HomeFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-            <ProgressBar
-                android:id="@+id/pb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="408dp"
-                android:indeterminateTint="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="408dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:indeterminateTint="@color/black" />
 
-            <TextView
-            android:id="@+id/textView2"
+        <TextView
+            android:id="@+id/textViewMarketOverview"
             style="@style/title24"
-            android:text="@string/before_you_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/market_overview"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/item_whats_crypto"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textViewCapitalization"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/crypto_exchange"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewConcept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/concept"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewCapitalization" />
+
+        <TextView
+            android:id="@+id/textViewMenuCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coin"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewConcept"
+            app:layout_constraintStart_toEndOf="@id/textViewConcept"
+            app:layout_constraintTop_toTopOf="@+id/textViewConcept" />
+
+        <TextView
+            android:id="@+id/textViewCoin"
             style="@style/title24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/crypto_exchange"
+            android:text="@string/coin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewConcept" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -58,7 +76,7 @@
             android:layout_marginTop="@dimen/dimen_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCoin"
             tools:listitem="@layout/item_coins" />
 
         <TextView
@@ -69,9 +87,9 @@
             android:text="@string/more"
             android:textColor="@color/primary"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
+            app:layout_constraintTop_toTopOf="@+id/textViewCoin" />
 
         <TextView
             android:id="@+id/textView5"

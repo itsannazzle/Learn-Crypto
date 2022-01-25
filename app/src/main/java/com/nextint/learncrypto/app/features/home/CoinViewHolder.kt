@@ -25,7 +25,7 @@ class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
             findViewById<TextView>(R.id.coin_name).text = coinsResponseItem.name
             findViewById<TextView>(R.id.coin_rank).text = coinsResponseItem.rank.toString()
             findViewById<TextView>(R.id.coin_symbol).text = coinsResponseItem.symbol
-            findViewById<TextView>(R.id.label_coin_type).text = resources.getString(R.string.type, coinsResponseItem.type)
+                findViewById<TextView>(R.id.label_coin_type).text = resources.getString(R.string.type, coinsResponseItem.type)
             if (coinsResponseItem.isNew) {
                 findViewById<CardView>(R.id.status_new).findViewById<TextView>(R.id.textViewStatus).text = "New"
                 findViewById<CardView>(R.id.status_new).setCardBackgroundColor(resources.getColor(R.color.teal_700))

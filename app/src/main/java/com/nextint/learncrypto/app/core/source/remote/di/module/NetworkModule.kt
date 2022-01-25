@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.core.source.remote.di
+package com.nextint.learncrypto.app.core.source.remote.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -6,7 +6,6 @@ import com.nextint.learncrypto.app.core.source.remote.*
 import com.nextint.learncrypto.app.util.BASE_URL
 import dagger.Module
 import dagger.Provides
-import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -53,8 +52,8 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideVocabulary(@Named("NetworkServices") retrofit: Retrofit) : Vocabulary{
-        return retrofit.create(Vocabulary::class.java)
+    fun provideVocabulary(@Named("NetworkService") retrofit: Retrofit) : Tags{
+        return retrofit.create(Tags::class.java)
     }
 
     private fun okHttpClientFactory(): OkHttpClient {
