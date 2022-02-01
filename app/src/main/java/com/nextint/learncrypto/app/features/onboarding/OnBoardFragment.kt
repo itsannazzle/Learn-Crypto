@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentOnBoardBinding
-import com.nextint.learncrypto.app.features.home.HomeFragment
+import com.nextint.learncrypto.app.features.ui.home.HomeFragment
 import com.nextint.learncrypto.app.features.utils.circleImage
 
 

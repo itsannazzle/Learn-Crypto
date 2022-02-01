@@ -1,11 +1,9 @@
-package com.nextint.learncrypto.app.features.home.data
+package com.nextint.learncrypto.app.features.ui.home
 
 data class HomeMenuModel (
-    val number : Int? = 0,
-    val title : String? = ""
+    var number : Int? = 0,
+    var title : String? = ""
         )
-
-object dummy_data
 {
     fun generateHomeMenu() : ArrayList<HomeMenuModel>
     {
@@ -19,3 +17,14 @@ object dummy_data
         return menuModel
     }
 }
+
+object MenuData
+{
+    private val contentNumber = arrayOf(
+        1, 2, 3, 4
+    )
+
+    private val contentTitle = arrayOf(
+        "Concept","Exchange","Market","Coin")
+}
+

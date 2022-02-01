@@ -7,6 +7,7 @@ import dagger.Module
 
 @Module(includes = [NetworkModule::class])
 abstract class TagsModule {
+
     @Binds
     abstract fun provideRepository(tagsRepository: TagsRepository) : ITagsRepository
 }

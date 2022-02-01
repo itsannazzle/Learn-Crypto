@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_coin_detail.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_coins.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_concept.xml" value="0.22" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_home.xml" value="0.23711340206185566" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_coins.xml" value="0.22" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_crypto_exchange_home.xml" value="0.5" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_home_menu.xml" value="0.6" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_indicator_status.xml" value="0.6" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_whats_crypto.xml" value="0.22" />
       </map>

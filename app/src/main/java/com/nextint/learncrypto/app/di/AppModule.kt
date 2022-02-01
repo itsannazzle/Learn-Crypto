@@ -1,10 +1,13 @@
 package com.nextint.learncrypto.app.di
 
-import com.nextint.learncrypto.app.core.domain.repository.CoinsUseCase
-import com.nextint.learncrypto.app.core.domain.repository.CoinsUseCaseImpl
+import com.nextint.learncrypto.app.features.coins.data.CoinsUseCase
+import com.nextint.learncrypto.app.features.coins.data.CoinsUseCaseImpl
 import com.nextint.learncrypto.app.features.concept.data.TagsUseCase
 import com.nextint.learncrypto.app.features.concept.data.TagsUseCaseImpl
-import com.nextint.learncrypto.app.features.home.viewmodel.HomeViewModelFactory
+import com.nextint.learncrypto.app.features.overview.data.OverviewUseCase
+import com.nextint.learncrypto.app.features.overview.data.OverviewUseCaseImpl
+import com.nextint.learncrypto.app.features.search.SearchUseCase
+import com.nextint.learncrypto.app.features.search.SearchUseCaseImpl
 import dagger.Binds
 import dagger.Module
 
@@ -15,4 +18,11 @@ abstract class AppModule {
 
     @Binds
     abstract fun provideTagsUseCase(tagsUseCaseImpl: TagsUseCaseImpl) : TagsUseCase
+
+    @Binds
+    abstract fun provideSearchUseCase(searchUseCaseImpl: SearchUseCaseImpl) : SearchUseCase
+
+    @Binds
+    abstract fun provideOverview(overviewUseCaseImpl: OverviewUseCaseImpl) : OverviewUseCase
+
 }

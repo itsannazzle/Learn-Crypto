@@ -1,6 +1,6 @@
 package com.nextint.learncrypto.app.features.concept.data
 
-import com.nextint.learncrypto.app.core.source.remote.ApiResponse
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TagsResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

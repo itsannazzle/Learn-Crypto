@@ -1,11 +1,11 @@
 package com.nextint.learncrypto.app.core.source.remote.di
 
-import com.nextint.learncrypto.app.core.source.remote.*
+import com.nextint.learncrypto.app.core.source.remote.service.*
 
 interface CryptoAppDeps {
-    fun coinsService() : Coins
-    fun cryptoExcangeService() : CryptoExchange
-    fun peopleService() : People
-    fun  searchService() : Search
-    fun vocabularyService() : Tags
+    fun coinsService() : CoinsService
+    fun cryptoExcangeService() : CryptoExchangeService
+    fun peopleService() : PeopleService
+    fun  searchService() : SearchService
+    fun vocabularyService() : TagsService
 }

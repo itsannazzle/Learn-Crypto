@@ -3,6 +3,7 @@ package com.nextint.learncrypto.app.core.source.remote.di.module
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.nextint.learncrypto.app.core.source.remote.*
+import com.nextint.learncrypto.app.core.source.remote.service.*
 import com.nextint.learncrypto.app.util.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -32,28 +33,34 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideCoins(@Named("NetworkService")retrofit: Retrofit) : Coins {
-        return retrofit.create(Coins::class.java)
+    fun provideCoins(@Named("NetworkService")retrofit: Retrofit) : CoinsService {
+        return retrofit.create(CoinsService::class.java)
     }
 
     @Provides
-    fun provideCryptoExchange(@Named("NetworkService") retrofit: Retrofit) : CryptoExchange {
-        return retrofit.create(CryptoExchange::class.java)
+    fun provideCryptoExchange(@Named("NetworkService") retrofit: Retrofit) : CryptoExchangeService {
+        return retrofit.create(CryptoExchangeService::class.java)
     }
 
     @Provides
-    fun providePeople(@Named("NetworkService") retrofit: Retrofit) : People {
-        return retrofit.create(People::class.java)
+    fun providePeople(@Named("NetworkService") retrofit: Retrofit) : PeopleService {
+        return retrofit.create(PeopleService::class.java)
     }
 
     @Provides
-    fun provideSearch(@Named("NetworkService") retrofit: Retrofit) : Search{
-        return retrofit.create(Search::class.java)
+    fun provideSearch(@Named("NetworkService") retrofit: Retrofit) : SearchService {
+        return retrofit.create(SearchService::class.java)
     }
 
     @Provides
-    fun provideVocabulary(@Named("NetworkService") retrofit: Retrofit) : Tags{
-        return retrofit.create(Tags::class.java)
+    fun provideVocabulary(@Named("NetworkService") retrofit: Retrofit) : TagsService {
+        return retrofit.create(TagsService::class.java)
+    }
+
+    @Provides
+    fun provideOverview(@Named("NetworkService") retrofit: Retrofit) : GlobalOverviewService
+    {
+        return retrofit.create(GlobalOverviewService::class.java)
     }
 
     private fun okHttpClientFactory(): OkHttpClient {

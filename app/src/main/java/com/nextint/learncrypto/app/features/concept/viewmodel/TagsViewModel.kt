@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nextint.learncrypto.app.core.source.remote.ApiResponse
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TagsResponse
 import com.nextint.learncrypto.app.features.concept.data.TagsUseCase
 import kotlinx.coroutines.Dispatchers

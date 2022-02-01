@@ -1,10 +1,10 @@
-package com.nextint.learncrypto.app.core.source.remote
+package com.nextint.learncrypto.app.core.source.remote.service
 
 import com.nextint.learncrypto.app.core.source.remote.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface Coins {
+interface CoinsService {
 
     @GET("coins")
     suspend fun getAllCoins() : List<CoinsResponseItem>
@@ -24,6 +24,4 @@ interface Coins {
         @Path("coin_id") coinId: String
     ) : MarketsByCoinIdResponse
 
-    @GET("global")
-    suspend fun getMarketOverview() : MarketOverviewResponse
 }

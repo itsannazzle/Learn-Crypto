@@ -1,17 +1,15 @@
-package com.nextint.learncrypto.app.features.home.data
+package com.nextint.learncrypto.app.features.coins.data
 
-import com.nextint.learncrypto.app.core.domain.repository.ICoinsRepository
-import com.nextint.learncrypto.app.core.source.remote.ApiResponse
-import com.nextint.learncrypto.app.core.source.remote.Coins
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.networksource.CoinsNetwork
 import com.nextint.learncrypto.app.core.source.remote.response.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.take
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CoinsRepository @Inject constructor(private val remoteData : CoinsNetwork) : ICoinsRepository{
+class CoinsRepository @Inject constructor(private val remoteData : CoinsNetwork) :
+    ICoinsRepository {
 
     override suspend fun getAllCoins(): Flow<ApiResponse<List<CoinsResponseItem>>> {
         return remoteData.getAllCoins()
@@ -29,7 +27,4 @@ class CoinsRepository @Inject constructor(private val remoteData : CoinsNetwork)
         return remoteData.getMarketByCoinId(coinId)
     }
 
-    override suspend fun getMaketOverview(): Flow<ApiResponse<MarketOverviewResponse>> {
-        return remoteData.getMarketOverview()
-    }
 }

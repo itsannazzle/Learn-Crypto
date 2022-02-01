@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class SearchResponse(
 
 	@field:SerializedName("exchanges")
-	val exchanges: List<ExchangesItem>,
+	val exchanges: List<SearchExchangesItem>,
 
 	@field:SerializedName("people")
 	val people: List<PeopleItem>,
@@ -24,7 +24,7 @@ data class SearchResponse(
 ) : Parcelable
 
 @Parcelize
-data class ExchangesItem(
+data class SearchExchangesItem(
 
 	@field:SerializedName("name")
 	val name: String,

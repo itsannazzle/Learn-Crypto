@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.core.source.remote.networksource
 
-import com.nextint.learncrypto.app.core.source.remote.ApiResponse
-import com.nextint.learncrypto.app.core.source.remote.Tags
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.core.source.remote.service.TagsService
 import com.nextint.learncrypto.app.core.source.remote.response.TagsResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -12,13 +12,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TagsNetwork @Inject constructor(private val tagsService : Tags)
+class TagsNetwork @Inject constructor(private val tagsServiceService : TagsService)
 {
     suspend fun getAllTags() : Flow<ApiResponse<TagsResponse>>
     {
         return flow ()
         {
-            val response = tagsService.getAllVocabulary()
+            val response = tagsServiceService.getAllVocabulary()
             try
             {
                 if (response.vocabularyResponse.isNotEmpty())

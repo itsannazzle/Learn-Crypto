@@ -3,9 +3,7 @@ package com.nextint.learncrypto.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.nextint.learncrypto.app.databinding.ActivityMainBinding
-import com.nextint.learncrypto.app.features.home.HomeFragment
 import com.nextint.learncrypto.app.features.onboarding.OnBoardFragment
-import com.nextint.learncrypto.app.features.utils.circleImage
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {

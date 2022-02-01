@@ -1,12 +1,11 @@
-package com.nextint.learncrypto.app.core.domain.repository
+package com.nextint.learncrypto.app.features.coins.data
 
-import com.nextint.learncrypto.app.core.source.remote.ApiResponse
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.response.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.take
 import javax.inject.Inject
 
+//dipanggil di viewmodel
 interface CoinsUseCase {
     suspend fun getAllCoins() : Flow<ApiResponse<List<CoinsResponseItem>>>
 
@@ -16,8 +15,8 @@ interface CoinsUseCase {
 
     suspend fun getMarketByCoin(coinId: String) : List<MarketsByCoinIdResponseItem>
 
-    suspend fun getMarketOverview() : Flow<ApiResponse<MarketOverviewResponse>>
 }
+//dipanggil di repository
 interface ICoinsRepository {
     suspend fun getAllCoins() : Flow<ApiResponse<List<CoinsResponseItem>>>
 
@@ -27,10 +26,11 @@ interface ICoinsRepository {
 
     suspend fun getMarketByCoin(coinId: String) : List<MarketsByCoinIdResponseItem>
 
-    suspend fun getMaketOverview() : Flow<ApiResponse<MarketOverviewResponse>>
 }
 
-class CoinsUseCaseImpl @Inject constructor(private val coinsRepository: ICoinsRepository) : CoinsUseCase{
+//connect repository and viewmodel
+class CoinsUseCaseImpl @Inject constructor(private val coinsRepository: ICoinsRepository) :
+    CoinsUseCase {
     override suspend fun getAllCoins(): Flow<ApiResponse<List<CoinsResponseItem>>> {
         return coinsRepository.getAllCoins()
     }
@@ -47,7 +47,4 @@ class CoinsUseCaseImpl @Inject constructor(private val coinsRepository: ICoinsRe
         return coinsRepository.getMarketByCoin(coinId)
     }
 
-    override suspend fun getMarketOverview(): Flow<ApiResponse<MarketOverviewResponse>> {
-        return coinsRepository.getMaketOverview()
-    }
 }

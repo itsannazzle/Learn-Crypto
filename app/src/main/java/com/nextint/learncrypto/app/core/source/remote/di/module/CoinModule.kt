@@ -1,13 +1,14 @@
 package com.nextint.learncrypto.app.core.source.remote.di.module
 
-import com.nextint.learncrypto.app.core.domain.repository.ICoinsRepository
-import com.nextint.learncrypto.app.features.home.data.CoinsRepository
+import com.nextint.learncrypto.app.features.coins.data.ICoinsRepository
+import com.nextint.learncrypto.app.features.coins.data.CoinsRepository
 import dagger.Binds
 import dagger.Module
 
 @Module(includes = [NetworkModule::class])
 abstract class CoinModule {
 
-    @Binds //what?
+    //class Repository need implementation of Icoinrepository, so here it goes.
+    @Binds
     abstract fun provideRepository(coinsRepository : CoinsRepository) : ICoinsRepository
 }

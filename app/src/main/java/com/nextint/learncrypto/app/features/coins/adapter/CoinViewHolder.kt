@@ -1,6 +1,5 @@
-package com.nextint.learncrypto.app.features.home
+package com.nextint.learncrypto.app.features.coins.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
