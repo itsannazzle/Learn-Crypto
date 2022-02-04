@@ -61,6 +61,12 @@ data class CoinByIdResponse(
 	@field:SerializedName("rank")
 	val rank: Int,
 
+	@field:SerializedName("open_source")
+	val isOpenSource: Boolean,
+
+	@field:SerializedName("hardware-wallet")
+	val isHardwareWallet: Boolean,
+
 	@field:SerializedName("started_at")
 	val startedAt: String,
 
@@ -90,10 +96,10 @@ data class TeamItem(
 data class Whitepaper(
 
 	@field:SerializedName("thumbnail")
-	val thumbnail: String,
+	val thumbnail: String? = null,
 
 	@field:SerializedName("link")
-	val link: String
+	val link: String? = null
 ) : Parcelable
 
 @Parcelize

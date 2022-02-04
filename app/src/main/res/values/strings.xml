@@ -17,4 +17,17 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias deserunt eos et impedit iste libero, modi molestias, nostrum numquam odio perferendis possimus, praesentium ullam vel vero. Eius eos in rem?</string>
     <string name="helpfull_definiton">Helpfull Definiton</string>
     <string name="coins">Coins</string>
+    <string name="symbol">Symbol : %1$s</string>
+    <string name="about">About</string>
+    <string name="started_at">Started at :</string>
+    <string name="first_data">First data :</string>
+    <string name="last_data">Last data</string>
+    <string name="development_status">Development\nstatus :</string>
+    <string name="hardwallet">Hardware\nwallet :</string>
+    <string name="proof_of_type">Proof of type :</string>
+    <string name="organization_nstatus">Organization\nstructure :</string>
+    <string name="hash_algorithm">Hash\nalgorithm :</string>
+    <string name="whitepaper">Whitepaper :</string>
+    <string name="team">Team</string>
+    <string name="tags">Tags</string>
 </resources>

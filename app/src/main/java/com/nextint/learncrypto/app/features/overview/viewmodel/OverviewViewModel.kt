@@ -12,6 +12,7 @@ import com.nextint.learncrypto.app.features.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class  OverviewViewModel @Inject constructor(
@@ -37,11 +38,14 @@ class  OverviewViewModel @Inject constructor(
             try {
                 overviewUseCase.getMarketOverview().collect {
                     _marketOverview.postValue(it)
+                    Timber.d("dalem try")
                 }
             } catch (e : java.lang.Exception){
                 _message.postValue(e.message)
+                Timber.d("dalem catch")
             }
             _loading.postValue(false)
+            Timber.d("diluar")
         }
     }
 

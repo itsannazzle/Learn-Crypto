@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.util
+package com.nextint.learncrypto.app.features.utils
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

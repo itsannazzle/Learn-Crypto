@@ -4,6 +4,7 @@ import com.nextint.learncrypto.app.core.di.CoreComponent
 import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.ui.home.HomeFragment
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
+import com.nextint.learncrypto.app.features.ui.detail.CoinDetailFragment
 import dagger.Component
 
 @AppScope
@@ -23,4 +24,6 @@ interface AppComponent {
     fun inject(fragment : ConceptFragment)
 
     fun inject(fragment : CoinsFragment)
+
+    fun inject(fragment : CoinDetailFragment)
 }

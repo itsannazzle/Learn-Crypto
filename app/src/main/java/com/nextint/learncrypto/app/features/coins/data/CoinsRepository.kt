@@ -15,15 +15,15 @@ class CoinsRepository @Inject constructor(private val remoteData : CoinsNetwork)
         return remoteData.getAllCoins()
     }
 
-    override suspend fun getCoinById(coinId: String): CoinByIdResponse {
+    override suspend fun getCoinById(coinId: String): Flow<ApiResponse<CoinByIdResponse>> {
         return remoteData.getCoinsById(coinId)
     }
 
-    override suspend fun getExchangesByCoinId(coinId: String): List<ExchangeByCoinIdResponseItem> {
+    override suspend fun getExchangesByCoinId(coinId: String): Flow<ApiResponse<List<ExchangeByCoinIdResponseItem>>> {
         return remoteData.getExchangeByCoin(coinId)
     }
 
-    override suspend fun getMarketByCoin(coinId: String): List<MarketsByCoinIdResponseItem> {
+    override suspend fun getMarketByCoin(coinId: String): Flow<ApiResponse<List<MarketsByCoinIdResponseItem>>> {
         return remoteData.getMarketByCoinId(coinId)
     }
 
