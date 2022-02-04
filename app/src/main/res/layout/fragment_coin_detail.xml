@@ -14,10 +14,11 @@
 
         <TextView
             android:id="@+id/textViewCoinName"
-            style="@style/title24"
+            style="@style/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Bitcoin" />
@@ -28,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
+            android:layout_marginBottom="@dimen/dimen_8"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
             app:layout_constraintStart_toEndOf="@+id/textViewCoinName" />
 
@@ -96,14 +98,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_24"
-            android:stretchColumns="1"
+            android:stretchColumns="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAboutCoin">
 
             <TableRow>
 
-                <TextView android:text="@string/started_at" />
+                <TextView
+                    android:layout_marginEnd="105dp"
+                    android:text="@string/started_at" />
 
                 <TextView
                     android:id="@+id/textViewStarted"
@@ -143,6 +147,7 @@
 
                 <TextView
                     android:id="@+id/textViewHardWallet"
+                    android:maxLines="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -152,6 +157,9 @@
 
                 <TextView
                     android:id="@+id/textViewProofType"
+                    android:ellipsize="end"
+                    android:maxEms="50"
+                    android:maxLines="4"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -183,69 +191,71 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tableLayout" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewWhitePaper"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/dimen_8"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewWhitePaper"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="@dimen/dimen_4"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/textViewWhitePaperSrc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Whitaepaper.pdf"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/dimen_4"
-            app:layout_constraintTop_toBottomOf="@id/imageViewWhitePaper"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewWhitePaper"
+            tools:text="Whitaepaper.pdf" />
 
         <TextView
             android:id="@+id/textViewTeam"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/team"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhitePaperSrc"
             android:layout_marginTop="@dimen/dimen_24"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/black"/>
+            android:text="@string/team"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewWhitePaperSrc" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylerViewTeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_team_layout"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/dimen_8"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTeam"
-            app:layout_constraintStart_toStartOf="parent"/>
+            tools:listitem="@layout/item_team_layout" />
 
         <TextView
             android:id="@+id/textViewTags"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tags"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recylerViewTeam"
             android:layout_marginTop="@dimen/dimen_24"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="@color/black"/>
+            android:text="@string/tags"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recylerViewTeam" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylerViewTags"
+            android:id="@+id/recyclerViewTags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_tags"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintTop_toBottomOf="@id/textViewTags"/>
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTags"
+            app:spanCount="2"
+            tools:listitem="@layout/item_tags" />
 
         <ProgressBar
             android:id="@+id/progressBarDetail"

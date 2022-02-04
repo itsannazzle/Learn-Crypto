@@ -24,7 +24,7 @@
         <item name="cornerRadius">30dp</item>
     </style>
 
-    <style name="title24">
+    <style name="title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/inter_bold</item>
@@ -32,4 +32,25 @@
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/textColor</item>
     </style>
+
+    <!--    Bottom sheet-->
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/corner_top</item>
+    </style>
+
+    <style name="dialogAnimation">
+
+    </style>
+
+    <style name="BottomDialogTheme" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:windowAnimationStyle">@style/dialogAnimation</item>
+        <item name="android:popupElevation">10dp</item>
+        <item name="android:statusBarColor">@color/primaryAccent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+
 </resources>

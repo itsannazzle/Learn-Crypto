@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/what_is"
-        style="@style/title24"
+        style="@style/title"
         android:textColor="@color/black"/>
 
     <include
@@ -31,7 +31,7 @@
         android:id="@+id/textViewHelpfulDefinition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/title24"
+        style="@style/title"
         android:text="@string/helpfull_definiton"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/whatsCrypto"

@@ -18,6 +18,7 @@ fun ImageView.loadImage(url : String){
     Glide.with(context)
         .load(url)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.ic_baseline_broken_image_24)
         .into(this)
 }
 

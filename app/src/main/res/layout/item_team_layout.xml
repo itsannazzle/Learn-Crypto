@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="10dp"
+    android:layout_marginBottom="@dimen/dimen_4"
     android:layout_marginEnd="@dimen/dimen_16"
     app:cardBackgroundColor="@color/primaryAccent"
-    android:layout_height="120dp">
+    android:layout_height="150dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
             android:id="@+id/imageViewTeam"
             android:layout_width="57dp"
             android:layout_height="57dp"
+            android:scaleType="fitCenter"
             android:layout_marginTop="@dimen/dimen_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +31,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageViewTeam"
-            tools:text="Nama"
+            tools:text="Nama anna karenina"
+            android:textAlignment="center"
+            android:ellipsize="end"
+            android:maxEms="5"
+            android:maxLines="2"
+            android:textStyle="bold"
             style="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/dimen_4"/>
@@ -38,10 +45,14 @@
             android:id="@+id/textViewTeamRole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTeamName"
             tools:text="Founder"
+            android:maxLines="2"
+            android:maxEms="15"
+            android:textAlignment="center"
             style="@style/TextAppearance.MaterialComponents.Body2"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
