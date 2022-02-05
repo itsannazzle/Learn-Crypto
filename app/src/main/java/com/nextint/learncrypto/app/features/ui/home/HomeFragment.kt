@@ -3,12 +3,14 @@ package com.nextint.learncrypto.app.features.ui.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
@@ -88,8 +90,6 @@ class HomeFragment : Fragment() {
         })
     }
 
-
-
     @SuppressLint("ResourceAsColor")
     private fun displayHome()
     {
@@ -118,6 +118,7 @@ class HomeFragment : Fragment() {
                 replaceFragment(parentFragmentManager,CoinsFragment())
             }
         }
+        _binding.textViewBuildBy.text = getString(R.string.build_by_anna_karenina_jusuf,"V${BuildConfig.VERSION_NAME}")
 
     }
 }

@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
-import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentWebViewBinding
-import com.nextint.learncrypto.app.util.BUNDLE_WHITEPAPER_URL
+import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 
 
 class WebViewFragment : Fragment() {
@@ -22,7 +21,7 @@ class WebViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWebViewBinding.inflate(layoutInflater,container,false)
-        val stringWhitepaperUrl = arguments?.getString(BUNDLE_WHITEPAPER_URL)
+        val stringWhitepaperUrl = arguments?.getString(BUNDLE_WEB_URL)
         if (stringWhitepaperUrl != null)
         {
             _getBinding?.webViewLayout?.webViewClient = WebViewClient()

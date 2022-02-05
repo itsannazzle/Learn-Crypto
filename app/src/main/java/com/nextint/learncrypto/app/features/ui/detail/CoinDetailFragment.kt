@@ -27,10 +27,11 @@ import com.nextint.learncrypto.app.features.utils.BaseAdapter
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.features.utils.replaceFragment
 import com.nextint.learncrypto.app.features.utils.setVisibility
-import com.nextint.learncrypto.app.util.BUNDLE_WHITEPAPER_URL
+import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.ID_TAG_CONSTANT
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
+import timber.log.Timber
 import javax.inject.Inject
 
 class CoinDetailFragment : Fragment()
@@ -84,6 +85,7 @@ class CoinDetailFragment : Fragment()
                     { with(response.data)
                         {
                             binding?.textViewCoinName?.text = name
+                            binding?.textViewCoinSocMed?.text = getString(R.string.find_out_more_about_1_s_on,name)
                             binding?.indicatorActive?.textViewStatus?.text = if (isActive) "Active" else "Inactive"
                             with(binding?.indicatorNew?.textViewStatus)
                             {
@@ -91,7 +93,7 @@ class CoinDetailFragment : Fragment()
                                 this?.text = if (isNew) "New" else "Not new"
                             }
 
-                            binding?.indicatorOpenSource?.textViewStatus?.text = if (isOpenSource) "Open source" else "Private"
+                            binding?.indicatorOpenSource?.textViewStatus?.text = if (isOpenSource) "Open source" else "Private Source"
                             binding?.textViewSymbol?.text = getString(R.string.symbol, symbol)
                             binding?.textViewType?.text = getString(R.string.type,type)
                             binding?.textViewAboutCoin?.text = if (description.isEmpty()) "no desc" else description
@@ -108,7 +110,7 @@ class CoinDetailFragment : Fragment()
                             binding?.imageViewWhitePaper?.setOnClickListener {
                                 //need pdf viewer
                                 val bundle = Bundle()
-                                bundle.putString(BUNDLE_WHITEPAPER_URL,whitepaper.link)
+                                bundle.putString(BUNDLE_WEB_URL,whitepaper.link)
                                 replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
                             }
                             _teamAdapter.safeAddAll(team)
@@ -126,6 +128,7 @@ class CoinDetailFragment : Fragment()
     {
         _coinsViewModel.loading.observe(viewLifecycleOwner,
             {
+                Timber.d(it.toString())
                 binding?.progressBarDetail?.visibility = setVisibility(it)
             })
     }

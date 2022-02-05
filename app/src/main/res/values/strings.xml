@@ -32,4 +32,7 @@
     <string name="tags">Tags</string>
     <string name="position">Position : %1$s at %2$s</string>
     <string name="total_position">Total position : %1$s</string>
+    <string name="find_him_her_on">Find him/her on :</string>
+    <string name="build_by_anna_karenina_jusuf">Build by Anna Karenina Jusuf\n%1$s</string>
+    <string name="find_out_more_about_1_s_on">Find out more about %1$s on :</string>
 </resources>

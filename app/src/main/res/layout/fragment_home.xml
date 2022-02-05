@@ -10,9 +10,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSearch"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,8 +40,8 @@
         layout="@layout/item_home_menu"
         android:layout_width="134dp"
         android:layout_height="134dp"
-        app:layout_constraintBottom_toBottomOf="@+id/menuConcept"
         android:layout_marginStart="@dimen/dimen_24"
+        app:layout_constraintBottom_toBottomOf="@+id/menuConcept"
         app:layout_constraintStart_toEndOf="@+id/menuConcept"
         app:layout_constraintTop_toTopOf="@+id/menuConcept" />
 
@@ -71,8 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="408dp"
+        android:indeterminateTint="@color/primary"
         android:visibility="gone"
-        android:indeterminateTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,29 +90,21 @@
 
     <TextView
         android:id="@+id/textViewCapitalization"
+        style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"
         tools:text="@string/crypto_exchange" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textViewConcept"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:text="@string/concept"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/textViewCapitalization" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewMenuCoin"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:text="@string/coin"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textViewConcept"-->
-<!--        app:layout_constraintStart_toEndOf="@id/textViewConcept"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/textViewConcept" />-->
-
+    <TextView
+        android:id="@+id/textViewBuildBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/build_by_anna_karenina_jusuf"
+        android:textAlignment="center"
+        android:textColor="@color/lightGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

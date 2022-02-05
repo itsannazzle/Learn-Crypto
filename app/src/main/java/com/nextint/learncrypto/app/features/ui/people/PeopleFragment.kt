@@ -6,18 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.PeopleResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentPeopleBinding
 import com.nextint.learncrypto.app.features.person.viewmodel.PeopleViewModel
 import com.nextint.learncrypto.app.features.person.viewmodel.PeopleViewModelFactory
 import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
 import com.nextint.learncrypto.app.features.utils.circleImage
-import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.util.BUNDLE_WHITEPAPER_URL
+import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
 import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
 import timber.log.Timber
@@ -51,6 +53,7 @@ class PeopleFragment : Fragment()
         _binding = FragmentPeopleBinding.inflate(layoutInflater, container, false)
         val stringPeopleId = arguments?.getString(ID_TEAM_CONSTANT) ?: "null"
         _peopleViewModel.getPeopleById(stringPeopleId)
+        progressBarVisibility()
         return _getBinding?.root
     }
 
@@ -72,33 +75,138 @@ class PeopleFragment : Fragment()
                         {
                             _getBinding?.apply {
                                 textViewPeopleName.text = name
-                                textViewPeopleDesc.text = description
+                                textViewPeopleDesc.text = description ?: "Description not available"
                                 textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
                                 imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
-                                for (position in positions)
-                                {
-                                    textViewPeoplePosition.text = getString(R.string.position,position.position, position.coinName)
+                                positions.map {
+                                Timber.d("${it.position} at ${it.coinName}" )
+                                    textViewPeoplePosition.text = getString(R.string.position,it.position, it.coinName)
                                 }
-                                if (links.github.isNullOrEmpty())
-                                {
-                                    Timber.d("github null")
-                                } else
-                                {
-                                    for (github in links.github)
-                                    {
-                                        imageViewPeopleGitHub.setOnClickListener {
-                                            val bundle = Bundle()
-                                            bundle.putString(BUNDLE_WHITEPAPER_URL,github.url)
-                                            replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
-                                        }
-                                    }
-                                }
-
+//                                for (position in positions.indices)
+//                                {
+//                                    Timber.d(positions[position].coinName)
+//                                    textViewPeoplePosition.text = getString(R.string.position,positions[position].position, positions[position].coinName)
+//                                }
+                                setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
+                                setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
+                                setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
+                                setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                             }
                         }
                     }
                 }
             })
     }
+
+
+    private fun progressBarVisibility()
+    {
+        _peopleViewModel.loading.observe(viewLifecycleOwner,
+            {
+                _getBinding?.progressBar?.visibility = setVisibility(it)
+            })
+    }
+
+    //region SOCIALMEDIA
+    private fun setupPeopleSocialMedia(
+        imageView: ImageView,
+        peopleResponse: PeopleResponse
+    )
+    {
+        when(imageView)
+        {
+            _getBinding?.imageViewPeopleGitHub ->
+            {
+                with(imageView)
+                {
+                    if (peopleResponse.links.github.isNullOrEmpty()) {
+                        visibility = setVisibility(false)
+                    } else {
+                        for (github in peopleResponse.links.github) {
+                            setOnClickListener()
+                            {
+                                val bundle = Bundle()
+                                bundle.putString(BUNDLE_WEB_URL, github.url)
+                                replaceFragment(
+                                    parentFragmentManager,
+                                    WebViewFragment(),
+                                    bundle
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            _getBinding?.imageViewPeopleLinkedin ->
+            {
+                with(imageView)
+                {
+                    if (peopleResponse.links.linkedin.isNullOrEmpty())
+                    {
+                        visibility = setVisibility(false)
+                    } else
+                    {
+                        for (linkedin in peopleResponse.links.linkedin)
+                        {
+                            setOnClickListener()
+                            {
+                                val bundle = Bundle()
+                                bundle.putString(BUNDLE_WEB_URL, linkedin.url)
+                                replaceFragment(
+                                    parentFragmentManager,
+                                    WebViewFragment(),
+                                    bundle
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            _getBinding?.imageViewPeopleTwitter ->
+            {
+                with(imageView)
+                {
+                    if (peopleResponse.links.twitter.isNullOrEmpty())
+                    {
+                        visibility = setVisibility(false)
+                    } else
+                    {
+                        for (twitter in peopleResponse.links.twitter)
+                        {
+                            setOnClickListener()
+                            {
+                                val bundle = Bundle()
+                                bundle.putString(BUNDLE_WEB_URL,twitter.url)
+                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                            }
+                        }
+                    }
+                }
+            }
+            _getBinding?.imageViewPeopleMedium ->
+            {
+                with(imageView)
+                {
+                    if (peopleResponse.links.medium.isNullOrEmpty())
+                    {
+                        visibility = setVisibility(false)
+                    } else
+                    {
+                        for (medium in peopleResponse.links.medium)
+                        {
+                            setOnClickListener()
+                            {
+                                val bundle = Bundle()
+                                bundle.putString(BUNDLE_WEB_URL,medium.url)
+                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //endregion
 
 }
