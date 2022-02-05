@@ -1,6 +1,5 @@
 package com.nextint.learncrypto.app.core.source.remote.di.module
 
-import com.nextint.learncrypto.app.core.source.remote.response.SearchResponse
 import com.nextint.learncrypto.app.features.search.ISearchRepository
 import com.nextint.learncrypto.app.features.search.SearchRepository
 import dagger.Binds

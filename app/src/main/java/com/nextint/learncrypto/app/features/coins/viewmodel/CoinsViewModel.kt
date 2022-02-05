@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CoinsViewModel @Inject constructor(private val coinsUsecase : CoinsUseCase ) : ViewModel()
+class CoinsViewModel @Inject constructor(private val coinsUseCase : CoinsUseCase ) : ViewModel()
 {
     private val _loading: MutableLiveData<Boolean> = MutableLiveData(true)
     val loading: LiveData<Boolean> = _loading
@@ -34,7 +34,7 @@ class CoinsViewModel @Inject constructor(private val coinsUsecase : CoinsUseCase
         {
             try
             {
-                coinsUsecase.getAllCoins().collect()
+                coinsUseCase.getAllCoins().collect()
                 {
                     _coins.postValue(it)
                 }
@@ -52,7 +52,7 @@ class CoinsViewModel @Inject constructor(private val coinsUsecase : CoinsUseCase
         {
             try
             {
-                coinsUsecase.getCoinById(stringCoinId).collect ()
+                coinsUseCase.getCoinById(stringCoinId).collect ()
                 {
                     _coinById.postValue(it)
                 }

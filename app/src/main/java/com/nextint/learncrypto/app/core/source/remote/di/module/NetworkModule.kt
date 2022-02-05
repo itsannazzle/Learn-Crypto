@@ -53,7 +53,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideVocabulary(@Named("NetworkService") retrofit: Retrofit) : TagsService {
+    fun provideTagService(@Named("NetworkService") retrofit: Retrofit) : TagsService {
         return retrofit.create(TagsService::class.java)
     }
 

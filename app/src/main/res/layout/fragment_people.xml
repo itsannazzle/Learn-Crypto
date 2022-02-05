@@ -3,16 +3,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.ui.people.PeopleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageViewPeople"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/textViewPeopleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@string/hello_blank_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/imageViewPeople"
+        android:layout_marginTop="@dimen/dimen_16"
+        style="@style/title"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:ems="8"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/textViewPeopleDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem/random"
+        android:textColor="@color/textColor"
+        android:layout_marginTop="@dimen/dimen_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPeopleName"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:maxLines="3"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewPeoplePosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/position"
+        style="@style/title"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPeopleDesc"
+        android:layout_marginTop="@dimen/dimen_16"/>
+
+    <TextView
+        android:id="@+id/textViewPeopleTotalPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_position"
+        style="@style/title"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPeoplePosition"/>
+
+    <ImageView
+        android:id="@+id/imageViewPeopleMedium"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_bi_medium"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPeopleTotalPosition"
+        android:layout_marginTop="@dimen/dimen_16"/>
+
+    <ImageView
+        android:id="@+id/imageViewPeopleGitHub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ant_design_github_filled"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleMedium"
+        app:layout_constraintStart_toEndOf="@id/imageViewPeopleMedium"
+        android:layout_marginStart="@dimen/dimen_24"
+        app:layout_constraintTop_toTopOf="@id/imageViewPeopleMedium" />
+
+    <ImageView
+        android:id="@+id/imageViewPeopleLinkedin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_24"
+        android:src="@drawable/ic_logos_linkedin_icon"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPeopleMedium"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleGitHub"
+        app:layout_constraintTop_toTopOf="@id/imageViewPeopleMedium"
+        />
+
+    <ImageView
+        android:id="@+id/imageViewPeopleTwitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_24"
+        android:src="@drawable/ic_logos_twitter"
+        app:layout_constraintStart_toEndOf="@id/imageViewPeopleLinkedin"
+        app:layout_constraintTop_toTopOf="@id/imageViewPeopleLinkedin"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPeopleLinkedin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

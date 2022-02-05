@@ -2,10 +2,12 @@ package com.nextint.learncrypto.app.di
 
 import com.nextint.learncrypto.app.features.coins.data.CoinsUseCase
 import com.nextint.learncrypto.app.features.coins.data.CoinsUseCaseImpl
-import com.nextint.learncrypto.app.features.concept.data.TagsUseCase
-import com.nextint.learncrypto.app.features.concept.data.TagsUseCaseImpl
+import com.nextint.learncrypto.app.features.tags.data.TagsUseCase
+import com.nextint.learncrypto.app.features.tags.data.TagsUseCaseImpl
 import com.nextint.learncrypto.app.features.overview.data.OverviewUseCase
 import com.nextint.learncrypto.app.features.overview.data.OverviewUseCaseImpl
+import com.nextint.learncrypto.app.features.person.data.PeopleUseCase
+import com.nextint.learncrypto.app.features.person.data.PeopleUseCaseImpl
 import com.nextint.learncrypto.app.features.search.SearchUseCase
 import com.nextint.learncrypto.app.features.search.SearchUseCaseImpl
 import dagger.Binds
@@ -23,6 +25,8 @@ abstract class AppModule {
     abstract fun provideSearchUseCase(searchUseCaseImpl: SearchUseCaseImpl) : SearchUseCase
 
     @Binds
-    abstract fun provideOverview(overviewUseCaseImpl: OverviewUseCaseImpl) : OverviewUseCase
+    abstract fun provideOverviewUseCase(overviewUseCaseImpl: OverviewUseCaseImpl) : OverviewUseCase
 
+    @Binds
+    abstract fun providePeopleUseCase(peopleUseCaseImpl: PeopleUseCaseImpl) : PeopleUseCase
 }

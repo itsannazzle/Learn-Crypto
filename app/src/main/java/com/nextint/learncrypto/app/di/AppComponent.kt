@@ -1,10 +1,12 @@
 package com.nextint.learncrypto.app.di
 
 import com.nextint.learncrypto.app.core.di.CoreComponent
+import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.concept.ConceptFragment
-import com.nextint.learncrypto.app.features.ui.home.HomeFragment
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.ui.detail.CoinDetailFragment
+import com.nextint.learncrypto.app.features.ui.home.HomeFragment
+import com.nextint.learncrypto.app.features.ui.people.PeopleFragment
 import dagger.Component
 
 @AppScope
@@ -12,10 +14,12 @@ import dagger.Component
     dependencies = [CoreComponent::class],
     modules = [AppModule::class]
 )
-interface AppComponent {
+interface AppComponent
+{
 
     @Component.Factory
-    interface Factory {
+    interface Factory
+    {
         fun create(coreComponent: CoreComponent): AppComponent
     }
 
@@ -26,4 +30,8 @@ interface AppComponent {
     fun inject(fragment : CoinsFragment)
 
     fun inject(fragment : CoinDetailFragment)
+
+    fun inject(fragment : BottomSheetDialog)
+
+    fun inject(fragment : PeopleFragment)
 }

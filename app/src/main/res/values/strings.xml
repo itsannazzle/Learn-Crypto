@@ -30,4 +30,6 @@
     <string name="whitepaper">White paper :</string>
     <string name="team">Team</string>
     <string name="tags">Tags</string>
+    <string name="position">Position : %1$s at %2$s</string>
+    <string name="total_position">Total position : %1$s</string>
 </resources>

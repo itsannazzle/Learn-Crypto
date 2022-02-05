@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.features.utils.circleImage
+import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
 
 class TeamViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 {
@@ -26,7 +27,7 @@ class TeamViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         {
             findViewById<TextView>(R.id.textViewTeamName).text = teamItem.name
             findViewById<TextView>(R.id.textViewTeamRole).text = teamItem.position
-            findViewById<ImageView>(R.id.imageViewTeam).circleImage("https://images.unsplash.com/photo-1570288685280-7802a8f8c4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80")
+            findViewById<ImageView>(R.id.imageViewTeam).circleImage(STRING_URL_AVATAR_APE)
         }
     }
 

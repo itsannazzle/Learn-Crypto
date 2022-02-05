@@ -1,5 +1,6 @@
 package com.nextint.learncrypto.app.core.source.remote.networksource
 
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.service.TagsService
 import com.nextint.learncrypto.app.core.source.remote.response.TagsResponse
@@ -18,7 +19,7 @@ class TagsNetwork @Inject constructor(private val tagsServiceService : TagsServi
     {
         return flow ()
         {
-            val response = tagsServiceService.getAllVocabulary()
+            val response = tagsServiceService.getAllTag()
             try
             {
                 if (response.vocabularyResponse.isNotEmpty())
@@ -31,6 +32,21 @@ class TagsNetwork @Inject constructor(private val tagsServiceService : TagsServi
             } catch (e : Exception)
             {
                 emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getTagById(stringTagId : String) : Flow<ApiResponse<TagByIdResponse>>
+    {
+        return flow()
+        {
+            val response = tagsServiceService.getTagById(stringTagId)
+            try
+            {
+                emit(ApiResponse.Success(response))
+            } catch (exception : Exception)
+            {
+                emit(ApiResponse.Error(exception.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }

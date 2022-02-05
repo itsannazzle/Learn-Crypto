@@ -4,8 +4,8 @@ import com.nextint.learncrypto.app.core.source.remote.service.*
 
 interface CryptoAppDeps {
     fun coinsService() : CoinsService
-    fun cryptoExcangeService() : CryptoExchangeService
+    fun cryptoExchangeService() : CryptoExchangeService
     fun peopleService() : PeopleService
-    fun  searchService() : SearchService
+    fun searchService() : SearchService
     fun vocabularyService() : TagsService
 }

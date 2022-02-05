@@ -16,16 +16,18 @@ import com.nextint.learncrypto.app.core.source.remote.response.TagsItem
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinDetailBinding
-import com.nextint.learncrypto.app.dialog.BottomSheetDialog
+import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModel
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModelFactory
 import com.nextint.learncrypto.app.features.person.adapter.TeamViewHolder
 import com.nextint.learncrypto.app.features.tags.adapter.TagsViewHolder
 import com.nextint.learncrypto.app.features.ui.people.PeopleFragment
+import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
 import com.nextint.learncrypto.app.features.utils.BaseAdapter
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.features.utils.replaceFragment
 import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.util.BUNDLE_WHITEPAPER_URL
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.ID_TAG_CONSTANT
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
@@ -60,6 +62,7 @@ class CoinDetailFragment : Fragment()
         val idCoin = arguments?.getString(ID_COIN_CONSTANT)
         _binding = FragmentCoinDetailBinding.inflate(inflater,container,false)
         binding?.textViewCoinName?.text = idCoin
+        progressBarVisibility()
         _coinsViewModel.getCoinById(idCoin.toString())
         return binding?.root
     }
@@ -67,11 +70,10 @@ class CoinDetailFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        progressBarVisibility()
         getDetailCoin()
         setupTeamAdapter()
         setupTagsAdapter()
-        displayView()
+
     }
 
     private fun getDetailCoin()
@@ -102,9 +104,16 @@ class CoinDetailFragment : Fragment()
                             binding?.textViewOrganizationStatus?.text = orgStructure
                             binding?.textViewHasiAlgo?.text = hashAlgorithm
                             binding?.imageViewWhitePaper?.loadImage(response.data.whitepaper.thumbnail.toString())
-                            binding?.textViewWhitePaperSrc?.text = whitepaper.link?.takeLast(43)
+                            binding?.textViewWhitePaperSrc?.text = whitepaper.link?.takeLast(10)
+                            binding?.imageViewWhitePaper?.setOnClickListener {
+                                //need pdf viewer
+                                val bundle = Bundle()
+                                bundle.putString(BUNDLE_WHITEPAPER_URL,whitepaper.link)
+                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                            }
                             _teamAdapter.safeAddAll(team)
                             _tagsAdapter.safeAddAll(tags)
+                            displayView()
                         }
                     }
                     is ApiResponse.Empty -> Toast.makeText(requireContext(),"Data empty",Toast.LENGTH_LONG).show()
