@@ -3,7 +3,6 @@ package com.nextint.learncrypto.app.features.ui.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,7 @@ import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentHomeBinding
-import com.nextint.learncrypto.app.features.concept.ConceptFragment
+import com.nextint.learncrypto.app.features.ui.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModel
 import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModelFactory
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
@@ -40,7 +39,6 @@ class HomeFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as CryptoApp).appComponent.inject(this)
-        Timber.d("onAttcahed")
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +47,6 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         _overviewViewModel.getMarketOverview()
-        Timber.d("onCratedView")
         return _binding.root
     }
 
@@ -57,7 +54,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         displayHome()
         setupMarketOverview()
-        Timber.d("onViewCrate")
 
         _overviewViewModel.loading.observe(viewLifecycleOwner,{
             _binding.progressBar.visibility = setVisibility(it)
@@ -99,7 +95,7 @@ class HomeFragment : Fragment() {
             textViewNumber.text = "01"
             cardMenu.setOnClickListener()
             {
-                it.setBackgroundColor(R.color.primary)
+                it.setBackgroundColor(Color.parseColor("#6767A6"))
                 replaceFragment(parentFragmentManager,ConceptFragment())
             }
         }

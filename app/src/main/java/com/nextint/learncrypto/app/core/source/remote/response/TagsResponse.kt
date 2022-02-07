@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class TagsResponse(
 
 	@field:SerializedName("VocabularyResponse")
-	val vocabularyResponse: List<TagsResponseItem>
+	val vocabularyResponse: List<TagByIdResponse>
 ) : Parcelable
 
 @Parcelize

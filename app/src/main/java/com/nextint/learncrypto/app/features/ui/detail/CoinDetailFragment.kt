@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TagsItem
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
@@ -39,7 +40,7 @@ class CoinDetailFragment : Fragment()
     private var _binding : FragmentCoinDetailBinding? = null
     private val binding get() = _binding
     private lateinit var _teamAdapter : BaseAdapter<TeamItem,TeamViewHolder>
-    private lateinit var _tagsAdapter : BaseAdapter<TagsItem,TagsViewHolder>
+    private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse,TagsViewHolder>
 
     @Inject
     lateinit var _factoryCoinViewModel : CoinsViewModelFactory

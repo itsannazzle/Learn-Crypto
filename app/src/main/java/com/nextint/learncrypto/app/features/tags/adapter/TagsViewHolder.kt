@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TagsItem
 
 class TagsViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
@@ -18,7 +19,7 @@ class TagsViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         }
     }
 
-    fun bind(tagsItem: TagsItem)
+    fun bind(tagsItem: TagByIdResponse)
     {
         with(itemView)
         {
