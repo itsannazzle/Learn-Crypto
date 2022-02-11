@@ -26,7 +26,7 @@
 
     <include
         android:id="@+id/menuConcept"
-        layout="@layout/item_home_menu"
+        layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
         android:layout_marginTop="@dimen/dimen_24"
@@ -37,7 +37,7 @@
 
     <include
         android:id="@+id/menuExchanges"
-        layout="@layout/item_home_menu"
+        layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
         android:layout_marginStart="@dimen/dimen_24"
@@ -47,7 +47,7 @@
 
     <include
         android:id="@+id/menuMarket"
-        layout="@layout/item_home_menu"
+        layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
         android:layout_marginTop="32dp"
@@ -56,7 +56,7 @@
 
     <include
         android:id="@+id/menuCoins"
-        layout="@layout/item_home_menu"
+        layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
         android:layout_marginStart="24dp"

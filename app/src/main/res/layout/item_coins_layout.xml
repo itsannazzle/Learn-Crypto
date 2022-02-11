@@ -26,7 +26,7 @@
 
         <include
             android:id="@+id/status_active"
-            layout="@layout/item_indicator_status"
+            layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
@@ -36,7 +36,7 @@
 
         <include
             android:id="@+id/status_new"
-            layout="@layout/item_indicator_status"
+            layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"

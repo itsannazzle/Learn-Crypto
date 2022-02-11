@@ -86,7 +86,8 @@ class HomeFragment : Fragment() {
         })
     }
 
-    @SuppressLint("ResourceAsColor")
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun displayHome()
     {
 
@@ -95,7 +96,7 @@ class HomeFragment : Fragment() {
             textViewNumber.text = "01"
             cardMenu.setOnClickListener()
             {
-                it.setBackgroundColor(Color.parseColor("#6767A6"))
+                it.background = context?.getDrawable(R.color.primary)
                 replaceFragment(parentFragmentManager,ConceptFragment())
             }
         }

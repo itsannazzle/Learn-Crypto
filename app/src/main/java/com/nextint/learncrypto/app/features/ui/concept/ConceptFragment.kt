@@ -1,17 +1,17 @@
 package com.nextint.learncrypto.app.features.ui.concept
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
-import com.nextint.learncrypto.app.core.source.remote.response.TagsItem
-import com.nextint.learncrypto.app.core.source.remote.response.TagsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentConceptBinding
 import com.nextint.learncrypto.app.features.tags.adapter.TagsViewHolder
@@ -19,14 +19,12 @@ import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModel
 import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModelFactory
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.utils.BaseAdapter
-import com.nextint.learncrypto.app.util.ID_TAG_CONSTANT
-import timber.log.Timber
+import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
 import javax.inject.Inject
 
-
+@SuppressLint("LogNotTimber")
 class ConceptFragment : Fragment()
 {
-
     private var _binding : FragmentConceptBinding? = null
     private val _getBinding get() = _binding
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse,TagsViewHolder>
@@ -53,14 +51,16 @@ class ConceptFragment : Fragment()
         _binding = FragmentConceptBinding.inflate(layoutInflater,container,false)
         _tagsViewModel.getTagById("cryptocurrency")
         _tagsViewModel.getAllTags()
-        showCryptoDefinition()
-        showHelpfullDefinition()
+
         return _getBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showCryptoDefinition()
+        showHelpfullDefinition()
         setupTagAdapter()
+
     }
 
     private fun showCryptoDefinition()
@@ -75,7 +75,7 @@ class ConceptFragment : Fragment()
                         with(response.data)
                         {
                             _getBinding?.textViewWhatIs?.text = getString(R.string.what_is,name)
-                            _getBinding?.textViewConceptCryptoDesc?.text = description
+                            _getBinding?.textViewConceptCryptoDesc?.text = getString(R.string.coin_description,name,description)
                         }
                     }
                     is ApiResponse.Error -> _getBinding?.textViewConceptCryptoDesc?.text = response.message
@@ -84,6 +84,7 @@ class ConceptFragment : Fragment()
                 }
             })
     }
+
 
     private fun showHelpfullDefinition()
     {
@@ -94,39 +95,48 @@ class ConceptFragment : Fragment()
                 {
                     is ApiResponse.Success ->
                     {
-                        _tagsAdapter.safeAddAll(response.data.vocabularyResponse)
+                        Log.d("Anna","onsuccess")
+                        _tagsAdapter.safeAddAll(response.data.sortedBy { it.name  })
+
+                        displayView()
 
                     }
-                    is ApiResponse.Error -> Timber.d("on api error")
+                    is ApiResponse.Error -> Log.d("Anna","on api eror")
 
-                    else -> Timber.d("on error")
+                    else -> Log.d("Anna","on eror")
                 }
             })
     }
 
     private fun setupTagAdapter()
     {
+        Log.d("Anna","setup adapter")
         _tagsAdapter = BaseAdapter(
             {
                     parent, _ -> TagsViewHolder.inflate(parent)
             },
             {
-                viewHolder, position, item ->
+                    viewHolder, position, item ->
                 viewHolder.bind(item)
                 viewHolder.setTagAction {
                     val bundle = Bundle()
-                    bundle.putString(ID_TAG_CONSTANT,item.id)
+                    bundle.putParcelable(MODEL_PARCEL_TAG,item)
                     val bottomSheetDialog = BottomSheetDialog()
                     bottomSheetDialog.arguments = bundle
                     bottomSheetDialog.show(parentFragmentManager,"TAG")
                 }
             }
         )
+
+    }
+
+    private fun displayView()
+    {
+        Log.d("Anna","display view")
         _getBinding?.recylerViewHelpfullDefiniton?.apply()
         {
             adapter = _tagsAdapter
         }
     }
-
 
 }

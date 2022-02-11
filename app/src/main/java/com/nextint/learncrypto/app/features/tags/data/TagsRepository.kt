@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class TagsRepository @Inject constructor(private val remoteData : TagsNetwork) : ITagsRepository
 {
-    override suspend fun getAllTags(): Flow<ApiResponse<TagsResponse>>
+    override suspend fun getAllTags(): Flow<ApiResponse<List<TagByIdResponse>>>
     {
         return remoteData.getAllTags()
     }

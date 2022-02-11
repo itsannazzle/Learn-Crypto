@@ -15,14 +15,14 @@ import javax.inject.Singleton
 @Singleton
 class TagsNetwork @Inject constructor(private val tagsServiceService : TagsService)
 {
-    suspend fun getAllTags() : Flow<ApiResponse<TagsResponse>>
+    suspend fun getAllTags() : Flow<ApiResponse<List<TagByIdResponse>>>
     {
         return flow ()
         {
             val response = tagsServiceService.getAllTag()
             try
             {
-                if (response.vocabularyResponse.isNotEmpty())
+                if (response.isNotEmpty())
                 {
                     emit(ApiResponse.Success(response))
                 } else

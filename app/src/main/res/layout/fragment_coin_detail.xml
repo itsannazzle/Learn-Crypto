@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
     android:scrollbars="none"
-    tools:context=".features.ui.detail.CoinDetailFragment">
+    tools:context=".features.ui.coins.CoinDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 
         <include
             android:id="@+id/indicatorActive"
-            layout="@layout/item_indicator_status"
+            layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
@@ -35,7 +35,7 @@
 
         <include
             android:id="@+id/indicatorNew"
-            layout="@layout/item_indicator_status"
+            layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
@@ -44,7 +44,7 @@
 
         <include
             android:id="@+id/indicatorOpenSource"
-            layout="@layout/item_indicator_status"
+            layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
@@ -283,6 +283,7 @@
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTags"
+            tools:listitem="@layout/item_tags_layout"
             app:spanCount="2" />
 
         <TextView

@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.features.ui.detail
+package com.nextint.learncrypto.app.features.ui.coins
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
-import com.nextint.learncrypto.app.core.source.remote.response.TagsItem
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinDetailBinding
@@ -28,10 +27,7 @@ import com.nextint.learncrypto.app.features.utils.BaseAdapter
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.features.utils.replaceFragment
 import com.nextint.learncrypto.app.features.utils.setVisibility
-import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
-import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
-import com.nextint.learncrypto.app.util.ID_TAG_CONSTANT
-import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
+import com.nextint.learncrypto.app.util.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -79,7 +75,8 @@ class CoinDetailFragment : Fragment()
     }
 
     private fun getDetailCoin()
-    { _coinsViewModel.coinById.observe(viewLifecycleOwner,
+    {
+        _coinsViewModel.coinById.observe(viewLifecycleOwner,
             { response ->
                 when(response)
                 { is ApiResponse.Success ->
@@ -163,7 +160,7 @@ class CoinDetailFragment : Fragment()
                 viewHolder.bind(item)
                 viewHolder.setTagAction {
                     val bundle = Bundle()
-                    bundle.putString(ID_TAG_CONSTANT,item.id)
+                    bundle.putString(STRING_TAG_ID_CONSTANT,item.id)
                     val bottomSheetDialog = BottomSheetDialog()
                     bottomSheetDialog.arguments = bundle
                     bottomSheetDialog.show(parentFragmentManager,"TAG")

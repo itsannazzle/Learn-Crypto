@@ -9,7 +9,7 @@ interface TagsService
 {
 
     @GET("tags")
-    suspend fun getAllTag() : TagsResponse
+    suspend fun getAllTag() : List<TagByIdResponse>
 
     @GET("tags/{tag_id}")
     suspend fun getTagById(@Path("tag_id")stringTagId : String) : TagByIdResponse

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
+    android:scrollbars="none"
+    tools:context=".features.ui.exchanges.ExchangeDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textViewDetailExchangeName"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Exchange name" />
+
+        <include
+            android:id="@+id/indicatorExchangeActive"
+            layout="@layout/item_indicator_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/textViewDetailExchangeName"
+            app:layout_constraintTop_toTopOf="@id/textViewDetailExchangeName"
+            app:layout_constraintBottom_toBottomOf="@id/textViewDetailExchangeName"
+            android:layout_marginStart="@dimen/dimen_8"/>
+
+        <TextView
+            android:id="@+id/textViewAboutExchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            style="@style/subtitle"
+            android:textColor="@color/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDetailExchangeName"
+            android:layout_marginTop="@dimen/dimen_8"/>
+
+        <TextView
+            android:id="@+id/textViewAboutExchangeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/lorem/random"
+            android:maxLines="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAboutExchange"
+            android:layout_marginTop="@dimen/dimen_4"
+            style="@style/body"
+            android:textColor="@color/textColor"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
