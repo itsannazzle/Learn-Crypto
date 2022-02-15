@@ -2,6 +2,8 @@ package com.nextint.learncrypto.app.di
 
 import com.nextint.learncrypto.app.features.coins.data.CoinsUseCase
 import com.nextint.learncrypto.app.features.coins.data.CoinsUseCaseImpl
+import com.nextint.learncrypto.app.features.exchanges.data.ExchangeUseCase
+import com.nextint.learncrypto.app.features.exchanges.data.ExchangeUseCaseImpl
 import com.nextint.learncrypto.app.features.tags.data.TagsUseCase
 import com.nextint.learncrypto.app.features.tags.data.TagsUseCaseImpl
 import com.nextint.learncrypto.app.features.overview.data.OverviewUseCase
@@ -29,4 +31,7 @@ abstract class AppModule {
 
     @Binds
     abstract fun providePeopleUseCase(peopleUseCaseImpl: PeopleUseCaseImpl) : PeopleUseCase
+
+    @Binds
+    abstract fun provideExchangeUseCase(exchangeUseCaseImpl: ExchangeUseCaseImpl) : ExchangeUseCase
 }

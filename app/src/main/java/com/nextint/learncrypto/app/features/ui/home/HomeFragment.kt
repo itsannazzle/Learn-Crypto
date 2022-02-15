@@ -18,6 +18,7 @@ import com.nextint.learncrypto.app.features.ui.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModel
 import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModelFactory
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
+import com.nextint.learncrypto.app.features.ui.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.utils.convertToPercentage
 import com.nextint.learncrypto.app.features.utils.convertToUSD
 import com.nextint.learncrypto.app.features.utils.replaceFragment
@@ -107,11 +108,16 @@ class HomeFragment : Fragment() {
         with(_binding.menuExchanges){
             textViewTitle.text = "Exchanges"
             textViewNumber.text = "02"
+            cardMenu.setOnClickListener {
+                it.background = context?.getDrawable(R.color.primary)
+                replaceFragment(parentFragmentManager,ExchangesFragment())
+            }
         }
         with(_binding.menuCoins){
             textViewTitle.text = "Coins"
             textViewNumber.text = "04"
             cardMenu.setOnClickListener {
+                it.background = context?.getDrawable(R.color.primary)
                 replaceFragment(parentFragmentManager,CoinsFragment())
             }
         }

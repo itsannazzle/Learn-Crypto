@@ -1,6 +1,5 @@
 package com.nextint.learncrypto.app.features.ui.concept
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +21,6 @@ import com.nextint.learncrypto.app.features.utils.BaseAdapter
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
 import javax.inject.Inject
 
-@SuppressLint("LogNotTimber")
 class ConceptFragment : Fragment()
 {
     private var _binding : FragmentConceptBinding? = null
@@ -95,7 +93,6 @@ class ConceptFragment : Fragment()
                 {
                     is ApiResponse.Success ->
                     {
-                        Log.d("Anna","onsuccess")
                         _tagsAdapter.safeAddAll(response.data.sortedBy { it.name  })
 
                         displayView()
@@ -110,7 +107,6 @@ class ConceptFragment : Fragment()
 
     private fun setupTagAdapter()
     {
-        Log.d("Anna","setup adapter")
         _tagsAdapter = BaseAdapter(
             {
                     parent, _ -> TagsViewHolder.inflate(parent)
@@ -132,7 +128,6 @@ class ConceptFragment : Fragment()
 
     private fun displayView()
     {
-        Log.d("Anna","display view")
         _getBinding?.recylerViewHelpfullDefiniton?.apply()
         {
             adapter = _tagsAdapter

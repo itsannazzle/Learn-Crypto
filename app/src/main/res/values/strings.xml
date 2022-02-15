@@ -40,4 +40,12 @@
     <string name="volume_24h">Volume 24h</string>
     <string name="market">Market</string>
     <string name="confidence">Confidence</string>
+    <string name="adjusted_rank">Adjusted rank :</string>
+    <string name="reported_rank">Reported rank :</string>
+    <string name="currencies">Currencies :</string>
+    <string name="fiats">Fiats :</string>
+    <string name="adjusted_volume_24h">Adjusted volume 24h :</string>
+    <string name="reported_volume_24h">Reported volume 24h :</string>
+    <string name="updated">Last updated :</string>
+    <string name="confidence_score">Confidence score :</string>
 </resources>
