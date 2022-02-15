@@ -38,7 +38,7 @@ data class CoinByIdResponse(
 	val message: String,
 
 	@field:SerializedName("tags")
-	val tags: List<TagsItem>,
+	val tags: List<TagByIdResponse>,
 
 	@field:SerializedName("last_data_at")
 	val lastDataAt: String,

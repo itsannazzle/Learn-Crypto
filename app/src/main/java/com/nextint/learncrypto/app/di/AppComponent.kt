@@ -2,9 +2,9 @@ package com.nextint.learncrypto.app.di
 
 import com.nextint.learncrypto.app.core.di.CoreComponent
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
-import com.nextint.learncrypto.app.features.concept.ConceptFragment
+import com.nextint.learncrypto.app.features.ui.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
-import com.nextint.learncrypto.app.features.ui.detail.CoinDetailFragment
+import com.nextint.learncrypto.app.features.ui.coins.CoinDetailFragment
 import com.nextint.learncrypto.app.features.ui.home.HomeFragment
 import com.nextint.learncrypto.app.features.ui.people.PeopleFragment
 import dagger.Component

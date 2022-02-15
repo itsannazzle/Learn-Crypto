@@ -8,14 +8,14 @@ import javax.inject.Inject
 
 interface TagsUseCase
 {
-    suspend fun getAllTags() : Flow<ApiResponse<TagsResponse>>
+    suspend fun getAllTags() : Flow<ApiResponse<List<TagByIdResponse>>>
 
     suspend fun getTagById(stringTagId : String) : Flow<ApiResponse<TagByIdResponse>>
 }
 
 interface ITagsRepository
 {
-    suspend fun getAllTags() : Flow<ApiResponse<TagsResponse>>
+    suspend fun getAllTags() : Flow<ApiResponse<List<TagByIdResponse>>>
 
     suspend fun getTagById(stringTagId: String) : Flow<ApiResponse<TagByIdResponse>>
 }
@@ -23,7 +23,7 @@ interface ITagsRepository
 class TagsUseCaseImpl @Inject constructor(private val iTagsRepository: ITagsRepository) :
     TagsUseCase
 {
-    override suspend fun getAllTags(): Flow<ApiResponse<TagsResponse>>
+    override suspend fun getAllTags(): Flow<ApiResponse<List<TagByIdResponse>>>
     {
         return iTagsRepository.getAllTags()
     }

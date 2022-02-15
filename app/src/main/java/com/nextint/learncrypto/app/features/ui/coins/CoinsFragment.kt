@@ -14,7 +14,6 @@ import com.nextint.learncrypto.app.databinding.FragmentCoinsBinding
 import com.nextint.learncrypto.app.features.coins.adapter.CoinViewHolder
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModel
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModelFactory
-import com.nextint.learncrypto.app.features.ui.detail.CoinDetailFragment
 import com.nextint.learncrypto.app.features.utils.replaceFragment
 import com.nextint.learncrypto.app.features.utils.setVertical
 import com.nextint.learncrypto.app.features.utils.setVisibility

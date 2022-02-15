@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="@dimen/dimen_8"
+    app:cardBackgroundColor="@color/primaryAccent"
+    android:layout_height="60dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_8">
+
+        <TextView
+            android:id="@+id/textViewExchangeName"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Binance" />
+
+        <TextView
+            android:id="@+id/textViewVol24h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_24"
+            android:text="@string/volume_24h"
+            app:layout_constraintEnd_toStartOf="@+id/textViewExchangeMarket"
+            app:layout_constraintStart_toEndOf="@+id/textViewExchangeName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewVol24hValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
+            app:layout_constraintEnd_toEndOf="@+id/textViewVol24h"
+            app:layout_constraintStart_toStartOf="@+id/textViewVol24h"
+            app:layout_constraintTop_toBottomOf="@+id/textViewVol24h"
+            tools:text="$1234.454554" />
+
+        <TextView
+            android:id="@+id/textViewExchangeMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/market"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewVol24h"
+            app:layout_constraintEnd_toStartOf="@+id/textViewExchangeConfidence"
+            app:layout_constraintStart_toEndOf="@+id/textViewVol24h"
+            app:layout_constraintTop_toTopOf="@+id/textViewVol24h" />
+
+        <TextView
+            android:id="@+id/textViewExchangeMarketValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
+            app:layout_constraintEnd_toEndOf="@+id/textViewExchangeMarket"
+            app:layout_constraintStart_toStartOf="@+id/textViewExchangeMarket"
+            app:layout_constraintTop_toBottomOf="@+id/textViewExchangeMarket"
+            tools:text="12345" />
+
+        <TextView
+            android:id="@+id/textViewExchangeConfidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confidence"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewExchangeMarket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewExchangeMarket"
+            app:layout_constraintTop_toTopOf="@+id/textViewExchangeMarket" />
+
+        <TextView
+            android:id="@+id/textViewExchangeConfidenceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4"
+            app:layout_constraintEnd_toEndOf="@+id/textViewExchangeConfidence"
+            app:layout_constraintStart_toStartOf="@+id/textViewExchangeConfidence"
+            app:layout_constraintTop_toBottomOf="@+id/textViewExchangeConfidence"
+            tools:text="12.28%" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewCoins"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_coins"/>
+        tools:listitem="@layout/item_coins_layout"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

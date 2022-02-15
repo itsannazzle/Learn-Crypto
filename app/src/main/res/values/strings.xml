@@ -5,7 +5,7 @@
     <string name="onboard_message">Learn about crypto and how it works. \n No login needed, just learn</string>
     <string name="learn_now">Learn Now</string>
     <string name="more">More</string>
-    <string name="crypto_exchange">Crypto Exchange : %1$s\nVolume : %2$s\nBitcoin Dominant Percentage : %3$s\nTotal Cryptocurrencies :- %4$s</string>
+    <string name="crypto_exchange">Crypto Exchange : %1$s\n\nVolume : %2$s\n\nBitcoin Dominant Percentage : %3$s\n\nTotal Cryptocurrencies : %4$s</string>
     <string name="before_you_begin">Before you begin</string>
     <string name="type">Type : %1$s</string>
     <string name="rank">Rank</string>
@@ -35,4 +35,9 @@
     <string name="find_him_her_on">Find him/her on :</string>
     <string name="build_by_anna_karenina_jusuf">Build by Anna Karenina Jusuf\n%1$s</string>
     <string name="find_out_more_about_1_s_on">Find out more about %1$s on :</string>
+    <string name="coin_description">%1$s is %2$s</string>
+    <string name="top_exchange">Top Exchange</string>
+    <string name="volume_24h">Volume 24h</string>
+    <string name="market">Market</string>
+    <string name="confidence">Confidence</string>
 </resources>

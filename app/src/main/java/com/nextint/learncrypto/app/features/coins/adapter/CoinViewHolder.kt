@@ -14,7 +14,7 @@ class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         fun inflate(parent  : ViewGroup) : CoinViewHolder {
             return CoinViewHolder(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_coins,parent,false)
+                    .inflate(R.layout.item_coins_layout,parent,false)
             )
         }
     }

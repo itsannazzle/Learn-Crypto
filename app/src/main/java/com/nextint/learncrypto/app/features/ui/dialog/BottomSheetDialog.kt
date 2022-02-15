@@ -10,12 +10,14 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentBottomSheetDialogBinding
 import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModel
 import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModelFactory
 import com.nextint.learncrypto.app.features.utils.setVisibility
-import com.nextint.learncrypto.app.util.ID_TAG_CONSTANT
+import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
+import com.nextint.learncrypto.app.util.STRING_TAG_ID_CONSTANT
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -45,15 +47,27 @@ class BottomSheetDialog : BottomSheetDialogFragment()
     {
         // Inflate the layout for this fragment
         _binding = FragmentBottomSheetDialogBinding.inflate(layoutInflater,container,false)
-        val idTag = arguments?.getString(ID_TAG_CONSTANT)
-        showLoading()
-        if (idTag != null)
+        val idTag = arguments?.getString(STRING_TAG_ID_CONSTANT)
+        val modelTag = arguments?.getParcelable<TagByIdResponse>(MODEL_PARCEL_TAG)
+        when
         {
-            _tagViewModel.getTagById(idTag)
-        } else
-        {
-            Toast.makeText(requireContext(),"Could not found tag id",Toast.LENGTH_SHORT).show()
+            modelTag != null ->
+            {
+
+                with(_getBinding)
+                {
+                    this?.textViewTagName?.text = modelTag.name
+                    this?.textViewTagDesc?.text = if (modelTag.description.isNullOrEmpty()) "Description not available" else modelTag.description
+                }
+            }
+            idTag != null ->
+            {
+                _tagViewModel.getTagById(idTag)
+            }
+            else -> Toast.makeText(requireContext(),"Could not found tag id",Toast.LENGTH_SHORT).show()
+
         }
+
         return _getBinding?.root
     }
 
@@ -74,8 +88,9 @@ class BottomSheetDialog : BottomSheetDialogFragment()
                         with(_getBinding)
                         {
                             this?.textViewTagName?.text = response.data.name
-                            this?.textViewTagDesc?.text = response.data.description
+                            this?.textViewTagDesc?.text = if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
                         }
+                        showLoading()
                     }
                     is ApiResponse.Error ->
                     {

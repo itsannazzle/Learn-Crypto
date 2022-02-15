@@ -23,8 +23,8 @@ class TagsViewModel @Inject constructor(private val tagUseCase: TagsUseCase) : V
     private val _message: SingleLiveEvent<String> = SingleLiveEvent()
     val message: LiveData<String> = _message
 
-    private var _allTags : MutableLiveData<ApiResponse<TagsResponse>> = MutableLiveData()
-    val allTags : LiveData<ApiResponse<TagsResponse>> get() = _allTags
+    private var _allTags : MutableLiveData<ApiResponse<List<TagByIdResponse>>> = MutableLiveData()
+    val allTags : LiveData<ApiResponse<List<TagByIdResponse>>> get() = _allTags
 
     private var _tagById : MutableLiveData<ApiResponse<TagByIdResponse>> = MutableLiveData()
     val tagById : LiveData<ApiResponse<TagByIdResponse>> get() = _tagById
