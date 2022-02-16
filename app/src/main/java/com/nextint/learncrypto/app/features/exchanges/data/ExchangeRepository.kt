@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class ExchangeRepository @Inject constructor(private val remoteData : ExchangesNetwork) : IExchangeRepository
 {
-    override suspend fun getExchanges(): Flow<ApiResponse<ExchangesResponse>> {
+    override suspend fun getExchanges(): Flow<ApiResponse<List<ExchangesResponseItem>>> {
         return remoteData.getExchanges()
     }
 

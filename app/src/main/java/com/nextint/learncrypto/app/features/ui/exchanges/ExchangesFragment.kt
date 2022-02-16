@@ -49,13 +49,15 @@ class ExchangesFragment : Fragment() {
         // Inflate the layout for this fragment
         _bindingExchangeFragment = FragmentExchangesBinding.inflate(inflater,container,false)
         _exchangeViewModel.requestGetAllExchange()
+        setupAdapter()
         return _getBindingExchangeFragment?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupAdapter()
+
         observeExchange()
+        _getBindingExchangeFragment?.textViewExchangeDesc?.text = "here u go"
 
 
     }
@@ -69,7 +71,7 @@ class ExchangesFragment : Fragment() {
                 {
                     is ApiResponse.Success ->
                     {
-                       _exchangeAdapter.safeAddAll(response.data.exchangesResponse)
+                       _exchangeAdapter.safeAddAll(response.data)
                         setupView()
                     }
                     is ApiResponse.Error -> {
@@ -89,9 +91,9 @@ class ExchangesFragment : Fragment() {
     private fun setupAdapter()
     {
         _exchangeAdapter = BaseAdapter({
-            parent, viewType -> ExchangeViewHolder.inflate(parent)
+                parent, _ -> ExchangeViewHolder.inflate(parent)
         },{
-            viewHolder, position, item ->
+                viewHolder, _, item ->
             viewHolder.bind(item)
             viewHolder.setAction {
                 val bundle = Bundle()

@@ -8,14 +8,14 @@ import javax.inject.Inject
 
 interface ExchangeUseCase {
 
-    suspend fun getExchanges() : Flow<ApiResponse<ExchangesResponse>>
+    suspend fun getExchanges() : Flow<ApiResponse<List<ExchangesResponseItem>>>
 
     suspend fun getExchangeById(stringExchangeId : String) : Flow<ApiResponse<ExchangesResponseItem>>
 }
 
 interface IExchangeRepository {
 
-    suspend fun getExchanges() : Flow<ApiResponse<ExchangesResponse>>
+    suspend fun getExchanges() : Flow<ApiResponse<List<ExchangesResponseItem>>>
 
     suspend fun getExchangeById(stringExchangeId: String) : Flow<ApiResponse<ExchangesResponseItem>>
 
@@ -23,7 +23,7 @@ interface IExchangeRepository {
 
 class ExchangeUseCaseImpl @Inject constructor(private val iExchangeRepository: IExchangeRepository) : ExchangeUseCase
 {
-    override suspend fun getExchanges(): Flow<ApiResponse<ExchangesResponse>> {
+    override suspend fun getExchanges(): Flow<ApiResponse<List<ExchangesResponseItem>>> {
         return iExchangeRepository.getExchanges()
     }
 

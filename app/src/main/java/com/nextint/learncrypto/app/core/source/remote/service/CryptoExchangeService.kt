@@ -9,11 +9,11 @@ import retrofit2.http.Path
 interface CryptoExchangeService {
 
     @GET("exchanges")
-    suspend fun getExchanges() : ExchangesResponse
+    suspend fun getExchanges() : List<ExchangesResponseItem>
 
     @GET("exchanges/{exchange_id}")
     suspend fun getExchangesById(
-        @Path("exchanges_id") id : String
+        @Path("exchange_id") id : String
     ) : ExchangesResponseItem
 
 }

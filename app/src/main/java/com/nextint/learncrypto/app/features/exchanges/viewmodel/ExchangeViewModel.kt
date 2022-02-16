@@ -24,8 +24,8 @@ class ExchangeViewModel @Inject constructor(private val exchangeUseCase: Exchang
     private val _message: SingleLiveEvent<String> = SingleLiveEvent()
     val message: LiveData<String> = _message
 
-    private val _getAllExchange : MutableLiveData<ApiResponse<ExchangesResponse>> = MutableLiveData()
-    val getAllExchange : LiveData<ApiResponse<ExchangesResponse>> get() = _getAllExchange
+    private val _getAllExchange : MutableLiveData<ApiResponse<List<ExchangesResponseItem>>> = MutableLiveData()
+    val getAllExchange : LiveData<ApiResponse<List<ExchangesResponseItem>>> get() = _getAllExchange
 
     private val _getExchangeById : MutableLiveData<ApiResponse<ExchangesResponseItem>> = MutableLiveData()
     val getExchangeById : LiveData<ApiResponse<ExchangesResponseItem>> get() = _getExchangeById

@@ -5,6 +5,7 @@ import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.ui.coins.CoinDetailFragment
+import com.nextint.learncrypto.app.features.ui.exchanges.ExchangeDetailFragment
 import com.nextint.learncrypto.app.features.ui.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.ui.home.HomeFragment
 import com.nextint.learncrypto.app.features.ui.people.PeopleFragment
@@ -37,4 +38,6 @@ interface AppComponent
     fun inject(fragment : PeopleFragment)
 
     fun inject(fragment : ExchangesFragment)
+
+    fun inject(fragment : ExchangeDetailFragment)
 }

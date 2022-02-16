@@ -14,18 +14,19 @@ import javax.inject.Singleton
 @Singleton
 class ExchangesNetwork @Inject constructor(private val exchangeService: CryptoExchangeService)
 {
-    suspend fun getExchanges() : Flow<ApiResponse<ExchangesResponse>>
+    suspend fun getExchanges() : Flow<ApiResponse<List<ExchangesResponseItem>>>
     {
         return flow {
             coroutineScope {
                 try {
                     val response = exchangeService.getExchanges()
-                    if (response.exchangesResponse.isNullOrEmpty())
+                    if (response.isNotEmpty())
                     {
-                        emit(ApiResponse.Empty)
+                        val responseFiltered = response.filter { it.confidenceScore!! > 0.05}.sortedByDescending { it.confidenceScore }
+                        emit(ApiResponse.Success(responseFiltered.take(100)))
                     } else
                     {
-                        emit(ApiResponse.Success(response))
+                        emit(ApiResponse.Empty)
                     }
                 } catch (exception : Exception)
                 {
