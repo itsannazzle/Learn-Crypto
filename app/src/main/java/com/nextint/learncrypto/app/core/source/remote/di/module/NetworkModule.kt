@@ -63,6 +63,12 @@ class NetworkModule {
         return retrofit.create(GlobalOverviewService::class.java)
     }
 
+    @Provides
+    fun provideMarket(@Named("NetworkService") retrofit : Retrofit) : MarketService
+    {
+        return retrofit.create(MarketService::class.java)
+    }
+
     private fun okHttpClientFactory(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(applicationInterceptor())

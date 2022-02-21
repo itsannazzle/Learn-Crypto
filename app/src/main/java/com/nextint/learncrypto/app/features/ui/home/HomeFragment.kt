@@ -19,10 +19,8 @@ import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModel
 import com.nextint.learncrypto.app.features.overview.viewmodel.OverviewViewModelFactory
 import com.nextint.learncrypto.app.features.ui.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.ui.exchanges.ExchangesFragment
-import com.nextint.learncrypto.app.features.utils.convertToPercentage
-import com.nextint.learncrypto.app.features.utils.convertToUSD
-import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.features.ui.market.MarketFragment
+import com.nextint.learncrypto.app.features.utils.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -57,7 +55,7 @@ class HomeFragment : Fragment() {
         setupMarketOverview()
 
         _overviewViewModel.loading.observe(viewLifecycleOwner,{
-            _binding.progressBar.visibility = setVisibility(it)
+            _binding.progressBar.visibility = UtilitiesFunction.setVisibility(it)
             Timber.d(it.toString())
         })
     }
@@ -68,9 +66,9 @@ class HomeFragment : Fragment() {
             when(response){
                 is ApiResponse.Success -> {
                     _binding.textViewCapitalization.text = getString(R.string.crypto_exchange,
-                        convertToUSD(response.data.marketCapUsd),
-                        convertToUSD(response.data.volume24hUsd),
-                        convertToPercentage(response.data.bitcoinDominancePercentage),
+                        UtilitiesFunction.convertToUSD(response.data.marketCapUsd),
+                        UtilitiesFunction.convertToUSD(response.data.volume24hUsd),
+                        UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage),
                         response.data.cryptocurrenciesNumber.toString())
                 }
                 is ApiResponse.Error -> {
@@ -98,19 +96,24 @@ class HomeFragment : Fragment() {
             cardMenu.setOnClickListener()
             {
                 it.background = context?.getDrawable(R.color.primary)
-                replaceFragment(parentFragmentManager,ConceptFragment())
+                UtilitiesFunction.replaceFragment(parentFragmentManager,ConceptFragment())
             }
         }
         with(_binding.menuMarket){
             textViewTitle.text = "Market"
             textViewNumber.text = "03"
+            cardMenu.setOnClickListener()
+            {
+                it.background = context?.getDrawable(R.color.primary)
+                UtilitiesFunction.replaceFragment(parentFragmentManager,MarketFragment())
+            }
         }
         with(_binding.menuExchanges){
             textViewTitle.text = "Exchanges"
             textViewNumber.text = "02"
             cardMenu.setOnClickListener {
                 it.background = context?.getDrawable(R.color.primary)
-                replaceFragment(parentFragmentManager,ExchangesFragment())
+                UtilitiesFunction.replaceFragment(parentFragmentManager,ExchangesFragment())
             }
         }
         with(_binding.menuCoins){
@@ -118,10 +121,15 @@ class HomeFragment : Fragment() {
             textViewNumber.text = "04"
             cardMenu.setOnClickListener {
                 it.background = context?.getDrawable(R.color.primary)
-                replaceFragment(parentFragmentManager,CoinsFragment())
+                UtilitiesFunction.replaceFragment(parentFragmentManager,CoinsFragment())
             }
         }
         _binding.textViewBuildBy.text = getString(R.string.build_by_anna_karenina_jusuf,"V${BuildConfig.VERSION_NAME}")
 
+    }
+
+    fun progressBarVisibility(booleanVisible : Boolean)
+    {
+        _binding.progressBar.visibility = UtilitiesFunction.setVisibility(booleanVisible)
     }
 }

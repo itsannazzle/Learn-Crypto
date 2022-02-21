@@ -14,10 +14,7 @@ import com.nextint.learncrypto.app.databinding.FragmentCoinsBinding
 import com.nextint.learncrypto.app.features.coins.adapter.CoinViewHolder
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModel
 import com.nextint.learncrypto.app.features.coins.viewmodel.CoinsViewModelFactory
-import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.features.utils.setVertical
-import com.nextint.learncrypto.app.features.utils.setVisibility
-import com.nextint.learncrypto.app.features.utils.BaseAdapter
+import com.nextint.learncrypto.app.features.utils.*
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import timber.log.Timber
 import javax.inject.Inject
@@ -64,7 +61,7 @@ class CoinsFragment : Fragment() {
             viewHolder.setCoinAction {
                 val bundle = Bundle()
                 bundle.putString(ID_COIN_CONSTANT,item.id)
-                replaceFragment(parentFragmentManager, CoinDetailFragment(),bundle)
+                UtilitiesFunction.replaceFragment(parentFragmentManager, CoinDetailFragment(),bundle)
             }
         })
     }
@@ -94,7 +91,7 @@ class CoinsFragment : Fragment() {
         })
 
         _coinsViewModel.loading.observe(viewLifecycleOwner,{
-            _binding.progressBar.visibility = setVisibility(it)
+            _binding.progressBar.visibility = UtilitiesFunction.setVisibility(it)
             Timber.d(it.toString())
         })
     }

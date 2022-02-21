@@ -2,11 +2,11 @@ package com.nextint.learncrypto.app.features.ui.people
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
@@ -16,9 +16,10 @@ import com.nextint.learncrypto.app.databinding.FragmentPeopleBinding
 import com.nextint.learncrypto.app.features.person.viewmodel.PeopleViewModel
 import com.nextint.learncrypto.app.features.person.viewmodel.PeopleViewModelFactory
 import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.replaceFragment
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.setVisibility
 import com.nextint.learncrypto.app.features.utils.circleImage
-import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.features.utils.setVisibility
 import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
 import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
@@ -189,7 +190,7 @@ class PeopleFragment : Fragment()
                 {
                     if (peopleResponse.links.medium.isNullOrEmpty())
                     {
-                        visibility = setVisibility(false)
+                        visibility = UtilitiesFunction.setVisibility(false)
                     } else
                     {
                         for (medium in peopleResponse.links.medium)
@@ -198,7 +199,7 @@ class PeopleFragment : Fragment()
                             {
                                 val bundle = Bundle()
                                 bundle.putString(BUNDLE_WEB_URL,medium.url)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                                UtilitiesFunction.replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
                             }
                         }
                     }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="170dp"
+    style="@style/card_style"
+    android:layout_marginBottom="@dimen/dimen_8"
+    android:layout_marginEnd="@dimen/dimen_16"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_4">
+
+        <TextView
+            android:id="@+id/textViewPair"
+            style="@style/subtitle"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="BTC/USDT" />
+
+        <TextView
+            android:id="@+id/textViewTrustScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/caption"
+            android:text="@string/trust_score"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPair"
+            android:layout_marginTop="@dimen/dimen_4"/>
+
+        <TextView
+            android:id="@+id/textViewTrustScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            tools:text="High"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTrustScore"/>
+
+        <TextView
+            android:id="@+id/textViewMarketExchange"
+            style="@style/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exchange"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewTrustScore"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="@+id/textViewTrustScore" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/textViewMarketExchangeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Binance"
+            style="@style/body"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/guideline5"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketExchange"/>
+
+        <TextView
+            android:id="@+id/textViewMarket24hVol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volume_24h"
+            style="@style/caption"
+            app:layout_constraintTop_toBottomOf="@id/textViewTrustScoreValue"
+            android:layout_marginTop="@dimen/dimen_4"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/textViewMarket24hVolValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarket24hVol"
+            tools:text="$1234"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/textViewMarketPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/caption"
+            android:text="@string/price"
+            app:layout_constraintStart_toStartOf="@id/guideline5"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketExchangeValue"
+            android:layout_marginTop="@dimen/dimen_4"/>
+
+        <TextView
+            android:id="@+id/textViewMarketPriceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            tools:text="$1234"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketPrice"
+            app:layout_constraintStart_toStartOf="@id/guideline5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

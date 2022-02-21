@@ -23,10 +23,7 @@ import com.nextint.learncrypto.app.features.person.adapter.TeamViewHolder
 import com.nextint.learncrypto.app.features.tags.adapter.TagsViewHolder
 import com.nextint.learncrypto.app.features.ui.people.PeopleFragment
 import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
-import com.nextint.learncrypto.app.features.utils.BaseAdapter
-import com.nextint.learncrypto.app.features.utils.loadImage
-import com.nextint.learncrypto.app.features.utils.replaceFragment
-import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.features.utils.*
 import com.nextint.learncrypto.app.util.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -87,7 +84,7 @@ class CoinDetailFragment : Fragment()
                             binding?.indicatorActive?.textViewStatus?.text = if (isActive) "Active" else "Inactive"
                             with(binding?.indicatorNew?.textViewStatus)
                             {
-                                this?.visibility = setVisibility(isNew)
+                                this?.visibility = UtilitiesFunction.setVisibility(isNew)
                                 this?.text = if (isNew) "New" else "Not new"
                             }
 
@@ -109,7 +106,7 @@ class CoinDetailFragment : Fragment()
                                 //need pdf viewer
                                 val bundle = Bundle()
                                 bundle.putString(BUNDLE_WEB_URL,whitepaper.link)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                                UtilitiesFunction.replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
                             }
                             _teamAdapter.safeAddAll(team)
                             _tagsAdapter.safeAddAll(tags)
@@ -127,7 +124,7 @@ class CoinDetailFragment : Fragment()
         _coinsViewModel.loading.observe(viewLifecycleOwner,
             {
                 Timber.d(it.toString())
-                binding?.progressBarDetail?.visibility = setVisibility(it)
+                binding?.progressBarDetail?.visibility = UtilitiesFunction.setVisibility(it)
             })
     }
 
@@ -143,7 +140,7 @@ class CoinDetailFragment : Fragment()
                 viewHolder.setTeamAction {
                     val bundle = Bundle()
                     bundle.putString(ID_TEAM_CONSTANT,item.id)
-                    replaceFragment(parentFragmentManager,PeopleFragment(),bundle)
+                    UtilitiesFunction.replaceFragment(parentFragmentManager,PeopleFragment(),bundle)
                 }
             }
         )

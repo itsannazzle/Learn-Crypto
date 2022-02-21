@@ -4,6 +4,7 @@ import android.content.Context
 import com.nextint.learncrypto.app.core.source.remote.di.module.*
 import com.nextint.learncrypto.app.features.coins.data.ICoinsRepository
 import com.nextint.learncrypto.app.features.exchanges.data.IExchangeRepository
+import com.nextint.learncrypto.app.features.market.data.IMarketRepository
 import com.nextint.learncrypto.app.features.tags.data.ITagsRepository
 import com.nextint.learncrypto.app.features.overview.data.IOverviewRepository
 import com.nextint.learncrypto.app.features.person.data.IPeopleRepository
@@ -16,7 +17,8 @@ import javax.inject.Singleton
 @Component(modules = [
     CoinModule::class, TagsModule::class,
     SearchModule::class, OverviewModule::class,
-    PeopleModule::class, ExchangeModule::class
+    PeopleModule::class, ExchangeModule::class,
+    MarketModule::class
 ])
 interface CoreComponent {
     @Component.Factory
@@ -37,5 +39,7 @@ interface CoreComponent {
     fun providePeopleImpl() : IPeopleRepository
 
     fun provideExchangeImpl() : IExchangeRepository
+
+    fun provideMarketImpl() : IMarketRepository
 
 }

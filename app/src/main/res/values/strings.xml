@@ -48,4 +48,10 @@
     <string name="reported_volume_24h">Reported volume 24h :</string>
     <string name="updated">Last updated :</string>
     <string name="confidence_score">Confidence score :</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="trust_score">Trust Score</string>
+    <string name="exchange">Exchange</string>
+    <string name="price">Price</string>
+    <string name="market_list">Market List</string>
 </resources>

@@ -79,5 +79,12 @@
         <item name="android:windowIsFloating">false</item>
     </style>
 
+    <style name="card_style">
+        <item name="android:layout_marginEnd">@dimen/dimen_8</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_8</item>
+        <item name="cardBackgroundColor">@color/primaryAccent</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+
 
 </resources>

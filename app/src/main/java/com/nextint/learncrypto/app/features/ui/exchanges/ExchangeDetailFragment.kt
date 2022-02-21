@@ -60,14 +60,27 @@ class ExchangeDetailFragment : Fragment() {
                 {
                     is ApiResponse.Success ->
                     {
-                        with(_getbindingExchangeDetail)
+                        with(response.data)
                         {
-                            response.data.apply {
-                                this@with?.textViewDetailExchangeName?.text = name
+                            _getbindingExchangeDetail?.textViewDetailExchangeName?.text = name
+                            _getbindingExchangeDetail?.indicatorExchangeActive?.textViewStatus?.apply {
+                                if (active) text = "Active" else visibility = View.GONE
+                            }
+                            _getbindingExchangeDetail?.textViewAboutExchangeValue?.text = description
+                            _getbindingExchangeDetail?.textViewAdjRank?.text = adjustedRank.toString()
+                            _getbindingExchangeDetail?.textViewRepRank?.text = reportedRank.toString()
+                            _getbindingExchangeDetail?.textViewCurrencies?.text = currencies.toString()
+                            _getbindingExchangeDetail?.textViewMarket?.text = markets.toString()
+                            _getbindingExchangeDetail?.textViewFiats?.text = fiats.toString()
+                            _getbindingExchangeDetail?.textViewAdjVol24?.text = quotes.adjustedVolume24h.toString()
+                            _getbindingExchangeDetail?.textViewRepVol24?.text = quotes.reportedVolume24h.toString()
+                            _getbindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated
+                            _getbindingExchangeDetail?.textViewScore?.text = confidenceScore.toString()
+
                             }
 
                         }
-                    }
+
                     is ApiResponse.Error ->
                         Timber.d(response.message)
                     is ApiResponse.Empty -> Timber.d("empty")
