@@ -5,6 +5,7 @@ import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.service.GlobalOverviewService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -20,9 +21,9 @@ class OverviewNetwork @Inject constructor(private val globalOverviewService: Glo
             {
                 val response = globalOverviewService.getMarketOverview()
                 emit(ApiResponse.Success(response))
-            } catch (e: Exception)
+            } catch (e: HttpException)
             {
-                emit(ApiResponse.Error(e.message.toString()))
+                emit(ApiResponse.Error(e.code().toString()))
             }
         }
     }

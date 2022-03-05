@@ -53,5 +53,8 @@
     <string name="trust_score">Trust Score</string>
     <string name="exchange">Exchange</string>
     <string name="price">Price</string>
-    <string name="market_list">Market List</string>
+    <string name="market_list">Bitcoin Market</string>
+    <string name="BUTTON_CANCEL">Cancel</string>
+    <string name="BUTTON_RETRY">Retry</string>
+    <string name="report_error">Report error?</string>
 </resources>

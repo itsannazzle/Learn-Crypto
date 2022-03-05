@@ -71,7 +71,7 @@ class CoinsFragment : Fragment() {
                 _coinsViewModel.coins.observe(viewLifecycleOwner,{ response ->
             when(response){
                 is ApiResponse.Success -> {
-                    _coinAdapter.safeAddAll(response.data)
+                    _coinAdapter.safeClearAndAddAll(response.data)
                 }
                 is ApiResponse.Error -> {
                     Timber.d(response.message)

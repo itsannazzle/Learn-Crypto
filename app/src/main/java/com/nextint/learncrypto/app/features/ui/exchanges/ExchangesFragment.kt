@@ -84,7 +84,7 @@ class ExchangesFragment : Fragment() {
                 {
                     is ApiResponse.Success ->
                     {
-                       _exchangeAdapter.safeAddAll(response.data)
+                       _exchangeAdapter.safeClearAndAddAll(response.data)
                         setupView()
                     }
                     is ApiResponse.Error -> {

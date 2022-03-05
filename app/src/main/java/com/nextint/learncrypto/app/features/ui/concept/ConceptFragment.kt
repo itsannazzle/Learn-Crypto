@@ -93,7 +93,7 @@ class ConceptFragment : Fragment()
                 {
                     is ApiResponse.Success ->
                     {
-                        _tagsAdapter.safeAddAll(response.data.sortedBy { it.name  })
+                        _tagsAdapter.safeClearAndAddAll(response.data.sortedBy { it.name  })
 
                         displayView()
 

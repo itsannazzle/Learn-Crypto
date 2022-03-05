@@ -17,3 +17,10 @@ data class BaseQuotesVolume(
     @field:SerializedName("$/KEY")
     val baseKeyPrice: BaseKeyPrice
 ) : Parcelable
+
+@Parcelize
+data class BaseQuotesPriceUSD(
+
+    @field:SerializedName("USD")
+    val baseKeyPrice: BaseKeyPrice
+) : Parcelable

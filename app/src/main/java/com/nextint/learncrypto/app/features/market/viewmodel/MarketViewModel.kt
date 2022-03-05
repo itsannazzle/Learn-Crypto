@@ -13,9 +13,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
-class MarketViewModel @Inject constructor(
-private val useCase: MarketUseCase
-) : ViewModel()
+class MarketViewModel @Inject constructor(private val useCase: MarketUseCase) : ViewModel()
 {
     private val _marketByCoin : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
     val marketByCoin : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin

@@ -36,7 +36,7 @@ data class MarketsByCoinIdResponseItem(
 	val pair: String,
 
 	@field:SerializedName("quotes")
-	val quotes: BaseQuotesPrice,
+	val quotes: BaseQuotesPriceUSD,
 
 	@field:SerializedName("exchange_name")
 	val exchangeName: String,
@@ -54,5 +54,10 @@ data class MarketsByCoinIdResponseItem(
 	val category: String,
 
 	@field:SerializedName("base_currency_name")
-	val baseCurrencyName: String
+	val baseCurrencyName: String,
+
+	@field:SerializedName("trust_score")
+	val trustScore: String
+
+
 ) : Parcelable

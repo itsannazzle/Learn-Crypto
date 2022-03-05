@@ -64,7 +64,7 @@ class CoinsNetwork @Inject constructor(private val coinsService: CoinsService) {
                     emit(ApiResponse.Success(response.exchangeByCoinIdResponse))
                 } else
                 {
-                    ApiResponse.Empty
+                    emit(ApiResponse.Empty)
                 }
             } catch (exception : Exception)
             {
@@ -82,7 +82,7 @@ class CoinsNetwork @Inject constructor(private val coinsService: CoinsService) {
                 val response = coinsService.getMarketByCoinId(stringCoinId)
                 if (response.marketsByCoinIdResponse.isNotEmpty())
                 {
-                    emit(ApiResponse.Success(response.marketsByCoinIdResponse))
+                    emit(ApiResponse.Success(response.marketsByCoinIdResponse.take(10)))
                 } else
                 {
                     emit(ApiResponse.Empty)

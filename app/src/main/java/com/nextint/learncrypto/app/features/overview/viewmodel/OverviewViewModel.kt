@@ -35,17 +35,21 @@ class  OverviewViewModel @Inject constructor(
     {
         viewModelScope.launch(Dispatchers.IO)
         {
-            try {
-                overviewUseCase.getMarketOverview().collect {
+            try
+            {
+                overviewUseCase.getMarketOverview().collect()
+                {
                     _marketOverview.postValue(it)
-                    Timber.d("dalem try")
                 }
-            } catch (e : java.lang.Exception){
+            } catch (e : Exception)
+            {
                 _message.postValue(e.message)
-                Timber.d("dalem catch")
             }
-            _loading.postValue(false)
-            Timber.d("diluar")
+            finally
+            {
+                _loading.postValue(false)
+            }
+
         }
     }
 

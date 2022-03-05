@@ -7,9 +7,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.CryptoApp
+import com.nextint.learncrypto.app.MainActivity
 import javax.inject.Inject
 
 abstract class BaseFragment<VM : ViewModel> : Fragment() {
+
+    protected lateinit var _activityMain : MainActivity
 
     @Inject
     lateinit var _factoryViewModel: BaseViewModelFactory

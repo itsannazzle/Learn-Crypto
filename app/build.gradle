@@ -24,6 +24,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        development
+                {
+                    debuggable true
+                    minifyEnabled false
+                    shrinkResources false
+                    signingConfig signingConfigs.debug
+                    buildConfigField "String", 'BASE_URL', '"https://api.coinpaprika.com/v1/"'
+                }
     }
 
     buildFeatures{

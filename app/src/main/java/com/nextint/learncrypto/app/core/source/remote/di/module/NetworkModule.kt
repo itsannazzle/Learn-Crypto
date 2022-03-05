@@ -2,6 +2,7 @@ package com.nextint.learncrypto.app.core.source.remote.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.core.source.remote.*
 import com.nextint.learncrypto.app.core.source.remote.service.*
 import com.nextint.learncrypto.app.util.BASE_URL
@@ -84,7 +85,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
     }
 

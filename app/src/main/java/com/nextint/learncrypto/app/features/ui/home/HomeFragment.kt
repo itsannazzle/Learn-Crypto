@@ -128,8 +128,4 @@ class HomeFragment : Fragment() {
 
     }
 
-    fun progressBarVisibility(booleanVisible : Boolean)
-    {
-        _binding.progressBar.visibility = UtilitiesFunction.setVisibility(booleanVisible)
-    }
 }
