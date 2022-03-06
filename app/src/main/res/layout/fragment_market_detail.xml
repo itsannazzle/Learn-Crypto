@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
-    tools:context=".features.ui.market.MarketDetailFragment">
+    tools:context=".features.market.MarketDetailFragment">
 
     <TextView
         android:id="@+id/textViewMarketExchangeName"

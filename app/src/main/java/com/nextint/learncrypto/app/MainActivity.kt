@@ -1,21 +1,18 @@
 package com.nextint.learncrypto.app
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.nextint.learncrypto.app.bases.BaseActivity
 import com.nextint.learncrypto.app.databinding.ActivityMainBinding
 import com.nextint.learncrypto.app.features.onboarding.OnBoardFragment
-import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.initiateDialogLoading
 import timber.log.Timber
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
-    lateinit var _viewModelMainActivity : MainActivityViewModel
+    private lateinit var _viewModelMainActivity : MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +20,7 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.Theme_LearnCrypto)
         _dialog = Dialog(this@MainActivity)
         _dialog.initiateDialogLoading()
+        _modelDialog = DialogModel()
         _viewModelMainActivity = ViewModelProvider(this)[MainActivityViewModel::class.java]
         _viewModelMainActivity.checkInternetConnection()
         setContentView(binding.root)
@@ -38,18 +36,17 @@ class MainActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         _viewModelMainActivity.booleanNetworkConnection.observe(this,
-            {
-                response ->
+            { response ->
                 if (!response)
                 {
-                    showDialogFromModelResponseWithRetry(
-                        "Oops, No internet connection",
-                        "Please check your connection")
-                    {
-                        _viewModelMainActivity.checkInternetConnection()
-                    }
+                    _modelDialog?.retryActionAlert = { _viewModelMainActivity.checkInternetConnection() }
+                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+
+                    _modelDialog?.let { showDialogFromModelResponseWithRetry(it) }
                 }  else
                 {
+                    this._dialog.hide()
                     inflateFragment()
                 }
         })

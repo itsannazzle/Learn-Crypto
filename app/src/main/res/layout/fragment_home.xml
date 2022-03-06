@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
     android:scrollbars="none"
-    tools:context=".features.ui.home.HomeFragment">
+    tools:context=".features.overview.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSearch"

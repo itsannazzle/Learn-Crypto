@@ -48,37 +48,21 @@ object UtilitiesFunction {
         return if (boolean) R.string.yes else R.string.no
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun checkNetworkConnection(context: Context) : Boolean
+    fun convertBooleanToActiveOrNotActive(boolean: Boolean) : Int
     {
-        try
-        {
-            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-            if (connectivityManager is ConnectivityManager)
-            {
-                val networkCapabilities : NetworkCapabilities? = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-                return if (networkCapabilities != null)
-                {
-                    when
-                    {
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                        else -> false
-                    }
-                } else
-                {
-                    false
-                }
-            } else
-            {
-                return false
-            }
-        } catch (exception : Exception)
-        {
-            return false
-        }
+        return if (boolean) R.string.active else R.string.not_active
     }
+
+    fun convertBooleanToNew(boolean: Boolean) : Int
+    {
+        return if (boolean) R.string.status_new else R.string.status_not_new
+    }
+
+    fun convertBooleanToOpenSource(boolean: Boolean) : Int
+    {
+        return if (boolean) R.string.open_source else R.string.not_open_source
+    }
+
 
     fun checkInternetConnection() : Boolean
     {

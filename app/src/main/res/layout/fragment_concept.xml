@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
-    tools:context=".features.ui.concept.ConceptFragment">
+    tools:context=".features.concept.ConceptFragment">
 
     <TextView
         android:id="@+id/textViewWhatIs"

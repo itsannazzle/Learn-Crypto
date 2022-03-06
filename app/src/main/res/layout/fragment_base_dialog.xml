@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/dimen_24"
-    tools:context=".dialog.BaseDialogFragment">
+    tools:context=".features.ui.dialog.BaseDialogFragment">
 
     <ImageView
         android:id="@+id/imageViewDialog"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        tools:src="@tools:sample/avatars" />
+        android:layout_height="150dp"
+        android:src="@drawable/ic_baseline_broken_image_24" />
 
     <TextView
         android:id="@+id/textViewDialogMessage"
@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimen_16"
+        style="@style/caption"
+        android:textColor="@color/black"
         tools:text="Hi there, we lost your connection"/>
 
     <com.google.android.material.button.MaterialButton
