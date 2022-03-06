@@ -16,6 +16,9 @@
         <TextView
             android:id="@+id/textViewExchangeName"
             style="@style/title"
+            android:ems="5"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dimen_16"
+    android:scrollbars="none"
+    tools:context=".features.market.MarketFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewWhatIs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/title"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/what_is"/>
+
+        <TextView
+            android:id="@+id/textViewWhatIsMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewWhatIs"
+            tools:text="@tools:sample/lorem/random"
+            android:maxLines="5"
+            android:layout_marginTop="@dimen/dimen_8"
+            style="@style/body"/>
+        <TextView
+            android:id="@+id/textViewMarketList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/title"
+            android:text="@string/market_list"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewWhatIsMarket"
+            android:layout_marginTop="@dimen/dimen_16"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_market_crypto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketList"
+            android:layout_marginTop="@dimen/dimen_8"
+            app:spanCount="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

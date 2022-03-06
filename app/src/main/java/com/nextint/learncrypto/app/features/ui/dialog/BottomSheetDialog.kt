@@ -13,12 +13,11 @@ import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentBottomSheetDialogBinding
-import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModel
-import com.nextint.learncrypto.app.features.tags.viewmodel.TagsViewModelFactory
-import com.nextint.learncrypto.app.features.utils.setVisibility
+import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
+import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
 import com.nextint.learncrypto.app.util.STRING_TAG_ID_CONSTANT
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -67,7 +66,7 @@ class BottomSheetDialog : BottomSheetDialogFragment()
             else -> Toast.makeText(requireContext(),"Could not found tag id",Toast.LENGTH_SHORT).show()
 
         }
-
+        showLoading()
         return _getBinding?.root
     }
 
@@ -90,13 +89,13 @@ class BottomSheetDialog : BottomSheetDialogFragment()
                             this?.textViewTagName?.text = response.data.name
                             this?.textViewTagDesc?.text = if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
                         }
-                        showLoading()
+
                     }
                     is ApiResponse.Error ->
                     {
                         with(_getBinding)
                         {
-                            this?.textViewTagName?.text = response.message
+                            this?.textViewTagName?.text = response.message.toString()
                         }
                     }
                     else ->
@@ -114,7 +113,7 @@ class BottomSheetDialog : BottomSheetDialogFragment()
     {
         _tagViewModel.loading.observe(viewLifecycleOwner,
             {
-                _getBinding?.progressBarBottomSheet?.visibility =  setVisibility(it)
+                _getBinding?.progressBarBottomSheet?.visibility =  UtilitiesFunction.setVisibility(it)
             })
     }
 

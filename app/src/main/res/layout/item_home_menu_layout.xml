@@ -5,10 +5,7 @@
     android:id="@+id/cardMenu"
     android:layout_width="134dp"
     android:layout_height="134dp"
-    android:layout_marginEnd="@dimen/dimen_8"
-    android:layout_marginBottom="@dimen/dimen_8"
-    app:cardBackgroundColor="@color/primaryAccent"
-    app:cardCornerRadius="10dp">
+    style="@style/card_style">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

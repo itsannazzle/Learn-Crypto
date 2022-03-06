@@ -54,7 +54,11 @@ data class ExchangesResponseItem(
 	val id: String,
 
 	@field:SerializedName("currencies")
-	val currencies: Int
+	val currencies: Int,
+
+	@field:SerializedName("confidence_score")
+	val confidenceScore : Double? = 0.0
+
 ) : Parcelable
 
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
     android:scrollbars="none"
-    tools:context=".features.ui.home.HomeFragment">
+    tools:context=".features.overview.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSearch"
@@ -70,7 +70,6 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="408dp"
         android:indeterminateTint="@color/primary"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

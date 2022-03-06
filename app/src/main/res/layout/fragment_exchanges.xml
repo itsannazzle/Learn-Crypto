@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dimen_16"
     android:scrollbars="none"
-    tools:context=".features.ui.exchanges.ExchangesFragment">
+    tools:context=".features.exchanges.ExchangesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/body"
-            android:maxLines="5"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewWhatIs"
@@ -53,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTopExchange"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/dimen_8"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

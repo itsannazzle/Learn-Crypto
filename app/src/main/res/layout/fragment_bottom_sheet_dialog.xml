@@ -39,7 +39,7 @@
         android:layout_width="42dp"
         android:layout_height="33dp"
         android:visibility="gone"
-        android:indeterminateTint="@color/primary"
+        android:indeterminateTint="@color/primaryAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
