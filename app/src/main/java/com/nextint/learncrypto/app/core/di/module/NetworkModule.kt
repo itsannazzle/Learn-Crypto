@@ -1,9 +1,9 @@
 package com.nextint.learncrypto.app.core.di.module
 
+
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.nextint.learncrypto.app.BuildConfig
-import com.nextint.learncrypto.app.core.source.remote.*
 import com.nextint.learncrypto.app.core.source.remote.service.*
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
-class NetworkModule {
+class NetworkModule
+{
 
     @Provides
     fun provideGson() : Gson = GsonBuilder().create()
@@ -28,32 +29,38 @@ class NetworkModule {
 
     @Provides
     @Named("NetworkService")
-    fun provideRetrofit(@Named("HttpsClient") okHttpClient: OkHttpClient) : Retrofit{
+    fun provideRetrofit(@Named("HttpsClient") okHttpClient: OkHttpClient) : Retrofit
+    {
         return retrofitFactory(okHttpClient)
     }
 
     @Provides
-    fun provideCoins(@Named("NetworkService")retrofit: Retrofit) : CoinsService {
+    fun provideCoins(@Named("NetworkService")retrofit: Retrofit) : CoinsService
+    {
         return retrofit.create(CoinsService::class.java)
     }
 
     @Provides
-    fun provideCryptoExchange(@Named("NetworkService") retrofit: Retrofit) : CryptoExchangeService {
+    fun provideCryptoExchange(@Named("NetworkService") retrofit: Retrofit) : CryptoExchangeService
+    {
         return retrofit.create(CryptoExchangeService::class.java)
     }
 
     @Provides
-    fun providePeople(@Named("NetworkService") retrofit: Retrofit) : PeopleService {
+    fun providePeople(@Named("NetworkService") retrofit: Retrofit) : PeopleService
+    {
         return retrofit.create(PeopleService::class.java)
     }
 
     @Provides
-    fun provideSearch(@Named("NetworkService") retrofit: Retrofit) : SearchService {
+    fun provideSearch(@Named("NetworkService") retrofit: Retrofit) : SearchService
+    {
         return retrofit.create(SearchService::class.java)
     }
 
     @Provides
-    fun provideTagService(@Named("NetworkService") retrofit: Retrofit) : TagsService {
+    fun provideTagService(@Named("NetworkService") retrofit: Retrofit) : TagsService
+    {
         return retrofit.create(TagsService::class.java)
     }
 
@@ -69,7 +76,8 @@ class NetworkModule {
         return retrofit.create(MarketService::class.java)
     }
 
-    private fun okHttpClientFactory(): OkHttpClient {
+    private fun okHttpClientFactory(): OkHttpClient
+    {
         return OkHttpClient.Builder()
             .addInterceptor(applicationInterceptor())
             .addInterceptor(networkInterceptor())
@@ -80,7 +88,8 @@ class NetworkModule {
             .build()
     }
 
-    private fun retrofitFactory(okHttpClient: OkHttpClient) : Retrofit{
+    private fun retrofitFactory(okHttpClient: OkHttpClient) : Retrofit
+    {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
@@ -89,7 +98,8 @@ class NetworkModule {
     }
 
     @Throws(IOException::class)
-    private fun applicationInterceptor() : Interceptor {
+    private fun applicationInterceptor() : Interceptor
+    {
         return Interceptor {
             chain ->
             val request = chain.request()
@@ -101,8 +111,10 @@ class NetworkModule {
     }
 
     @Throws(IOException::class)
-    private fun networkInterceptor() : Interceptor{
-        return Interceptor {
+    private fun networkInterceptor() : Interceptor
+    {
+        return Interceptor()
+        {
             chain->
             val request = chain.request()
             val requestUrl = request
@@ -117,7 +129,8 @@ class NetworkModule {
         }
     }
 
-    private fun loggingInterceptor() : HttpLoggingInterceptor {
+    private fun loggingInterceptor() : HttpLoggingInterceptor
+    {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         return logging

@@ -19,12 +19,11 @@ import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.market.MarketFragment
 import com.nextint.learncrypto.app.features.overview.presentation.OverviewViewModel
-import com.nextint.learncrypto.app.features.ui.dialog.BaseDialogFragment
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.*
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
-import timber.log.Timber
 
 
 class HomeFragment : BaseFragment<OverviewViewModel>() {

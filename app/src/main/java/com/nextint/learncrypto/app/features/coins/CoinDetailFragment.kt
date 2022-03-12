@@ -2,6 +2,7 @@ package com.nextint.learncrypto.app.features.coins
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -73,78 +74,67 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.coinById.observe(viewLifecycleOwner,
-            { response ->
-                when(response)
-                {
-                    is ApiResponse.InternetConnection ->
-                    {
-                        _modelDialog?.retryActionAlert = { _viewModel.getCoinById(_coinId ?: "") }
-                        _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+        _viewModel.coinById.observe(viewLifecycleOwner
+        ) { response ->
+            when (response) {
+                is ApiResponse.InternetConnection -> {
+                    _modelDialog?.retryActionAlert = { _viewModel.getCoinById(_coinId ?: "") }
+                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
 
-                        _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                }
+
+                is ApiResponse.Success -> {
+                    _activityMain._dialog.hide()
+
+                    with(response.data)
+                    {
+                        _teamAdapter.safeAddAll(team)
+                        _tagsAdapter.safeAddAll(tags)
+                        displayView(this)
                     }
+                }
 
-                    is ApiResponse.Success ->
-                    {
-                        _activityMain._dialog.hide()
+                is ApiResponse.Empty -> {
+                    _modelDialog?.httpErrorCode = 1404
+                    val bundle = Bundle()
+                    bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
+                    _dialogFragment.arguments = bundle
+                    _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+                }
 
-                        with(response.data)
-                        {
-                            _teamAdapter.safeAddAll(team)
-                            _tagsAdapter.safeAddAll(tags)
-                            displayView(this)
+                is ApiResponse.Error -> {
+                    if (_dialogFragment.isAdded) {
+                        _viewModel.getCoinById(_coinId ?: "")
+                        _dialogFragment.dismiss()
+                    } else {
+                        _modelDialog?.buttonText = R.string.BUTTON_RETRY
+                        _modelDialog?.httpErrorCode = response.message
+                        _modelDialog?.retryActionDialog = {
+                            _viewModel.getCoinById(_coinId ?: "")
                         }
-                    }
-
-                    is ApiResponse.Empty ->
-                    {
-                        _modelDialog?.httpErrorCode = 1404
                         val bundle = Bundle()
-                        bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
+                        bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
                         _dialogFragment.arguments = bundle
                         _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                     }
-
-                    is ApiResponse.Error ->
-                    {
-                        if (_dialogFragment.isAdded)
-                        {
-                            _viewModel.getCoinById(_coinId ?: "")
-                            _dialogFragment.dismiss()
-                        }
-                        else
-                        {
-                            _modelDialog?.buttonText = R.string.BUTTON_RETRY
-                            _modelDialog?.httpErrorCode = response.message
-                            _modelDialog?.retryActionDialog = {
-                                _viewModel.getCoinById(_coinId ?: "")
-                            }
-                            val bundle = Bundle()
-                            bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
-                            _dialogFragment.arguments = bundle
-                            _dialogFragment.show(childFragmentManager, TAG_DIALOG)
-                        }
-                    }
-
-                    else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
-            })
 
-//        _viewModel.loading.observe(viewLifecycleOwner,
-//            {
-//                _getBindingCoinDetailFragment?.progressBarDetail?.visibility = UtilitiesFunction.setVisibility(it)
-//            })
+                else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+            }
+        }
 
-        _viewModel.message.observe(viewLifecycleOwner,
-            {
-                _modelDialog?.dialogMessage = id
-                val bundle = Bundle()
-                bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
-                _dialogFragment.arguments = bundle
-                _dialogFragment.show(childFragmentManager, TAG_DIALOG)
-            })
+
+
+        _viewModel.message.observe(viewLifecycleOwner
+        ) {
+            _modelDialog?.dialogMessage = id
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
+            _dialogFragment.arguments = bundle
+            _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+        }
     }
 
 
@@ -227,6 +217,10 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 textViewOrganizationStatus.text = orgStructure
                 textViewHasiAlgo.text = hashAlgorithm
                 imageViewWhitePaper.loadImage(whitepaper.thumbnail.toString())
+                imageViewWhitePaper.setOnClickListener()
+                {
+
+                }
                 textViewWhitePaperSrc.text = whitepaper.link?.takeLast(10)
 
                 imageViewWhitePaper.setOnClickListener()

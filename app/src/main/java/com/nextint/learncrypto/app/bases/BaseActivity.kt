@@ -7,7 +7,6 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.nextint.learncrypto.app.R
-import com.nextint.learncrypto.app.features.ui.dialog.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.*
 import com.nextint.learncrypto.app.features.utils.showDialog

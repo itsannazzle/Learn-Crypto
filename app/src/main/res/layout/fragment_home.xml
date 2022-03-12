@@ -30,8 +30,7 @@
         android:layout_width="134dp"
         android:layout_height="134dp"
         android:layout_marginTop="@dimen/dimen_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintEnd_toStartOf="@+id/menuExchanges"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearch" />
 
@@ -40,8 +39,9 @@
         layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
-        android:layout_marginStart="@dimen/dimen_24"
         app:layout_constraintBottom_toBottomOf="@+id/menuConcept"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/menuConcept"
         app:layout_constraintTop_toTopOf="@+id/menuConcept" />
 
@@ -50,20 +50,21 @@
         layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="@+id/menuConcept"
-        app:layout_constraintTop_toBottomOf="@+id/menuConcept" />
+        app:layout_constraintBottom_toBottomOf="@+id/menuCoins"
+        app:layout_constraintEnd_toStartOf="@+id/menuCoins"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/menuCoins" />
 
     <include
         android:id="@+id/menuCoins"
         layout="@layout/item_home_menu_layout"
         android:layout_width="134dp"
         android:layout_height="134dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/menuMarket"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_24"
         app:layout_constraintStart_toEndOf="@+id/menuMarket"
-        app:layout_constraintTop_toTopOf="@+id/menuMarket"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/menuConcept" />
 
 
     <ProgressBar

@@ -1,6 +1,5 @@
-package com.nextint.learncrypto.app.features.ui.dialog
+package com.nextint.learncrypto.app.bases
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentBaseDialogBinding
+import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 
 

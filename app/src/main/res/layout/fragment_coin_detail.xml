@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_16"
+    android:orientation="vertical"
     android:scrollbars="none"
     tools:context=".features.coins.CoinDetailFragment">
 
@@ -28,28 +29,33 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_16"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoinName" />
+            app:layout_constraintEnd_toStartOf="@+id/indicatorNew"
+            app:layout_constraintStart_toEndOf="@+id/textViewCoinName"
+            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
 
         <include
             android:id="@+id/indicatorNew"
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
             app:layout_constraintBottom_toBottomOf="@+id/indicatorActive"
-            app:layout_constraintStart_toEndOf="@+id/indicatorActive" />
+            app:layout_constraintEnd_toStartOf="@+id/indicatorOpenSource"
+            android:layout_marginEnd="@dimen/dimen_8"
+            app:layout_constraintStart_toEndOf="@+id/indicatorActive"
+            app:layout_constraintTop_toTopOf="@+id/indicatorActive" />
 
         <include
             android:id="@+id/indicatorOpenSource"
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
             app:layout_constraintBottom_toBottomOf="@+id/indicatorNew"
-            app:layout_constraintStart_toEndOf="@+id/indicatorNew" />
+            android:layout_marginStart="@dimen/dimen_8"
+            app:layout_constraintStart_toEndOf="@+id/indicatorNew"
+            app:layout_constraintTop_toTopOf="@+id/indicatorNew" />
 
         <TextView
             android:id="@+id/textViewSymbol"
@@ -284,8 +290,8 @@
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTags"
-            tools:listitem="@layout/item_tags_layout"
-            app:spanCount="2" />
+            app:spanCount="2"
+            tools:listitem="@layout/item_tags_layout" />
 
         <TextView
             android:id="@+id/textViewCoinSocMed"
