@@ -23,9 +23,6 @@ import com.nextint.learncrypto.app.features.concept.presentation.TagsViewHolder
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.person.PeopleFragment
-import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
-import com.nextint.learncrypto.app.features.utils.StringExtensions.convertToDateWithFormat
-import com.nextint.learncrypto.app.features.utils.StringExtensions.convertToStringDate
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.*
@@ -179,7 +176,7 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
     }
 
 
-    private fun displayView(coinByIdResponse: CoinByIdResponse)
+    private fun displayView(coinByIdResponse: CoinByIdResponse?)
     {
         setupIndicatorColor()
         _getBindingCoinDetailFragment?.recylerViewTeam?.apply()
@@ -193,7 +190,7 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 
         with(_getBindingCoinDetailFragment!!)
         {
-            coinByIdResponse.apply()
+            coinByIdResponse?.apply()
             {
                 textViewCoinName.text = name
                 textViewCoinSocMed.text = getString(R.string.find_out_more_about_1_s_on,name)

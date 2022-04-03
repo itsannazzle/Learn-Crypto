@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
@@ -16,18 +15,12 @@ import com.nextint.learncrypto.app.core.source.remote.response.PeopleResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentPeopleBinding
 import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModel
-import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModelFactory
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
-import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.replaceFragment
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.setVisibility
 import com.nextint.learncrypto.app.features.utils.circleImage
-import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
 import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
-import timber.log.Timber
-import javax.inject.Inject
 
 
 class PeopleFragment : BaseFragment<PeopleViewModel>()
