@@ -1,6 +1,7 @@
 package com.nextint.learncrypto.app
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.bases.BaseActivity
@@ -20,6 +21,7 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.Theme_LearnCrypto)
         _dialog = Dialog(this@MainActivity)
         _dialog.initiateDialogLoading()
+
         _modelDialog = DialogModel()
         _viewModelMainActivity = ViewModelProvider(this)[MainActivityViewModel::class.java]
         _viewModelMainActivity.checkInternetConnection()

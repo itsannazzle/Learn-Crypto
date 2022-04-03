@@ -22,8 +22,8 @@ import java.text.NumberFormat
 import java.util.*
 
 object UtilitiesFunction {
-    fun setVisibility(visibile : Boolean) : Int {
-        return if (visibile) View.VISIBLE else View.GONE
+    fun setVisibility(visible : Boolean) : Int {
+        return if (visible) View.VISIBLE else View.GONE
     }
 
     fun replaceFragment(fragmentManager: FragmentManager, fragment: Fragment, bundle : Bundle? = null) {

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.MainActivity
-import com.nextint.learncrypto.app.features.ui.dialog.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import javax.inject.Inject
 

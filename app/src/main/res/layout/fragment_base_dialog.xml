@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/dimen_24"
-    tools:context=".features.ui.dialog.BaseDialogFragment">
+    tools:context=".bases.BaseDialogFragment">
 
     <ImageView
         android:id="@+id/imageViewDialog"

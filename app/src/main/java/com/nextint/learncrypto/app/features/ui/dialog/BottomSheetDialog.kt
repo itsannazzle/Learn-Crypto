@@ -57,16 +57,18 @@ class BottomSheetDialog : BottomSheetDialogFragment()
                 {
                     this?.textViewTagName?.text = modelTag.name
                     this?.textViewTagDesc?.text = if (modelTag.description.isNullOrEmpty()) "Description not available" else modelTag.description
+                    this?.progressBarBottomSheet?.visibility = View.GONE
                 }
             }
             idTag != null ->
             {
+                showLoading()
                 _tagViewModel.getTagById(idTag)
             }
             else -> Toast.makeText(requireContext(),"Could not found tag id",Toast.LENGTH_SHORT).show()
 
         }
-        showLoading()
+
         return _getBinding?.root
     }
 
@@ -77,44 +79,40 @@ class BottomSheetDialog : BottomSheetDialogFragment()
 
     private fun getTagDetail()
     {
-        _tagViewModel.tagById.observe(viewLifecycleOwner,
-            {
-                response ->
-                when(response)
-                {
-                    is ApiResponse.Success ->
+        _tagViewModel.tagById.observe(viewLifecycleOwner
+        ) { response ->
+            when (response) {
+                is ApiResponse.Success -> {
+                    with(_getBinding)
                     {
-                        with(_getBinding)
-                        {
-                            this?.textViewTagName?.text = response.data.name
-                            this?.textViewTagDesc?.text = if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
-                        }
+                        this?.textViewTagName?.text = response.data.name
+                        this?.textViewTagDesc?.text =
+                            if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
+                    }
 
-                    }
-                    is ApiResponse.Error ->
+                }
+                is ApiResponse.Error -> {
+                    with(_getBinding)
                     {
-                        with(_getBinding)
-                        {
-                            this?.textViewTagName?.text = response.message.toString()
-                        }
-                    }
-                    else ->
-                    {
-                        with(_getBinding)
-                        {
-                            this?.textViewTagName?.text = response.toString()
-                        }
+                        this?.textViewTagName?.text = response.message.toString()
                     }
                 }
-            })
+                else -> {
+                    with(_getBinding)
+                    {
+                        this?.textViewTagName?.text = response.toString()
+                    }
+                }
+            }
+        }
     }
 
     private fun showLoading()
     {
-        _tagViewModel.loading.observe(viewLifecycleOwner,
-            {
-                _getBinding?.progressBarBottomSheet?.visibility =  UtilitiesFunction.setVisibility(it)
-            })
+        _tagViewModel.loading.observe(viewLifecycleOwner
+        ) {
+            _getBinding?.progressBarBottomSheet?.visibility = UtilitiesFunction.setVisibility(it)
+        }
     }
 
     override fun getTheme(): Int {

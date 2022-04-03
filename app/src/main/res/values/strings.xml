@@ -72,6 +72,7 @@
     <string name="dialog_429_message">We have encounter too many request, try again later!</string>
     <string name="id_exchange">exchange</string>
     <string name="id_bitcoin">btc-bitcoin</string>
+    <string name="id_eth">eth-ethereum</string>
     <string name="id_cryptocurrency">cryptocurrency</string>
     <string name="menu_concept">Concept</string>
     <string name="menu_number_01">01</string>
@@ -81,5 +82,6 @@
     <string name="menu_number_03">03</string>
     <string name="menu_coins">Coins</string>
     <string name="menu_number_04">04</string>
+    <string name="ethereum_market">Ethereum Market</string>
 
 </resources>

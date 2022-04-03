@@ -9,12 +9,11 @@
 
     <ImageView
         android:id="@+id/topImg"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginTop="@dimen/dimen_16"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -28,27 +27,25 @@
 
     <ImageView
         android:id="@+id/middleImg"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/bottomImg"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/topImg"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/bottomImg"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-
-        android:layout_marginTop="160dp"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
         android:scaleType="centerCrop"
+        android:layout_marginBottom="@dimen/dimen_16"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topImg"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
