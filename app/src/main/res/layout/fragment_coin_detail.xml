@@ -100,8 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_24"
-            android:stretchColumns="2"
             android:visibility="visible"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAboutCoin">
@@ -170,8 +170,7 @@
 
             <TableRow
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginBottom="@dimen/dimen_16">
+                android:layout_marginTop="@dimen/dimen_8">
 
                 <TextView
                     style="@style/body"
@@ -180,10 +179,7 @@
                 <TextView
                     android:id="@+id/textViewProofType"
                     style="@style/body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="5"
-                    tools:text="@tools:sample/lorem/random" />
+                    android:maxWidth="100dp"/>
             </TableRow>
 
             <TableRow android:layout_marginTop="@dimen/dimen_8">
@@ -226,7 +222,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/dimen_8"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewWhitePaper"
             app:strokeColor="@color/primary"

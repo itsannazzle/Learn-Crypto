@@ -67,15 +67,13 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.peopleById.observe(viewLifecycleOwner,
-            { response ->
-                when(response)
-                {
-                    is ApiResponse.InternetConnection ->
-                    {
-                        _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
-                        _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+        _viewModel.peopleById.observe(viewLifecycleOwner
+        ) { response ->
+            when (response) {
+                is ApiResponse.InternetConnection -> {
+                    _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
+                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -89,15 +87,9 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                                 textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
                                 textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
                                 imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
-                                positions.map {
-                                Timber.d("${it.position} at ${it.coinName}" )
-                                    textViewPeoplePosition.text = getString(R.string.position,it.position, it.coinName)
+                                positions.forEach {
+                                    textViewPeoplePosition.text = getString(R.string.position,it.position,it.coinName)
                                 }
-//                                for (position in positions.indices)
-//                                {
-//                                    Timber.d(positions[position].coinName)
-//                                    textViewPeoplePosition.text = getString(R.string.position,positions[position].position, positions[position].coinName)
-//                                }
                                 setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
                                 setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
                                 setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
@@ -106,7 +98,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                         }
                     }
                 }
-            })
+            }
     }
 
 
@@ -130,12 +122,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                         for (github in peopleResponse.links.github)
                         { setOnClickListener()
                             {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL, github.url)
-                                replaceFragment(
-                                    parentFragmentManager,
-                                    WebViewFragment(),
-                                    bundle)
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),github.url)
                             }
                         }
                     }
@@ -155,13 +142,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                         for (linkedin in peopleResponse.links.linkedin)
                         { setOnClickListener()
                             {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL, linkedin.url)
-                                replaceFragment(
-                                    parentFragmentManager,
-                                    WebViewFragment(),
-                                    bundle
-                                )
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),linkedin.url)
                             }
                         }
                     }
@@ -181,9 +162,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                         for (twitter in peopleResponse.links.twitter)
                         { setOnClickListener()
                             {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL,twitter.url)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                               UtilitiesFunction.openBrowserWithURL(requireContext(),twitter.url)
                             }
                         }
                     }
@@ -202,9 +181,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                         for (medium in peopleResponse.links.medium)
                         { setOnClickListener()
                             {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL,medium.url)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),medium.url)
                             }
                         }
                     }

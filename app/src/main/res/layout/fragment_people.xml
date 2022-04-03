@@ -71,11 +71,19 @@
         style="@style/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimes_48"
         android:text="@string/find_him_her_on"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPeopleTotalPosition" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        android:layout_marginBottom="@dimen/dimen_16"
+        app:constraint_referenced_ids="textViewFindPeople"/>
 
     <ImageView
         android:id="@+id/imageViewPeopleMedium"
@@ -85,40 +93,39 @@
         app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleGitHub"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/barrier" />
 
     <ImageView
         android:id="@+id/imageViewPeopleGitHub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_ant_design_github_filled_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleMedium"
+        app:layout_constraintTop_toBottomOf="@id/barrier"
         app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleLinkedin"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageViewPeopleMedium"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleMedium" />
+         />
 
     <ImageView
         android:id="@+id/imageViewPeopleLinkedin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logos_linkedin_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleGitHub"
+
         app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleTwitter"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageViewPeopleGitHub"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleGitHub" />
+        app:layout_constraintTop_toBottomOf="@id/barrier"/>
 
     <ImageView
         android:id="@+id/imageViewPeopleTwitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logos_twitter_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleLinkedin"
+        app:layout_constraintTop_toBottomOf="@id/barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleLinkedin"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleLinkedin" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleLinkedin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

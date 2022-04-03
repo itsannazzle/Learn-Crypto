@@ -85,6 +85,12 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        _dialog.hide()
+        _dialog.dismissDialog(this)
+        _dialogAlert?.dismissDialog(this)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

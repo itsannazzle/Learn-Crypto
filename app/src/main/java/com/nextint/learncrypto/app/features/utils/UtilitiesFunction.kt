@@ -1,9 +1,11 @@
 package com.nextint.learncrypto.app.features.utils
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.InetAddresses
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -76,4 +78,21 @@ object UtilitiesFunction {
             false
         }
     }
+
+    fun openBrowserWithURL(context: Context, stringURL: String)
+    {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(stringURL)
+        context.startActivity(intent)
+    }
+
+    fun openPDFFromUrl(context: Context, stringUrl : String)
+    {
+        val intent  = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(stringUrl), "application/pdf")
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        context.startActivity(intent)
+    }
+
+
 }
