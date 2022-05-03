@@ -1,8 +1,8 @@
 package com.nextint.learncrypto.app.features.concept.data
 
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.network.TagsNetwork
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

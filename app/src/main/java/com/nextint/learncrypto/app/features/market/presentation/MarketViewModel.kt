@@ -10,7 +10,6 @@ import com.nextint.learncrypto.app.features.market.domain.MarketUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 class MarketViewModel @Inject constructor(private val useCase: MarketUseCase) : ViewModel()

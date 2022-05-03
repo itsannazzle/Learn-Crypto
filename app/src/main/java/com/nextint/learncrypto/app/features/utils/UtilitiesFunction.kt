@@ -2,20 +2,13 @@ package com.nextint.learncrypto.app.features.utils
 
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.InetAddresses
-import android.net.NetworkCapabilities
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.nextint.learncrypto.app.R
 import timber.log.Timber
-import java.lang.Exception
 import java.net.InetAddress
 import java.net.UnknownHostException
 import java.text.NumberFormat

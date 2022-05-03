@@ -1,8 +1,6 @@
 package com.nextint.learncrypto.app.core.session
 
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
 class SessionRepository (private val sessionManager: SessionManager) {

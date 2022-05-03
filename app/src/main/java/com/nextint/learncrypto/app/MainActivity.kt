@@ -1,7 +1,6 @@
 package com.nextint.learncrypto.app
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.bases.BaseActivity

@@ -1,8 +1,11 @@
 package com.nextint.learncrypto.app.features.coins.data
 
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.network.CoinsNetwork
-import com.nextint.learncrypto.app.core.source.remote.response.*
+import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.ExchangeByCoinIdResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

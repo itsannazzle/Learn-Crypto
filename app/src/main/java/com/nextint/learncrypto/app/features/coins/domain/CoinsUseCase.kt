@@ -1,7 +1,10 @@
 package com.nextint.learncrypto.app.features.coins.domain
 
+import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.ExchangeByCoinIdResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
-import com.nextint.learncrypto.app.core.source.remote.response.*
 import com.nextint.learncrypto.app.features.coins.data.ICoinsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.take

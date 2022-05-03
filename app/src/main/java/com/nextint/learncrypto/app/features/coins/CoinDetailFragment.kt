@@ -14,19 +14,23 @@ import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
 import com.nextint.learncrypto.app.bases.BaseFragment
-import com.nextint.learncrypto.app.core.source.remote.response.*
+import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.response.Links
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinDetailBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
-import com.nextint.learncrypto.app.features.person.presentation.TeamViewHolder
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewHolder
+import com.nextint.learncrypto.app.features.person.PeopleFragment
+import com.nextint.learncrypto.app.features.person.presentation.TeamViewHolder
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.person.PeopleFragment
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
+import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.*
-import java.util.*
 
 class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 {
@@ -203,11 +207,11 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 
                 indicatorOpenSource.textViewStatus.text = getString(UtilitiesFunction.convertBooleanToOpenSource(isOpenSource))
                 textViewSymbol.text = getString(R.string.symbol, symbol)
-                textViewType.text = getString(R.string.type,type)
+                textViewType.text = getString(R.string.type,type.replaceFirstChar { it.uppercase() })
                 textViewAboutCoin.text = description.ifEmpty { getString(R.string.desc_not_found) }
-                textViewStarted.text = startedAt.take(10)
-                textViewFirstData.text = firstDataAt.take(10)
-                textViewLastData.text = lastDataAt.take(10)
+                textViewStarted.text = startedAt.convertStringToDate()?.convertDateToStingPreviewSimple()
+                textViewFirstData.text = firstDataAt.convertStringToDate()?.convertDateToStingPreviewSimple()
+                textViewLastData.text = lastDataAt.convertStringToDate()?.convertDateToStingPreviewSimple()
                 textViewDevStats.text = developmentStatus
                 textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet))
                 textViewProofType.text = proofType

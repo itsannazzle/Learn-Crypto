@@ -1,11 +1,10 @@
 package com.nextint.learncrypto.app.features.market
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nextint.learncrypto.app.R
+import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.databinding.FragmentMarketDetailBinding
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_MARKET_BY_ID

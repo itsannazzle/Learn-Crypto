@@ -2,23 +2,24 @@ package com.nextint.learncrypto.app.features.coins
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinsBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinViewHolder
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
-import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.utils.*
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.features.utils.setVertical
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG

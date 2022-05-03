@@ -3,9 +3,9 @@ package com.nextint.learncrypto.app.core.di
 import android.content.Context
 import com.nextint.learncrypto.app.core.di.module.*
 import com.nextint.learncrypto.app.features.coins.data.ICoinsRepository
+import com.nextint.learncrypto.app.features.concept.data.ITagsRepository
 import com.nextint.learncrypto.app.features.exchanges.data.IExchangeRepository
 import com.nextint.learncrypto.app.features.market.data.IMarketRepository
-import com.nextint.learncrypto.app.features.concept.data.ITagsRepository
 import com.nextint.learncrypto.app.features.overview.data.IOverviewRepository
 import com.nextint.learncrypto.app.features.person.data.IPeopleRepository
 import com.nextint.learncrypto.app.features.search.data.ISearchRepository

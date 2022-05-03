@@ -50,7 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="@tools:sample/lorem/random"
-            android:maxLines="10"
+            android:justificationMode="inter_word"
+            tools:maxLines="5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAboutExchange"
             android:layout_marginTop="@dimen/dimen_4"
@@ -59,14 +60,11 @@
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_24"
-            android:stretchColumns="2"
-            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAboutExchangeValue">
+            app:layout_constraintTop_toBottomOf="@id/textViewAboutExchangeValue"
+            style="@style/tableLayoutMatchWrap">
 
             <TableRow>
 
@@ -78,6 +76,7 @@
                 <TextView
                     android:id="@+id/textViewAdjRank"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -90,6 +89,7 @@
                 <TextView
                     android:id="@+id/textViewRepRank"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -102,6 +102,7 @@
                 <TextView
                     android:id="@+id/textViewCurrencies"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -114,12 +115,11 @@
                 <TextView
                     android:id="@+id/textViewMarket"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8">
 
                 <TextView
@@ -129,13 +129,11 @@
                 <TextView
                     android:id="@+id/textViewFiats"
                     style="@style/body"
-                    android:maxLines="3"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8">
 
                 <TextView
@@ -145,8 +143,7 @@
                 <TextView
                     android:id="@+id/textViewAdjVol24"
                     style="@style/body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     tools:text="412345" />
             </TableRow>
 
@@ -159,6 +156,7 @@
                 <TextView
                     android:id="@+id/textViewRepVol24"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -171,6 +169,7 @@
                 <TextView
                     android:id="@+id/textViewLastUpdate"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -183,6 +182,7 @@
                 <TextView
                     android:id="@+id/textViewScore"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
         </TableLayout>

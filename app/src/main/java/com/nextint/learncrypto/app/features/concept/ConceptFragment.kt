@@ -7,25 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentConceptBinding
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewHolder
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
-import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
-import com.nextint.learncrypto.app.bases.BaseAdapter
-import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
 import com.nextint.learncrypto.app.util.TAG_BOTTOM_SHEET_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
-import javax.inject.Inject
 
 class ConceptFragment : BaseFragment<TagsViewModel>()
 {

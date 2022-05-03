@@ -8,21 +8,18 @@
     android:scrollbars="none"
     tools:context=".features.overview.HomeFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
+
+    <EditText
         android:id="@+id/textInputLayoutSearch"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_backgroud"
+        android:clickable="true"
+        android:hint="Search"
+        android:padding="@dimen/dimen_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableEnd="@drawable/ic_baseline_close_24"
-            android:hint="Search" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/menuConcept"

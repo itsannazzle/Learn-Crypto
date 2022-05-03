@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.*
-import com.nextint.learncrypto.app.features.utils.showDialog
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var _dialog : Dialog

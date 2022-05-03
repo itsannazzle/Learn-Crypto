@@ -103,11 +103,8 @@
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/tableLayoutMatchWrap"
             android:layout_marginTop="@dimen/dimen_24"
-            android:visibility="visible"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAboutCoin">
@@ -122,6 +119,7 @@
                 <TextView
                     android:id="@+id/textViewStarted"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -134,6 +132,7 @@
                 <TextView
                     android:id="@+id/textViewFirstData"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -146,6 +145,7 @@
                 <TextView
                     android:id="@+id/textViewLastData"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -158,6 +158,7 @@
                 <TextView
                     android:id="@+id/textViewDevStats"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -170,12 +171,11 @@
                 <TextView
                     android:id="@+id/textViewHardWallet"
                     style="@style/body"
-                    android:maxLines="1"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
             <TableRow
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8">
 
                 <TextView
@@ -185,7 +185,8 @@
                 <TextView
                     android:id="@+id/textViewProofType"
                     style="@style/body"
-                    android:maxWidth="100dp"/>
+                    tools:text="@string/started_at"
+                    android:layout_weight="1"/>
             </TableRow>
 
             <TableRow android:layout_marginTop="@dimen/dimen_8">
@@ -197,6 +198,7 @@
                 <TextView
                     android:id="@+id/textViewOrganizationStatus"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
 
@@ -209,6 +211,7 @@
                 <TextView
                     android:id="@+id/textViewHasiAlgo"
                     style="@style/body"
+                    android:layout_weight="1"
                     tools:text="@string/started_at" />
             </TableRow>
         </TableLayout>

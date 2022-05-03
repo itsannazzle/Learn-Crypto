@@ -11,7 +11,6 @@ import com.nextint.learncrypto.app.features.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 class TagsViewModel @Inject constructor(private val tagUseCase: TagsUseCase) : ViewModel()

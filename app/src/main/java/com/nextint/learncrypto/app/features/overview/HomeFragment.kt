@@ -11,6 +11,7 @@ import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentHomeBinding
@@ -19,9 +20,9 @@ import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.market.MarketFragment
 import com.nextint.learncrypto.app.features.overview.presentation.OverviewViewModel
-import com.nextint.learncrypto.app.bases.BaseDialogFragment
+import com.nextint.learncrypto.app.features.search.presentation.SearchFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.utils.*
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
 
@@ -66,12 +67,10 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
 
 
     private fun observeLiveData(){
-        _viewModel.marketOverview.observe(viewLifecycleOwner,
-            { response ->
-            when(response)
-            {
-                is ApiResponse.InternetConnection ->
-                {
+        _viewModel.marketOverview.observe(viewLifecycleOwner
+        ) { response ->
+            when (response) {
+                is ApiResponse.InternetConnection -> {
 
                     _modelDialog?.retryActionAlert = { _viewModel.getMarketOverview() }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
@@ -80,25 +79,22 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
 
-                is ApiResponse.Success ->
-                {
+                is ApiResponse.Success -> {
                     _activityMain._dialog.hide()
-                    _getBindingHomeFragment?.textViewCapitalization?.text = getString(R.string.crypto_exchange,
+                    _getBindingHomeFragment?.textViewCapitalization?.text = getString(
+                        R.string.crypto_exchange,
                         UtilitiesFunction.convertToUSD(response.data.marketCapUsd),
                         UtilitiesFunction.convertToUSD(response.data.volume24hUsd),
                         UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage),
-                        response.data.cryptocurrenciesNumber.toString())
+                        response.data.cryptocurrenciesNumber.toString()
+                    )
                 }
 
-                is ApiResponse.Error ->
-                {
-                    if (_dialogFragment.isAdded)
-                    {
+                is ApiResponse.Error -> {
+                    if (_dialogFragment.isAdded) {
                         _dialogFragment.dismiss()
                         _viewModel.getMarketOverview()
-                    }
-                    else
-                    {
+                    } else {
                         val modelDialog = DialogModel()
                         modelDialog.buttonText = R.string.no
                         modelDialog.httpErrorCode = response.message
@@ -106,23 +102,22 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
                             _viewModel.getMarketOverview()
                         }
                         val bundle = Bundle()
-                        bundle.putParcelable("MODEL_DIALOG",modelDialog)
+                        bundle.putParcelable("MODEL_DIALOG", modelDialog)
                         _dialogFragment.arguments = bundle
-                        _dialogFragment.show(childFragmentManager,"TAG")
+                        _dialogFragment.show(childFragmentManager, "TAG")
                     }
 
                 }
-                is ApiResponse.Empty ->
-                {
+                is ApiResponse.Empty -> {
                     _modelDialog?.httpErrorCode = 1404
                     val bundle = Bundle()
-                    bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
+                    bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
                     _dialogFragment.arguments = bundle
                     _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
                 else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
             }
-        })
+        }
     }
 
 
@@ -163,7 +158,16 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
                 UtilitiesFunction.replaceFragment(parentFragmentManager, CoinsFragment())
             }
         }
+        with(_getBindingHomeFragment!!)
+        {
+            textInputLayoutSearch.setOnClickListener()
+            {
+                UtilitiesFunction.replaceFragment(parentFragmentManager, SearchFragment())
+            }
+        }
+
         _getBindingHomeFragment?.textViewBuildBy?.text = getString(R.string.build_by_anna_karenina_jusuf,"V${BuildConfig.VERSION_NAME}")
+
 
     }
 

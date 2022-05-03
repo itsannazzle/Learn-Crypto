@@ -1,6 +1,5 @@
 package com.nextint.learncrypto.app.core.source.remote.service
 
-import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponse
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Path
