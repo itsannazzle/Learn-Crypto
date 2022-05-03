@@ -67,7 +67,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.tagById.observe(viewLifecycleOwner,
+        _viewModel.tagById.observe(viewLifecycleOwner)
             {
                 response ->
                 when(response)
@@ -86,8 +86,12 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                         _activityMain._dialog.hide()
                         with(response.data)
                         {
-                            _getBindingFragmentConcept?.textViewWhatIs?.text = getString(R.string.what_is,name)
-                            _getBindingFragmentConcept?.textViewConceptCryptoDesc?.text = getString(R.string.coin_description,name,description)
+                            _getBindingFragmentConcept?.textViewWhatIs?.text = getString(R.string.what_is,
+                                this?.name ?: "Crypto"
+                            )
+                            _getBindingFragmentConcept?.textViewConceptCryptoDesc?.text = getString(R.string.coin_description,
+                                this?.name ?: "--", this?.description ?: "--"
+                            )
                         }
                     }
 
@@ -123,16 +127,17 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
                     else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
-            })
+            }
 
-        _viewModel.allTags.observe(viewLifecycleOwner,
+        _viewModel.allTags.observe(viewLifecycleOwner)
             {
                     response ->
                 when(response)
                 {
                     is ApiResponse.Success ->
                     {
-                        _tagsAdapter.safeClearAndAddAll(response.data.sortedBy { it.name  })
+                        response.data?.sortedBy { it.name  }
+                            ?.let { _tagsAdapter.safeClearAndAddAll(it) }
 
                         displayView()
 
@@ -141,7 +146,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
                     else -> Log.d("Anna","on eror")
                 }
-            })
+            }
     }
 
 

@@ -81,7 +81,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.coins.observe(viewLifecycleOwner,
+        _viewModel.coins.observe(viewLifecycleOwner)
             { response ->
                 when(response)
                 {
@@ -97,7 +97,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     is ApiResponse.Success ->
                     {
                         _activityMain._dialog.hide()
-                        _coinAdapter.safeClearAndAddAll(response.data)
+                        response.data?.let { _coinAdapter.safeClearAndAddAll(it) }
                     }
 
                     is ApiResponse.Error ->
@@ -131,16 +131,16 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
 
                 }
-            })
+            }
 
-        _viewModel.message.observe(viewLifecycleOwner,
+        _viewModel.message.observe(viewLifecycleOwner)
             {
             _modelDialog?.dialogMessage = id
             val bundle = Bundle()
             bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
             _dialogFragment.arguments = bundle
             _dialogFragment.show(childFragmentManager, TAG_DIALOG)
-        })
+        }
 
 //        _viewModel.loading.observe(viewLifecycleOwner,
 //            {

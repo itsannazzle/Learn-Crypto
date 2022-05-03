@@ -30,7 +30,7 @@ data class ExchangesResponseItem(
 	val message: String,
 
 	@field:SerializedName("quotes")
-	val quotes: BaseKeyVolume,
+	val quotes: BaseKeyVolume? = null,
 
 	@field:SerializedName("markets")
 	val markets: Int,
@@ -57,7 +57,10 @@ data class ExchangesResponseItem(
 	val currencies: Int,
 
 	@field:SerializedName("confidence_score")
-	val confidenceScore : Double? = 0.0
+	val confidenceScore : Double? = 0.0,
+
+	@field:SerializedName("rank")
+	val rank: Int,
 
 ) : Parcelable
 

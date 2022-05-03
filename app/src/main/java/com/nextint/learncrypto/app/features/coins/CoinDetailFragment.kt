@@ -31,13 +31,13 @@ import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimpl
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.*
+import kotlinx.coroutines.Job
 
 class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 {
     private var _bindingCoinDetailFragment : FragmentCoinDetailBinding? = null
     private val _getBindingCoinDetailFragment get() = _bindingCoinDetailFragment
     private var _coinId : String? = null
-
     private lateinit var _teamAdapter : BaseAdapter<TeamItem, TeamViewHolder>
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
 
@@ -88,14 +88,15 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 
                 is ApiResponse.Success -> {
                     _activityMain._dialog.hide()
-
-                    with(response.data)
-                    {
-                        _teamAdapter.safeClearAndAddAll(team)
-                        _tagsAdapter.safeClearAndAddAll(tags)
-
-                        displayView(this)
-                    }
+                    response.data?.let {
+                        with(response.data)
+                        {
+                                displayView(this)
+                                _teamAdapter.safeClearAndAddAll(team)
+                                if (tags != null) {
+                                    _tagsAdapter.safeClearAndAddAll(tags)
+                                }
+                        } }
                 }
 
                 is ApiResponse.Empty -> {
@@ -209,8 +210,8 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 textViewSymbol.text = getString(R.string.symbol, symbol)
                 textViewType.text = getString(R.string.type,type.replaceFirstChar { it.uppercase() })
                 textViewAboutCoin.text = description.ifEmpty { getString(R.string.desc_not_found) }
-                textViewStarted.text = startedAt.convertStringToDate()?.convertDateToStingPreviewSimple()
-                textViewFirstData.text = firstDataAt.convertStringToDate()?.convertDateToStingPreviewSimple()
+                textViewStarted.text = startedAt?.convertStringToDate()?.convertDateToStingPreviewSimple()
+                textViewFirstData.text = firstDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple()
                 textViewLastData.text = lastDataAt.convertStringToDate()?.convertDateToStingPreviewSimple()
                 textViewDevStats.text = developmentStatus
                 textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet))

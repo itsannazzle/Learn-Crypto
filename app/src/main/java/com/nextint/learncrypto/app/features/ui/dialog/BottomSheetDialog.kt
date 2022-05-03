@@ -82,13 +82,18 @@ class BottomSheetDialog : BottomSheetDialogFragment()
         _tagViewModel.tagById.observe(viewLifecycleOwner
         ) { response ->
             when (response) {
-                is ApiResponse.Success -> {
-                    with(_getBinding)
+                is ApiResponse.Success ->
+                {
+                    response.data?.let()
                     {
-                        this?.textViewTagName?.text = response.data.name
-                        this?.textViewTagDesc?.text =
-                            if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
+                        with(_getBinding)
+                        {
+                            this?.textViewTagName?.text = response.data.name
+                            this?.textViewTagDesc?.text =
+                                if (response.data.description.isNullOrEmpty()) "Description not available" else response.data.description
+                        }
                     }
+
 
                 }
                 is ApiResponse.Error -> {

@@ -21,6 +21,7 @@ import com.nextint.learncrypto.app.features.person.domain.PeopleUseCaseImpl
 import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModel
 import com.nextint.learncrypto.app.features.search.domain.SearchUseCase
 import com.nextint.learncrypto.app.features.search.domain.SearchUseCaseImpl
+import com.nextint.learncrypto.app.features.search.presentation.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -77,4 +78,9 @@ abstract class AppModule {
     @IntoMap
     @ViewModelKey(OverviewViewModel::class)
     abstract fun bindOverviewViewModel(viewModel: OverviewViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(viewModel: SearchViewModel) : ViewModel
 }

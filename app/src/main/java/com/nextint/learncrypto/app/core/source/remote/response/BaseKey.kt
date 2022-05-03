@@ -24,7 +24,7 @@ data class BaseKeyVolume(
     val reportedVolume7d: Int,
 
     @field:SerializedName("adjusted_volume_24h")
-    val adjustedVolume24h: Int,
+    val adjustedVolume24h: Int? = 0,
 
     @field:SerializedName("adjusted_volume_30d")
     val adjustedVolume30d: Int,

@@ -10,6 +10,7 @@ import com.nextint.learncrypto.app.features.market.MarketDetailFragment
 import com.nextint.learncrypto.app.features.market.MarketFragment
 import com.nextint.learncrypto.app.features.overview.HomeFragment
 import com.nextint.learncrypto.app.features.person.PeopleFragment
+import com.nextint.learncrypto.app.features.search.presentation.SearchFragment
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import dagger.Component
 
@@ -46,4 +47,6 @@ interface AppComponent
     fun inject(fragment : MarketFragment)
 
     fun inject(fragment : MarketDetailFragment)
+
+    fun inject(fragment : SearchFragment)
 }

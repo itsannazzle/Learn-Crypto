@@ -28,6 +28,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     private var _bindingFragmentPeople : FragmentPeopleBinding? = null
     private val _getBindingFragmentPeople get() = _bindingFragmentPeople
     private var peopleId :String? = null
+
     override fun setupViewModel(): Class<PeopleViewModel> = PeopleViewModel::class.java
 
     override fun setObserver(): Fragment = this
@@ -60,33 +61,36 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.peopleById.observe(viewLifecycleOwner
-        ) { response ->
+        _viewModel.peopleById.observe(viewLifecycleOwner)
+        { response ->
             when (response) {
-                is ApiResponse.InternetConnection -> {
+                is ApiResponse.InternetConnection ->
+                {
                     _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
                     _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
-
-                        _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
-                    }
+                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                }
                     is ApiResponse.Success ->
                     {
                         _activityMain._dialog.hide()
-                        with(response.data)
+                        response.data?.let()
                         {
-                            _getBindingFragmentPeople?.apply {
-                                textViewPeopleName.text = name
-                                textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
-                                textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
-                                imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
-                                positions.forEach {
-                                    textViewPeoplePosition.text = getString(R.string.position,it.position,it.coinName)
+                            with(response.data)
+                            {
+                                _getBindingFragmentPeople?.apply {
+                                    textViewPeopleName.text = name
+                                    textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
+                                    textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
+                                    imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
+                                    positions.forEach {
+                                        textViewPeoplePosition.text = getString(R.string.position,it.position,it.coinName)
+                                    }
+                                    setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
+                                    setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
+                                    setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
+                                    setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                                 }
-                                setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                             }
                         }
                     }

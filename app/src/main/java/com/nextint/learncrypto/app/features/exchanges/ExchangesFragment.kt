@@ -77,7 +77,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 
     private fun observeLiveData()
     {
-        _viewModel.getAllExchange.observe(viewLifecycleOwner,
+        _viewModel.getAllExchange.observe(viewLifecycleOwner)
             {
                 response ->
                 when(response)
@@ -93,8 +93,11 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 
                     is ApiResponse.Success ->
                     {
-                        _activityMain._dialog.hide()
-                       _exchangeAdapter.safeClearAndAddAll(response.data)
+                        response.data?.let()
+                        {
+                            _activityMain._dialog.hide()
+                            _exchangeAdapter.safeClearAndAddAll(response.data)
+                        }
                         //setupView()
                     }
 
@@ -130,9 +133,9 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 
                     else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
-            })
+            }
 
-        _tagsViewModel.tagById.observe(viewLifecycleOwner,
+        _tagsViewModel.tagById.observe(viewLifecycleOwner)
             { response ->
                 when(response)
                 {
@@ -147,9 +150,12 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 
                     is ApiResponse.Success ->
                     {
+                        response.data?.let()
+                        {
+                            _getBindingExchangeFragment?.textViewExchangeDesc?.text = response.data.description
+                            _getBindingExchangeFragment?.textViewWhatIs?.text = getString(R.string.what_is, response.data.name)
+                        }
 
-                        _getBindingExchangeFragment?.textViewExchangeDesc?.text = response.data.description
-                        _getBindingExchangeFragment?.textViewWhatIs?.text = getString(R.string.what_is, response.data.name)
                     }
 
                     is ApiResponse.Error ->
@@ -184,7 +190,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 
                     else -> _dialogFragment.show(childFragmentManager,TAG_DIALOG)
                 }
-            })
+            }
 
 //        _viewModel.loading.observe(viewLifecycleOwner,
 //            {

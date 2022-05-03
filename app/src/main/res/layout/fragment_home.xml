@@ -12,11 +12,11 @@
     <EditText
         android:id="@+id/textInputLayoutSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimes_48"
         android:background="@drawable/edit_text_backgroud"
+        android:backgroundTint="@color/lightGrey"
         android:clickable="true"
         android:hint="Search"
-        android:padding="@dimen/dimen_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

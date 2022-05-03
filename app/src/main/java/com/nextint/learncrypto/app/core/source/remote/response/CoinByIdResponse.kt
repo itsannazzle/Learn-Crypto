@@ -23,7 +23,7 @@ data class CoinByIdResponse(
 	val proofType: String,
 
 	@field:SerializedName("first_data_at")
-	val firstDataAt: String,
+	val firstDataAt: String? = null,
 
 	@field:SerializedName("description")
 	val description: String,
@@ -38,7 +38,7 @@ data class CoinByIdResponse(
 	val message: String,
 
 	@field:SerializedName("tags")
-	val tags: List<TagByIdResponse>,
+	val tags: List<TagByIdResponse>? = null,
 
 	@field:SerializedName("last_data_at")
 	val lastDataAt: String,
@@ -47,7 +47,7 @@ data class CoinByIdResponse(
 	val whitepaper: Whitepaper,
 
 	@field:SerializedName("org_structure")
-	val orgStructure: String,
+	val orgStructure: String? = "--",
 
 	@field:SerializedName("name")
 	val name: String,
@@ -68,7 +68,7 @@ data class CoinByIdResponse(
 	val isHardwareWallet: Boolean,
 
 	@field:SerializedName("started_at")
-	val startedAt: String,
+	val startedAt: String? = null,
 
 	@field:SerializedName("links")
 	val links: Links,

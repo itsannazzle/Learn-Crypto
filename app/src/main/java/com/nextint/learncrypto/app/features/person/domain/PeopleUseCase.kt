@@ -12,8 +12,7 @@ interface PeopleUseCase
 }
 
 
-class PeopleUseCaseImpl @Inject constructor(private val iPeopleRepository: IPeopleRepository) :
-    PeopleUseCase
+class PeopleUseCaseImpl @Inject constructor(private val iPeopleRepository: IPeopleRepository) : PeopleUseCase
 {
     override suspend fun getPeopleById(stringPeopleId: String): Flow<ApiResponse<PeopleResponse>>
     {

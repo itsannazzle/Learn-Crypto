@@ -79,15 +79,20 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
 
-                is ApiResponse.Success -> {
+                is ApiResponse.Success ->
+                {
                     _activityMain._dialog.hide()
-                    _getBindingHomeFragment?.textViewCapitalization?.text = getString(
-                        R.string.crypto_exchange,
-                        UtilitiesFunction.convertToUSD(response.data.marketCapUsd),
-                        UtilitiesFunction.convertToUSD(response.data.volume24hUsd),
-                        UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage),
-                        response.data.cryptocurrenciesNumber.toString()
-                    )
+                    response.data?.let()
+                    {
+                        _getBindingHomeFragment?.textViewCapitalization?.text = getString(
+                            R.string.crypto_exchange,
+                            UtilitiesFunction.convertToUSD(response.data.marketCapUsd),
+                            UtilitiesFunction.convertToUSD(response.data.volume24hUsd),
+                            UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage),
+                            response.data.cryptocurrenciesNumber.toString()
+                        )
+                    }
+
                 }
 
                 is ApiResponse.Error -> {

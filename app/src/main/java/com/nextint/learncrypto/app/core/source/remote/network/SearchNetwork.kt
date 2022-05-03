@@ -2,6 +2,7 @@ package com.nextint.learncrypto.app.core.source.remote.network
 
 import com.nextint.learncrypto.app.bases.BaseService
 import com.nextint.learncrypto.app.core.source.remote.response.SearchExchangesItem
+import com.nextint.learncrypto.app.core.source.remote.response.SearchResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.service.SearchService
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class SearchNetwork @Inject constructor(private val searchService : SearchService) : BaseService()
 {
-    suspend fun getSearchResult(stringKeyword : String) : Flow<ApiResponse<List<SearchExchangesItem>>>
+    suspend fun getSearchResult(stringKeyword : String) : Flow<ApiResponse<SearchResponse>>
     {
         return flow ()
         {
@@ -28,9 +29,9 @@ class SearchNetwork @Inject constructor(private val searchService : SearchServic
                 try
                 {
                     val response = searchService.search(stringKeyword)
-                    if (response.exchanges.isNotEmpty())
+                    if (!response.exchanges.isNullOrEmpty())
                     {
-                        emit(ApiResponse.Success(response.exchanges))
+                        emit(ApiResponse.Success(response))
                     } else
                     {
                         emit(ApiResponse.Empty)

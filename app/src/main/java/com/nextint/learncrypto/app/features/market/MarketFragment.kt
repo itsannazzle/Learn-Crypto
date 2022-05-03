@@ -111,7 +111,8 @@ class MarketFragment : BaseFragment<MarketViewModel>()
 
                 is ApiResponse.Success ->
                 {
-                    _bitcoinMarketAdapter.safeClearAndAddAll(response.data)
+                    response.data?.let { _bitcoinMarketAdapter.safeClearAndAddAll(response.data) }
+
                 }
 
                 is ApiResponse.Error ->
@@ -162,7 +163,11 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 is ApiResponse.Success ->
                 {
                     _activityMain._dialog.hide()
-                    _ethMarketAdapter.safeClearAndAddAll(response.data)
+                    response.data?.let()
+                    {
+                        _ethMarketAdapter.safeClearAndAddAll(response.data)
+                    }
+
                 }
 
                 is ApiResponse.Error ->
