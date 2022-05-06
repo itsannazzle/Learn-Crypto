@@ -31,7 +31,7 @@
     <string name="whitepaper">White paper :</string>
     <string name="team">Team</string>
     <string name="tags">Tags</string>
-    <string name="position">Position : %1$s at %2$s</string>
+    <string name="position">Position : %1$s</string>
     <string name="total_position">Total position : %1$s</string>
     <string name="find_him_her_on">Find him/her on :</string>
     <string name="build_by_anna_karenina_jusuf">Build by Anna Karenina Jusuf\n%1$s</string>
@@ -61,6 +61,7 @@
     <string name="market_list">Bitcoin Market</string>
     <string name="BUTTON_CANCEL">Cancel</string>
     <string name="BUTTON_RETRY">Retry</string>
+    <string name="BUTTON_OK">Ok</string>
     <string name="report_error">Report error?</string>
     <string name="desc_not_found">Description not found</string>
     <string name="dialog_no_internet_title">Oops, No internet connection</string>
@@ -72,6 +73,7 @@
     <string name="dialog_429_message">We have encounter too many request, try again later!</string>
     <string name="id_exchange">exchange</string>
     <string name="id_bitcoin">btc-bitcoin</string>
+    <string name="id_eth">eth-ethereum</string>
     <string name="id_cryptocurrency">cryptocurrency</string>
     <string name="menu_concept">Concept</string>
     <string name="menu_number_01">01</string>
@@ -81,5 +83,7 @@
     <string name="menu_number_03">03</string>
     <string name="menu_coins">Coins</string>
     <string name="menu_number_04">04</string>
+    <string name="ethereum_market">Ethereum Market</string>
+    <string name="dash">-</string>
 
 </resources>

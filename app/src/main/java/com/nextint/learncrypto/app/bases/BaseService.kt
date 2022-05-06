@@ -6,7 +6,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
 import timber.log.Timber
-import java.lang.Exception
 import java.net.InetAddress
 import java.net.UnknownHostException
 

@@ -1,27 +1,22 @@
 package com.nextint.learncrypto.app.features.utils
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.InetAddresses
-import android.net.NetworkCapabilities
-import android.os.Build
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.nextint.learncrypto.app.R
 import timber.log.Timber
-import java.lang.Exception
 import java.net.InetAddress
 import java.net.UnknownHostException
 import java.text.NumberFormat
 import java.util.*
 
 object UtilitiesFunction {
-    fun setVisibility(visibile : Boolean) : Int {
-        return if (visibile) View.VISIBLE else View.GONE
+    fun setVisibility(visible : Boolean) : Int {
+        return if (visible) View.VISIBLE else View.GONE
     }
 
     fun replaceFragment(fragmentManager: FragmentManager, fragment: Fragment, bundle : Bundle? = null) {
@@ -76,4 +71,21 @@ object UtilitiesFunction {
             false
         }
     }
+
+    fun openBrowserWithURL(context: Context, stringURL: String)
+    {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(stringURL)
+        context.startActivity(intent)
+    }
+
+    fun openPDFFromUrl(context: Context, stringUrl : String)
+    {
+        val intent  = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(stringUrl), "application/pdf")
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        context.startActivity(intent)
+    }
+
+
 }

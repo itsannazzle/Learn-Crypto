@@ -10,13 +10,15 @@ import com.nextint.learncrypto.app.features.market.domain.MarketUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 class MarketViewModel @Inject constructor(private val useCase: MarketUseCase) : ViewModel()
 {
     private val _marketByCoin : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
     val marketByCoin : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin
+
+    private val _marketByCoin2 : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
+    val marketByCoin2 : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin2
 
     private val _message : MutableLiveData<String> = MutableLiveData()
     val message : LiveData<String> get() = _message
@@ -32,6 +34,22 @@ class MarketViewModel @Inject constructor(private val useCase: MarketUseCase) : 
                 useCase.getMarketByCoin(stringCoinId).collect()
                 {
                     _marketByCoin.postValue(it)
+                }
+            } catch (exception: Exception) {
+                _message.postValue(exception.message.toString())
+            }
+            _loading.postValue(false)
+        }
+    }
+
+    fun getMarketByCoin2(stringCoinId : String)
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            try {
+                useCase.getMarketByCoin(stringCoinId).collect()
+                {
+                    _marketByCoin2.postValue(it)
                 }
             } catch (exception: Exception) {
                 _message.postValue(exception.message.toString())

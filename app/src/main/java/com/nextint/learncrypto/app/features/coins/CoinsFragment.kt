@@ -2,27 +2,27 @@ package com.nextint.learncrypto.app.features.coins
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinsBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinViewHolder
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
-import com.nextint.learncrypto.app.features.ui.dialog.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.utils.*
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.features.utils.setVertical
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
-import timber.log.Timber
 
 
 class CoinsFragment : BaseFragment<CoinsViewModel>() 
@@ -81,7 +81,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.coins.observe(viewLifecycleOwner,
+        _viewModel.coins.observe(viewLifecycleOwner)
             { response ->
                 when(response)
                 {
@@ -89,7 +89,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     {
                         _modelDialog?.retryActionAlert = { _viewModel.getCoins() }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -97,7 +97,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     is ApiResponse.Success ->
                     {
                         _activityMain._dialog.hide()
-                        _coinAdapter.safeClearAndAddAll(response.data)
+                        response.data?.let { _coinAdapter.safeClearAndAddAll(it) }
                     }
 
                     is ApiResponse.Error ->
@@ -131,16 +131,17 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
 
                 }
-            })
+            }
 
-        _viewModel.message.observe(viewLifecycleOwner,
+        _viewModel.message.observe(viewLifecycleOwner)
             {
-            _modelDialog?.dialogMessage = id
-            val bundle = Bundle()
-            bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
-            _dialogFragment.arguments = bundle
-            _dialogFragment.show(childFragmentManager, TAG_DIALOG)
-        })
+                _modelDialog?.dialogMessage = it
+                _modelDialog?.httpErrorCode = 422
+                val bundle = Bundle()
+                bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
+                _dialogFragment.arguments = bundle
+                _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+        }
 
 //        _viewModel.loading.observe(viewLifecycleOwner,
 //            {

@@ -2,11 +2,11 @@ package com.nextint.learncrypto.app.features.ui.webview
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.databinding.FragmentWebViewBinding
 import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 

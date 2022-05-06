@@ -14,7 +14,7 @@ data class PeopleResponse(
 	val description: String? = null,
 
 	@field:SerializedName("links")
-	val links: PersonSosMed,
+	val links: PersonSosMed? = null,
 
 	@field:SerializedName("positions")
 	val positions: List<PositionsItem>,

@@ -7,25 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentConceptBinding
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewHolder
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
-import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
-import com.nextint.learncrypto.app.bases.BaseAdapter
-import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
 import com.nextint.learncrypto.app.util.TAG_BOTTOM_SHEET_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
-import javax.inject.Inject
 
 class ConceptFragment : BaseFragment<TagsViewModel>()
 {
@@ -70,7 +67,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.tagById.observe(viewLifecycleOwner,
+        _viewModel.tagById.observe(viewLifecycleOwner)
             {
                 response ->
                 when(response)
@@ -79,7 +76,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                     {
                         _modelDialog?.retryActionAlert = { _viewModel.getTagById(getString(R.string.id_cryptocurrency)) }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -89,8 +86,12 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                         _activityMain._dialog.hide()
                         with(response.data)
                         {
-                            _getBindingFragmentConcept?.textViewWhatIs?.text = getString(R.string.what_is,name)
-                            _getBindingFragmentConcept?.textViewConceptCryptoDesc?.text = getString(R.string.coin_description,name,description)
+                            _getBindingFragmentConcept?.textViewWhatIs?.text = getString(R.string.what_is,
+                                this?.name ?: "Crypto"
+                            )
+                            _getBindingFragmentConcept?.textViewConceptCryptoDesc?.text = getString(R.string.coin_description,
+                                this?.name ?: "--", this?.description ?: "--"
+                            )
                         }
                     }
 
@@ -126,16 +127,17 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
                     else -> _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
-            })
+            }
 
-        _viewModel.allTags.observe(viewLifecycleOwner,
+        _viewModel.allTags.observe(viewLifecycleOwner)
             {
                     response ->
                 when(response)
                 {
                     is ApiResponse.Success ->
                     {
-                        _tagsAdapter.safeClearAndAddAll(response.data.sortedBy { it.name  })
+                        response.data?.sortedBy { it.name  }
+                            ?.let { _tagsAdapter.safeClearAndAddAll(it) }
 
                         displayView()
 
@@ -144,7 +146,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
 
                     else -> Log.d("Anna","on eror")
                 }
-            })
+            }
     }
 
 

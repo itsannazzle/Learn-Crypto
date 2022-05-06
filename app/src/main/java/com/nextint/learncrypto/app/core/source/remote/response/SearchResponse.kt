@@ -8,19 +8,19 @@ import kotlinx.android.parcel.Parcelize
 data class SearchResponse(
 
 	@field:SerializedName("exchanges")
-	val exchanges: List<SearchExchangesItem>,
+	val exchanges: List<ExchangesResponseItem>,
 
 	@field:SerializedName("people")
-	val people: List<PeopleItem>,
+	val people: List<TeamItem>,
 
 	@field:SerializedName("currencies")
-	val currencies: List<CurrenciesItem>,
+	val currencies: List<CoinsResponseItem>,
 
 	@field:SerializedName("icos")
 	val icos: List<IcosItem>,
 
 	@field:SerializedName("tags")
-	val tags: List<TagsItem>
+	val tags: List<TagByIdResponse>
 ) : Parcelable
 
 @Parcelize

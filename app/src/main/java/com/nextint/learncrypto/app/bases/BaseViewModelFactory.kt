@@ -3,8 +3,6 @@ package com.nextint.learncrypto.app.bases
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.di.AppScope
-import java.lang.Exception
-import java.lang.RuntimeException
 import javax.inject.Inject
 import javax.inject.Provider
 

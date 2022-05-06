@@ -1,6 +1,5 @@
-package com.nextint.learncrypto.app.features.ui.dialog
+package com.nextint.learncrypto.app.bases
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentBaseDialogBinding
+import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 
 
@@ -122,12 +122,31 @@ class BaseDialogFragment : DialogFragment()
                     Toast.makeText(requireContext(), getString(R.string.dialog_default_title),Toast.LENGTH_SHORT).show()
                 }
             }
+            422 ->
+            {
+                if (_getbindingBaseDialogFragment!= null)
+                {
+                    with(_getbindingBaseDialogFragment)
+                    {
+                        this?.imageViewDialog?.setImageResource(R.drawable.ic_data_empty)
+                        this?.textViewDialogMessage?.text = modelDialog.dialogMessage ?: getString( R.string.dialog_default_message)
+                        this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
+                        this?.buttonDialog?.setOnClickListener()
+                        {
+                            dismiss()
+                        }
+                    }
+                } else
+                {
+                    Toast.makeText(requireContext(), getString(R.string.dialog_default_title),Toast.LENGTH_SHORT).show()
+                }
+            }
             else ->
             {
                 with(_getbindingBaseDialogFragment)
                 {
                     this?.imageViewDialog?.setImageResource(R.drawable.ic_something_went_wrong)
-                    this?.textViewDialogMessage?.text = getString(R.string.dialog_default_message + R.string.dialog_default_message)
+                    this?.textViewDialogMessage?.text = modelDialog.dialogMessage ?: getString( R.string.dialog_default_message)
                     this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
                     this?.buttonDialog?.setOnClickListener()
                     {

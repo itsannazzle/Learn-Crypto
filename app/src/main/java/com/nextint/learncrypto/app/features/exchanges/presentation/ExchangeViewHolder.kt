@@ -26,7 +26,7 @@ class ExchangeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
             exchangesResponseItem.apply()
             {
                 findViewById<TextView>(R.id.textViewExchangeName).text = name
-                findViewById<TextView>(R.id.textViewVol24hValue).text = UtilitiesFunction.convertToUSD(quotes.adjustedVolume24h.toLong())
+                findViewById<TextView>(R.id.textViewVol24hValue).text = UtilitiesFunction.convertToUSD(quotes?.adjustedVolume24h?.toLong() ?: 0)
                 findViewById<TextView>(R.id.textViewExchangeMarketValue).text = markets.toString()
                 findViewById<TextView>(R.id.textViewExchangeConfidenceValue).text = UtilitiesFunction.convertToPercentage(confidenceScore ?: 0.0).take(3)
             }

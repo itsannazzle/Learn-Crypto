@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.search.presentation.SearchFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/top_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimes_48"
+        android:hint="Search anything"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:padding="@dimen/dimen_4"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:background="@drawable/edit_text_backgroud"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/dimen_24"/>
+
+    <TextView
+        android:id="@+id/tvResult"
+        style="@style/title"
+        android:text="Result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginStart="@dimen/dimen_16"/>
+
+    <TextView
+        android:id="@+id/tvCurrencies"
+        style="@style/subtitle"
+        android:text="Currencies"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/dimen_16"
+        app:layout_constraintTop_toBottomOf="@id/tvResult"
+        android:layout_marginTop="@dimen/dimen_8"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearchCurrencies"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="@id/tvCurrencies"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrencies"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_coins_layout" />
+
+    <TextView
+        android:id="@+id/tvExchanges"
+        style="@style/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvSearchCurrencies"
+        android:text="@string/menu_exchanges"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvSearchExchanges"
+        tools:listitem="@layout/item_exchanges_layout"
+        app:layout_constraintStart_toStartOf="@id/tvExchanges"
+        app:layout_constraintTop_toBottomOf="@id/tvExchanges"
+        tools:itemCount="5"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/tvICOS"
+        style="@style/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvSearchExchanges"
+        android:text="ICOs"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearchICOs"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_coins_layout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/tvICOS"
+        app:layout_constraintTop_toBottomOf="@id/tvICOS"/>
+
+    <TextView
+        android:id="@+id/tvPeople"
+        style="@style/subtitle"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvSearchICOs"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:text="People"
+        android:layout_marginStart="@dimen/dimen_16"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSearchPeople"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_team_layout"
+        app:layout_constraintStart_toStartOf="@id/tvPeople"
+        app:layout_constraintTop_toBottomOf="@id/tvPeople"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="1"/>
+
+    <TextView
+        android:id="@+id/tvTags"
+        style="@style/subtitle"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintTop_toBottomOf="@id/rvSearchPeople"
+        android:text="Tags"
+        android:layout_marginStart="@dimen/dimen_16"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvSearchTags"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           tools:listitem="@layout/item_tags_layout"
+           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+           android:orientation="horizontal"
+           app:spanCount="2"
+           app:layout_constraintStart_toStartOf="@id/tvTags"
+           app:layout_constraintTop_toBottomOf="@id/tvTags"
+           app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

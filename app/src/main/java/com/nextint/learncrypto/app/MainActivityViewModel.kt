@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MainActivityViewModel : ViewModel() {
     private var _booleanNetworkConnection : MutableLiveData<Boolean> = MutableLiveData()

@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
@@ -16,18 +16,12 @@ import com.nextint.learncrypto.app.core.source.remote.response.PeopleResponse
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentPeopleBinding
 import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModel
-import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModelFactory
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.ui.webview.WebViewFragment
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
-import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.replaceFragment
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction.setVisibility
 import com.nextint.learncrypto.app.features.utils.circleImage
-import com.nextint.learncrypto.app.util.BUNDLE_WEB_URL
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
 import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
-import timber.log.Timber
-import javax.inject.Inject
 
 
 class PeopleFragment : BaseFragment<PeopleViewModel>()
@@ -35,6 +29,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     private var _bindingFragmentPeople : FragmentPeopleBinding? = null
     private val _getBindingFragmentPeople get() = _bindingFragmentPeople
     private var peopleId :String? = null
+
     override fun setupViewModel(): Class<PeopleViewModel> = PeopleViewModel::class.java
 
     override fun setObserver(): Fragment = this
@@ -67,46 +62,45 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.peopleById.observe(viewLifecycleOwner,
-            { response ->
-                when(response)
+        _viewModel.peopleById.observe(viewLifecycleOwner)
+        { response ->
+            when (response) {
+                is ApiResponse.InternetConnection ->
                 {
-                    is ApiResponse.InternetConnection ->
-                    {
-                        _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
-                        _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
-
-                        _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
-                    }
+                    _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
+                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
+                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                }
                     is ApiResponse.Success ->
                     {
                         _activityMain._dialog.hide()
-                        with(response.data)
+                        response.data?.let()
                         {
-                            _getBindingFragmentPeople?.apply {
-                                textViewPeopleName.text = name
-                                textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
-                                textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
-                                imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
-                                positions.map {
-                                Timber.d("${it.position} at ${it.coinName}" )
-                                    textViewPeoplePosition.text = getString(R.string.position,it.position, it.coinName)
+                            with(response.data)
+                            {
+                                _getBindingFragmentPeople?.apply {
+                                    textViewPeopleName.text = name
+                                    textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
+                                    textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
+                                    imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
+                                    val positionTeam = positions.joinToString { it.position.plus(" at ${it.coinName}") }
+
+                                    textViewPeoplePosition.text = getString(R.string.position,positionTeam)
+                                    if (response.data.links != null)
+                                    {
+                                        setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
+                                    }
+
                                 }
-//                                for (position in positions.indices)
-//                                {
-//                                    Timber.d(positions[position].coinName)
-//                                    textViewPeoplePosition.text = getString(R.string.position,positions[position].position, positions[position].coinName)
-//                                }
-                                setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
-                                setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                             }
                         }
                     }
                 }
-            })
+            }
     }
 
 
@@ -117,100 +111,86 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     {
         when(imageView)
         {
-            _getBindingFragmentPeople?.imageViewPeopleGitHub ->
-            {
-                with(imageView)
+                _getBindingFragmentPeople?.imageViewPeopleGitHub ->
                 {
-                    if (peopleResponse.links.github.isNullOrEmpty())
+                    with(imageView)
                     {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (github in peopleResponse.links.github)
-                        { setOnClickListener()
+                        if (peopleResponse.links?.github.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (github in peopleResponse.links!!.github)
+                            { setOnClickListener()
                             {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL, github.url)
-                                replaceFragment(
-                                    parentFragmentManager,
-                                    WebViewFragment(),
-                                    bundle)
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),github.url)
+                            }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingFragmentPeople?.imageViewPeopleLinkedin ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.linkedin.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (linkedin in peopleResponse.links!!.linkedin)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),linkedin.url)
+                            }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingFragmentPeople?.imageViewPeopleTwitter ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.twitter.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (twitter in peopleResponse.links!!.twitter)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),twitter.url)
+                            }
+                            }
+                        }
+                    }
+                }
+                _getBindingFragmentPeople?.imageViewPeopleMedium ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.medium.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (medium in peopleResponse.links!!.medium)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),medium.url)
+                            }
                             }
                         }
                     }
                 }
             }
 
-            _getBindingFragmentPeople?.imageViewPeopleLinkedin ->
-            {
-                with(imageView)
-                {
-                    if (peopleResponse.links.linkedin.isNullOrEmpty())
-                    {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (linkedin in peopleResponse.links.linkedin)
-                        { setOnClickListener()
-                            {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL, linkedin.url)
-                                replaceFragment(
-                                    parentFragmentManager,
-                                    WebViewFragment(),
-                                    bundle
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            _getBindingFragmentPeople?.imageViewPeopleTwitter ->
-            {
-                with(imageView)
-                {
-                    if (peopleResponse.links.twitter.isNullOrEmpty())
-                    {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (twitter in peopleResponse.links.twitter)
-                        { setOnClickListener()
-                            {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL,twitter.url)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
-                            }
-                        }
-                    }
-                }
-            }
-            _getBindingFragmentPeople?.imageViewPeopleMedium ->
-            {
-                with(imageView)
-                {
-                    if (peopleResponse.links.medium.isNullOrEmpty())
-                    {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (medium in peopleResponse.links.medium)
-                        { setOnClickListener()
-                            {
-                                val bundle = Bundle()
-                                bundle.putString(BUNDLE_WEB_URL,medium.url)
-                                replaceFragment(parentFragmentManager,WebViewFragment(),bundle)
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     //endregion

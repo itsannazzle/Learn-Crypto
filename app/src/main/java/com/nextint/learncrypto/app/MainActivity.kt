@@ -20,9 +20,24 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.Theme_LearnCrypto)
         _dialog = Dialog(this@MainActivity)
         _dialog.initiateDialogLoading()
+
         _modelDialog = DialogModel()
         _viewModelMainActivity = ViewModelProvider(this)[MainActivityViewModel::class.java]
         _viewModelMainActivity.checkInternetConnection()
+        _viewModelMainActivity.booleanNetworkConnection.observe(this
+        ) { response ->
+            if (!response) {
+                _modelDialog?.retryActionAlert =
+                    { _viewModelMainActivity.checkInternetConnection() }
+                _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
+
+                _modelDialog?.let { showDialogFromModelResponseWithRetry(it) }
+            } else {
+                this._dialog.hide()
+                inflateFragment()
+            }
+        }
         setContentView(binding.root)
     }
 
@@ -35,21 +50,7 @@ class MainActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        _viewModelMainActivity.booleanNetworkConnection.observe(this,
-            { response ->
-                if (!response)
-                {
-                    _modelDialog?.retryActionAlert = { _viewModelMainActivity.checkInternetConnection() }
-                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
 
-                    _modelDialog?.let { showDialogFromModelResponseWithRetry(it) }
-                }  else
-                {
-                    this._dialog.hide()
-                    inflateFragment()
-                }
-        })
     }
 
 

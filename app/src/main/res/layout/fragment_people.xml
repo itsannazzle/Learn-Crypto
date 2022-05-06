@@ -47,11 +47,13 @@
     <TextView
         android:id="@+id/textViewPeoplePosition"
         style="@style/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        tools:text="something at somewhere"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
         android:text="@string/position"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewPeopleDesc" />
 
@@ -60,7 +62,7 @@
         style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
         android:text="@string/total_position"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,63 +71,55 @@
     <TextView
         android:id="@+id/textViewFindPeople"
         style="@style/body"
+        android:layout_marginTop="@dimen/dimen_16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimes_48"
         android:text="@string/find_him_her_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPeopleTotalPosition" />
 
-    <ImageView
-        android:id="@+id/imageViewPeopleMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_bi_medium_32"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleGitHub"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/textViewFindPeople"
+       android:orientation="horizontal"
+       android:layout_marginTop="@dimen/dimen_16"
+       android:gravity="center">
 
-    <ImageView
-        android:id="@+id/imageViewPeopleGitHub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_ant_design_github_filled_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleMedium"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleLinkedin"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleMedium"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleMedium" />
+       <ImageView
+           android:id="@+id/imageViewPeopleMedium"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_bi_medium_32"
+           android:layout_marginEnd="@dimen/dimen_24"/>
 
-    <ImageView
-        android:id="@+id/imageViewPeopleLinkedin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logos_linkedin_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleGitHub"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewPeopleTwitter"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleGitHub"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleGitHub" />
+       <ImageView
+           android:id="@+id/imageViewPeopleGitHub"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_ant_design_github_filled_32"
+           android:layout_marginEnd="@dimen/dimen_24"
+           />
 
-    <ImageView
-        android:id="@+id/imageViewPeopleTwitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logos_twitter_32"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewPeopleLinkedin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageViewPeopleLinkedin"
-        app:layout_constraintTop_toTopOf="@+id/imageViewPeopleLinkedin" />
+       <ImageView
+           android:id="@+id/imageViewPeopleLinkedin"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_logos_linkedin_32"
+           android:layout_marginEnd="@dimen/dimen_24"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.69357044" />
+       <ImageView
+           android:id="@+id/imageViewPeopleTwitter"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/ic_logos_twitter_32" />
+
+
+   </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_base_dialog.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_bottom_sheet_dialog.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_coin_detail.xml" value="0.22" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_coin_detail.xml" value="0.4346846846846847" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_coins.xml" value="0.22" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_concept.xml" value="0.22" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_exchange_detail.xml" value="0.22" />
@@ -21,8 +21,10 @@
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_market.xml" value="0.22" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_market_detail.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_people.xml" value="0.22" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_people.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_search.xml" value="0.1796875" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/fragment_web_view.xml" value="0.10552536231884058" />
+        <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_coins_layout.xml" value="0.1796875" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_exchanges_layout.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_home_menu_layout.xml" value="0.1" />
         <entry key="..\:/Users/BRINESIA/Documents/Android Apps/Learn-Crypto/app/src/main/res/layout/item_indicator_status_layout.xml" value="0.4466666666666667" />

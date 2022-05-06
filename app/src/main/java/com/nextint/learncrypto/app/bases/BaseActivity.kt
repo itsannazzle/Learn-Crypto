@@ -7,10 +7,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.nextint.learncrypto.app.R
-import com.nextint.learncrypto.app.features.ui.dialog.BaseDialogFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.*
-import com.nextint.learncrypto.app.features.utils.showDialog
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var _dialog : Dialog
@@ -47,8 +45,8 @@ open class BaseActivity : AppCompatActivity() {
                 if (checkAlertDialog())
                 {
                     modelDialog.apply {
-                        _dialogAlert?.setTitle(getString(dialogTitle))
-                        _dialogAlert?.setMessage(getString(dialogMessage))
+                        _dialogAlert?.setTitle(getString(dialogTitle ?: R.string.dialog_default_title))
+                        _dialogAlert?.setMessage(dialogMessage ?: getString( R.string.dialog_default_title))
 
                         _dialogAlert!!.setButton(DialogInterface.BUTTON_NEUTRAL, resources.getString(R.string.BUTTON_CANCEL))
                         {
@@ -85,6 +83,12 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        _dialog.hide()
+        _dialog.dismissDialog(this)
+        _dialogAlert?.dismissDialog(this)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

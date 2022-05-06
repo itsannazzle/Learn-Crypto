@@ -9,9 +9,9 @@ class DialogModel(
     var httpErrorCode : Int? = null,
     var retryActionAlert : (() -> Unit?)? = null,
     var retryActionDialog : (() -> Unit?)? = null,
-    var buttonText : Int? = R.string.BUTTON_CANCEL,
-    var dialogTitle : Int = R.string.dialog_default_title,
-    var dialogMessage : Int = R.string.dialog_default_message
+    var buttonText : Int? = R.string.BUTTON_OK,
+    var dialogTitle : Int? = R.string.dialog_default_title,
+    var dialogMessage : String? = null
 ) : Parcelable
 {
 

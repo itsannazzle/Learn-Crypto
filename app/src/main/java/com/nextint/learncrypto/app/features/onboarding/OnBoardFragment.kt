@@ -1,10 +1,10 @@
 package com.nextint.learncrypto.app.features.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentOnBoardBinding
 import com.nextint.learncrypto.app.features.overview.HomeFragment

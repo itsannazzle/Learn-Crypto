@@ -87,5 +87,12 @@
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
     </style>
 
+    <style name="tableLayoutMatchWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:stretchColumns">2</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
 
 </resources>

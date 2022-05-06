@@ -1,16 +1,17 @@
 package com.nextint.learncrypto.app.di
 
 import com.nextint.learncrypto.app.core.di.CoreComponent
-import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
-import com.nextint.learncrypto.app.features.concept.ConceptFragment
-import com.nextint.learncrypto.app.features.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.coins.CoinDetailFragment
+import com.nextint.learncrypto.app.features.coins.CoinsFragment
+import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangeDetailFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
-import com.nextint.learncrypto.app.features.overview.HomeFragment
 import com.nextint.learncrypto.app.features.market.MarketDetailFragment
 import com.nextint.learncrypto.app.features.market.MarketFragment
+import com.nextint.learncrypto.app.features.overview.HomeFragment
 import com.nextint.learncrypto.app.features.person.PeopleFragment
+import com.nextint.learncrypto.app.features.search.presentation.SearchFragment
+import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import dagger.Component
 
 @AppScope
@@ -46,4 +47,6 @@ interface AppComponent
     fun inject(fragment : MarketFragment)
 
     fun inject(fragment : MarketDetailFragment)
+
+    fun inject(fragment : SearchFragment)
 }
