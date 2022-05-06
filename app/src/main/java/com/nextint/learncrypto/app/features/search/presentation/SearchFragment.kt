@@ -32,6 +32,7 @@ import com.nextint.learncrypto.app.features.utils.setHorizontal
 import com.nextint.learncrypto.app.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -71,7 +72,6 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
     override fun onResume() {
         super.onResume()
         setupAdapter()
-        displayView()
         with(_getBindingSearchFragment!!)
         {
             val textWatcher = object : TextWatcher
@@ -80,13 +80,39 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int)
                 {
-                    _stringKeyword = p0.toString()
-//                    jobDebounce?.cancel()
-//                    jobDebounce = lifecycleScope.launch(Dispatchers.Main)
-                    if (!_stringKeyword.isNullOrBlank() || !_stringKeyword.isNullOrEmpty())
+                    if (p3 > 3)
                     {
-                        _viewModel.searchWithKeyword(_stringKeyword ?: "")
+                        _tagsAdapter.clear()
+                        _coinAdapter.clear()
+                        _teamAdapter.clear()
+                        _exchangesAdapter.clear()
                     }
+                    _stringKeyword = p0.toString()
+
+                    jobDebounce?.cancel()
+                    jobDebounce = lifecycleScope.launch(Dispatchers.Main)
+                    {
+                        delay(1000)
+                        if (!_stringKeyword.isNullOrBlank() || !_stringKeyword.isNullOrEmpty())
+                        {
+                            _activityMain._dialog.show()
+                            _viewModel.searchWithKeyword(_stringKeyword!!)
+                            _tagsAdapter.clear()
+                            _coinAdapter.clear()
+                            _teamAdapter.clear()
+                            _exchangesAdapter.clear()
+                            observeLiveData()
+                            setupAdapter()
+                            displayView()
+                        } else
+                        {
+                            _tagsAdapter.clear()
+                            _coinAdapter.clear()
+                            _teamAdapter.clear()
+                            _exchangesAdapter.clear()
+                        }
+                    }
+
 
 
 
@@ -95,6 +121,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                 override fun afterTextChanged(p0: Editable?) { }
             }
             editTextSearch.addTextChangedListener(textWatcher)
+
         }
     }
 
@@ -105,7 +132,6 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeLiveData()
 
     }
 
@@ -120,11 +146,12 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                 {
                     _modelDialog?.retryActionAlert = { _viewModel.searchWithKeyword(_getBindingSearchFragment?.editTextSearch.toString() ?: "") }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
                 is ApiResponse.Success ->
                 {
+                    _activityMain._dialog.hide()
                    response.data?.let()
                    {
                        with(_getBindingSearchFragment)
@@ -151,7 +178,13 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
         _viewModel.message.observe(viewLifecycleOwner)
         {
-            it
+            _activityMain._dialog.hide()
+            _modelDialog?.dialogMessage = it
+            _modelDialog?.httpErrorCode = 422
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
+            _dialogFragment.arguments = bundle
+            _dialogFragment.show(childFragmentManager, TAG_DIALOG)
         }
     }
     

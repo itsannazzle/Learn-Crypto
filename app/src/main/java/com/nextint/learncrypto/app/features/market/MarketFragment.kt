@@ -104,7 +104,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 {
                     _modelDialog?.retryActionAlert = { _viewModel.getMarketByCoin(getString(R.string.id_bitcoin)) }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
@@ -155,7 +155,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 {
                     _modelDialog?.retryActionAlert = { _viewModel.getMarketByCoin(getString(R.string.id_eth)) }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
@@ -205,7 +205,8 @@ class MarketFragment : BaseFragment<MarketViewModel>()
 
         _viewModel.message.observe(viewLifecycleOwner
         ) {
-            _modelDialog?.dialogMessage = id
+            _modelDialog?.dialogMessage = it
+            _modelDialog?.httpErrorCode = 422
             val bundle = Bundle()
             bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
             _dialogFragment.arguments = bundle

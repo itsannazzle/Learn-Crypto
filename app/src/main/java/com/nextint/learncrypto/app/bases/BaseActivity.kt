@@ -45,8 +45,8 @@ open class BaseActivity : AppCompatActivity() {
                 if (checkAlertDialog())
                 {
                     modelDialog.apply {
-                        _dialogAlert?.setTitle(getString(dialogTitle))
-                        _dialogAlert?.setMessage(getString(dialogMessage))
+                        _dialogAlert?.setTitle(getString(dialogTitle ?: R.string.dialog_default_title))
+                        _dialogAlert?.setMessage(dialogMessage ?: getString( R.string.dialog_default_title))
 
                         _dialogAlert!!.setButton(DialogInterface.BUTTON_NEUTRAL, resources.getString(R.string.BUTTON_CANCEL))
                         {

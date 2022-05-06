@@ -86,7 +86,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                     {
                         _modelDialog?.retryActionAlert = { _viewModel.getAllExchange() }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -143,7 +143,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                     {
                         _modelDialog?.retryActionAlert = { _tagsViewModel.getTagById(getString(R.string.id_exchange)) }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -197,14 +197,15 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
 //
 //            })
 
-        _viewModel.message.observe(viewLifecycleOwner,
+        _viewModel.message.observe(viewLifecycleOwner)
             {
-                _modelDialog?.dialogMessage = id
+                _modelDialog?.dialogMessage = it
+                _modelDialog?.httpErrorCode = 422
                 val bundle = Bundle()
                 bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
                 _dialogFragment.arguments = bundle
                 _dialogFragment.show(childFragmentManager, TAG_DIALOG)
-            })
+            }
 
     }
 

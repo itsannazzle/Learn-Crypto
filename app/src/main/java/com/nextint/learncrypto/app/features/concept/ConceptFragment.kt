@@ -76,7 +76,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                     {
                         _modelDialog?.retryActionAlert = { _viewModel.getTagById(getString(R.string.id_cryptocurrency)) }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }

@@ -17,6 +17,10 @@
         android:backgroundTint="@color/lightGrey"
         android:clickable="true"
         android:hint="Search"
+        android:paddingStart="@dimen/dimen_8"
+        android:singleLine="true"
+        android:focusable="false"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

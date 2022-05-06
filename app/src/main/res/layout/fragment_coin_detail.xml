@@ -29,8 +29,8 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_8"
             android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginEnd="@dimen/dimen_8"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
             app:layout_constraintEnd_toStartOf="@+id/indicatorNew"
             app:layout_constraintStart_toEndOf="@+id/textViewCoinName"
@@ -41,21 +41,21 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/indicatorActive"
-            app:layout_constraintEnd_toStartOf="@+id/indicatorOpenSource"
             android:layout_marginEnd="@dimen/dimen_8"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
+            app:layout_constraintEnd_toStartOf="@+id/indicatorOpenSource"
             app:layout_constraintStart_toEndOf="@+id/indicatorActive"
-            app:layout_constraintTop_toTopOf="@+id/indicatorActive" />
+            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
 
         <include
             android:id="@+id/indicatorOpenSource"
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/indicatorNew"
             android:layout_marginStart="@dimen/dimen_8"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
             app:layout_constraintStart_toEndOf="@+id/indicatorNew"
-            app:layout_constraintTop_toTopOf="@+id/indicatorNew" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewSymbol"
@@ -84,7 +84,7 @@
             style="@style/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_16"
             android:text="@string/about"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -175,8 +175,7 @@
                     tools:text="@string/started_at" />
             </TableRow>
 
-            <TableRow
-                android:layout_marginTop="@dimen/dimen_8">
+            <TableRow android:layout_marginTop="@dimen/dimen_8">
 
                 <TextView
                     style="@style/body"
@@ -185,8 +184,8 @@
                 <TextView
                     android:id="@+id/textViewProofType"
                     style="@style/body"
-                    tools:text="@string/started_at"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    tools:text="@string/started_at" />
             </TableRow>
 
             <TableRow android:layout_marginTop="@dimen/dimen_8">
@@ -300,65 +299,56 @@
             android:layout_marginBottom="@dimen/dimen_16"
             android:text="@string/find_out_more_about_1_s_on"
             android:textColor="@color/textColor"
-            app:layout_constraintBottom_toBottomOf="@id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recyclerViewTags"
             app:layout_goneMarginTop="@dimen/dimen_24" />
 
-        <ImageView
-            android:id="@+id/imageViewCoinWebsite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_web_browser"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinFacebook"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/imageViewCoinFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_fb_32"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinYoutube"
-            app:layout_constraintStart_toEndOf="@+id/imageViewCoinWebsite"
-            app:layout_constraintTop_toTopOf="@+id/imageViewCoinWebsite" />
-
-        <ImageView
-            android:id="@+id/imageViewCoinYoutube"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_youtube_32"
-            app:layout_constraintBottom_toBottomOf="@id/imageViewCoinFacebook"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinReddit"
-            app:layout_constraintStart_toEndOf="@+id/imageViewCoinFacebook"
-            app:layout_constraintTop_toTopOf="@+id/imageViewCoinFacebook" />
-
-        <ImageView
-            android:id="@+id/imageViewCoinReddit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_reddit_32"
-            app:layout_constraintBottom_toBottomOf="@id/imageViewCoinGithub"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewCoinGithub"
-            app:layout_constraintStart_toEndOf="@+id/imageViewCoinYoutube"
-            app:layout_constraintTop_toTopOf="@+id/imageViewCoinGithub" />
-
-        <ImageView
-            android:id="@+id/imageViewCoinGithub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_ant_design_github_filled_32"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewCoinReddit"
-            app:layout_constraintTop_toTopOf="@id/imageViewCoinReddit" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="32dp" />
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/textViewCoinSocMed"
+            android:layout_marginTop="@dimen/dimen_8"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageViewCoinWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:src="@drawable/ic_web_browser"/>
+
+            <ImageView
+                android:id="@+id/imageViewCoinFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fb_32"
+                android:layout_marginEnd="@dimen/dimen_24"/>
+
+            <ImageView
+                android:id="@+id/imageViewCoinYoutube"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_youtube_32"
+                android:layout_marginEnd="@dimen/dimen_24"/>
+
+            <ImageView
+                android:id="@+id/imageViewCoinReddit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_reddit_32"
+                android:layout_marginEnd="@dimen/dimen_24"/>
+
+            <ImageView
+                android:id="@+id/imageViewCoinGithub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ant_design_github_filled_32"
+                android:layout_marginEnd="@dimen/dimen_24" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

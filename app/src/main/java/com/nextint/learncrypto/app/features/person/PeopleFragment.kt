@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
@@ -68,7 +69,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                 {
                     _modelDialog?.retryActionAlert = { _viewModel.getPeopleById(peopleId ?: "") }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
                     is ApiResponse.Success ->
@@ -83,13 +84,17 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                                     textViewPeopleDesc.text = description ?: getString(R.string.desc_not_found)
                                     textViewPeopleTotalPosition.text = getString(R.string.total_position, teamsCount.toString())
                                     imageViewPeople.circleImage(STRING_URL_AVATAR_APE)
-                                    positions.forEach {
-                                        textViewPeoplePosition.text = getString(R.string.position,it.position,it.coinName)
+                                    val positionTeam = positions.joinToString { it.position.plus(" at ${it.coinName}") }
+
+                                    textViewPeoplePosition.text = getString(R.string.position,positionTeam)
+                                    if (response.data.links != null)
+                                    {
+                                        setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
+                                        setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                                     }
-                                    setupPeopleSocialMedia(imageViewPeopleTwitter,response.data)
-                                    setupPeopleSocialMedia(imageViewPeopleMedium,response.data)
-                                    setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
-                                    setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
+
                                 }
                             }
                         }
@@ -106,85 +111,86 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     {
         when(imageView)
         {
-            _getBindingFragmentPeople?.imageViewPeopleGitHub ->
-            {
-                with(imageView)
+                _getBindingFragmentPeople?.imageViewPeopleGitHub ->
                 {
-                    if (peopleResponse.links.github.isNullOrEmpty())
+                    with(imageView)
                     {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (github in peopleResponse.links.github)
-                        { setOnClickListener()
+                        if (peopleResponse.links?.github.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (github in peopleResponse.links!!.github)
+                            { setOnClickListener()
                             {
                                 UtilitiesFunction.openBrowserWithURL(requireContext(),github.url)
                             }
+                            }
                         }
                     }
                 }
-            }
 
-            _getBindingFragmentPeople?.imageViewPeopleLinkedin ->
-            {
-                with(imageView)
+                _getBindingFragmentPeople?.imageViewPeopleLinkedin ->
                 {
-                    if (peopleResponse.links.linkedin.isNullOrEmpty())
+                    with(imageView)
                     {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (linkedin in peopleResponse.links.linkedin)
-                        { setOnClickListener()
+                        if (peopleResponse.links?.linkedin.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (linkedin in peopleResponse.links!!.linkedin)
+                            { setOnClickListener()
                             {
                                 UtilitiesFunction.openBrowserWithURL(requireContext(),linkedin.url)
                             }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingFragmentPeople?.imageViewPeopleTwitter ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.twitter.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (twitter in peopleResponse.links!!.twitter)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),twitter.url)
+                            }
+                            }
+                        }
+                    }
+                }
+                _getBindingFragmentPeople?.imageViewPeopleMedium ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.medium.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (medium in peopleResponse.links!!.medium)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),medium.url)
+                            }
+                            }
                         }
                     }
                 }
             }
 
-            _getBindingFragmentPeople?.imageViewPeopleTwitter ->
-            {
-                with(imageView)
-                {
-                    if (peopleResponse.links.twitter.isNullOrEmpty())
-                    {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (twitter in peopleResponse.links.twitter)
-                        { setOnClickListener()
-                            {
-                               UtilitiesFunction.openBrowserWithURL(requireContext(),twitter.url)
-                            }
-                        }
-                    }
-                }
-            }
-            _getBindingFragmentPeople?.imageViewPeopleMedium ->
-            {
-                with(imageView)
-                {
-                    if (peopleResponse.links.medium.isNullOrEmpty())
-                    {
-                        visibility = setVisibility(false)
-                    }
-                    else
-                    {
-                        for (medium in peopleResponse.links.medium)
-                        { setOnClickListener()
-                            {
-                                UtilitiesFunction.openBrowserWithURL(requireContext(),medium.url)
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     //endregion

@@ -1,80 +1,81 @@
 package com.nextint.learncrypto.app.core.source.remote.response
 
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CoinByIdResponse(
 
 	@field:SerializedName("symbol")
-	val symbol: String,
+	val symbol: String? = null,
 
 	@field:SerializedName("parent")
-	val parent: Parent,
+	val parent: Parent? = null,
 
 	@field:SerializedName("is_active")
-	val isActive: Boolean,
+	val isActive: Boolean? = null,
 
 	@field:SerializedName("is_new")
-	val isNew: Boolean,
+	val isNew: Boolean? = null,
 
 	@field:SerializedName("proof_type")
-	val proofType: String,
+	val proofType: String? = null,
 
 	@field:SerializedName("first_data_at")
 	val firstDataAt: String? = null,
 
 	@field:SerializedName("description")
-	val description: String,
+	val description: String? = null,
 
 	@field:SerializedName("team")
-	val team: List<TeamItem>,
+	val team: List<TeamItem>? = null,
 
 	@field:SerializedName("type")
-	val type: String,
+	val type: String? = null,
 
 	@field:SerializedName("message")
-	val message: String,
+	val message: String? = null,
 
 	@field:SerializedName("tags")
 	val tags: List<TagByIdResponse>? = null,
 
 	@field:SerializedName("last_data_at")
-	val lastDataAt: String,
+	val lastDataAt: String? = null,
 
 	@field:SerializedName("whitepaper")
-	val whitepaper: Whitepaper,
+	val whitepaper: Whitepaper? = null,
 
 	@field:SerializedName("org_structure")
-	val orgStructure: String? = "--",
+	val orgStructure: String? = null,
 
 	@field:SerializedName("name")
-	val name: String,
+	val name: String? = null,
 
 	@field:SerializedName("development_status")
-	val developmentStatus: String,
+	val developmentStatus: String? = null,
 
 	@field:SerializedName("hash_algorithm")
-	val hashAlgorithm: String,
+	val hashAlgorithm: String? = null,
 
 	@field:SerializedName("rank")
-	val rank: Int,
+	val rank: Int? = null,
 
 	@field:SerializedName("open_source")
-	val isOpenSource: Boolean,
+	val isOpenSource: Boolean? = null,
 
 	@field:SerializedName("hardware-wallet")
-	val isHardwareWallet: Boolean,
+	val isHardwareWallet: Boolean? = null,
 
 	@field:SerializedName("started_at")
 	val startedAt: String? = null,
 
 	@field:SerializedName("links")
-	val links: Links,
+	val links: Links? = null,
 
 	@field:SerializedName("id")
-	val id: String
+	val id: String? = null
 ) : Parcelable
 
 @Parcelize

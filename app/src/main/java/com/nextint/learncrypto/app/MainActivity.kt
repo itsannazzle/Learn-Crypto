@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
                 _modelDialog?.retryActionAlert =
                     { _viewModelMainActivity.checkInternetConnection() }
                 _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                 _modelDialog?.let { showDialogFromModelResponseWithRetry(it) }
             } else {

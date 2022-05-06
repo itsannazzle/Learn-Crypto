@@ -89,7 +89,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     {
                         _modelDialog?.retryActionAlert = { _viewModel.getCoins() }
                         _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                        _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                        _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
@@ -135,11 +135,12 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
 
         _viewModel.message.observe(viewLifecycleOwner)
             {
-            _modelDialog?.dialogMessage = id
-            val bundle = Bundle()
-            bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
-            _dialogFragment.arguments = bundle
-            _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+                _modelDialog?.dialogMessage = it
+                _modelDialog?.httpErrorCode = 422
+                val bundle = Bundle()
+                bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG,_modelDialog)
+                _dialogFragment.arguments = bundle
+                _dialogFragment.show(childFragmentManager, TAG_DIALOG)
         }
 
 //        _viewModel.loading.observe(viewLifecycleOwner,

@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.Links
@@ -59,6 +61,7 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
         _coinId = arguments?.getString(ID_COIN_CONSTANT)
         _bindingCoinDetailFragment= FragmentCoinDetailBinding.inflate(inflater,container,false)
         _modelDialog = DialogModel()
+        _dialogFragment = BaseDialogFragment()
         _activityMain = activity as MainActivity
         _viewModel.getCoinById(_coinId ?: "")
         _activityMain._dialog.show()
@@ -81,25 +84,33 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 is ApiResponse.InternetConnection -> {
                     _modelDialog?.retryActionAlert = { _viewModel.getCoinById(_coinId ?: "") }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = R.string.dialog_no_internet_message
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
 
-                is ApiResponse.Success -> {
+                is ApiResponse.Success ->
+                {
                     _activityMain._dialog.hide()
-                    response.data?.let {
+                    response.data?.let()
+                    {
                         with(response.data)
                         {
-                                displayView(this)
+                            displayView(this)
+                            if (team != null)
+                            {
                                 _teamAdapter.safeClearAndAddAll(team)
-                                if (tags != null) {
-                                    _tagsAdapter.safeClearAndAddAll(tags)
-                                }
-                        } }
+                            }
+                            if (tags != null)
+                            {
+                                _tagsAdapter.safeClearAndAddAll(tags)
+                            }
+                        }
+                    }
                 }
 
-                is ApiResponse.Empty -> {
+                is ApiResponse.Empty ->
+                {
                     _modelDialog?.httpErrorCode = 1404
                     val bundle = Bundle()
                     bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
@@ -107,16 +118,20 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                     _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                 }
 
-                is ApiResponse.Error -> {
-                    if (_dialogFragment.isAdded) {
+                is ApiResponse.Error ->
+                {
+                    if (_dialogFragment.isAdded)
+                    {
                         _viewModel.getCoinById(_coinId ?: "")
                         _dialogFragment.dismiss()
-                    } else {
+                    } else
+                    {
                         _modelDialog?.buttonText = R.string.BUTTON_RETRY
                         _modelDialog?.httpErrorCode = response.message
-                        _modelDialog?.retryActionDialog = {
+                        _modelDialog?.retryActionDialog =
+                            {
                             _viewModel.getCoinById(_coinId ?: "")
-                        }
+                            }
                         val bundle = Bundle()
                         bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
                         _dialogFragment.arguments = bundle
@@ -130,8 +145,11 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 
 
         _viewModel.message.observe(viewLifecycleOwner
-        ) {
-            _modelDialog?.dialogMessage = id
+        )
+        {
+            _activityMain._dialog.hide()
+            _modelDialog?.dialogMessage = it
+            _modelDialog?.httpErrorCode = 422
             val bundle = Bundle()
             bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
             _dialogFragment.arguments = bundle
@@ -199,32 +217,41 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
             {
                 textViewCoinName.text = name
                 textViewCoinSocMed.text = getString(R.string.find_out_more_about_1_s_on,name)
-                indicatorActive.textViewStatus.text = getString(UtilitiesFunction.convertBooleanToActiveOrNotActive(isActive))
+                indicatorActive.textViewStatus.text = getString(UtilitiesFunction.convertBooleanToActiveOrNotActive(isActive ?: false))
                 with(_getBindingCoinDetailFragment?.indicatorNew?.textViewStatus)
                 {
-                    this?.visibility = UtilitiesFunction.setVisibility(isNew)
-                    this?.text = getString(UtilitiesFunction.convertBooleanToNew(isNew))
+                    this?.visibility = UtilitiesFunction.setVisibility(isNew ?: false)
+                    this?.text = getString(UtilitiesFunction.convertBooleanToNew(isNew ?: false))
                 }
 
-                indicatorOpenSource.textViewStatus.text = getString(UtilitiesFunction.convertBooleanToOpenSource(isOpenSource))
+                indicatorOpenSource.textViewStatus.text = getString(UtilitiesFunction.convertBooleanToOpenSource(isOpenSource ?: false))
                 textViewSymbol.text = getString(R.string.symbol, symbol)
-                textViewType.text = getString(R.string.type,type.replaceFirstChar { it.uppercase() })
-                textViewAboutCoin.text = description.ifEmpty { getString(R.string.desc_not_found) }
-                textViewStarted.text = startedAt?.convertStringToDate()?.convertDateToStingPreviewSimple()
-                textViewFirstData.text = firstDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple()
-                textViewLastData.text = lastDataAt.convertStringToDate()?.convertDateToStingPreviewSimple()
-                textViewDevStats.text = developmentStatus
-                textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet))
+                textViewType.text = getString(R.string.type,type?.replaceFirstChar { it.uppercase() } ?: R.string.dash)
+                textViewAboutCoin.text = description?.ifEmpty { getString(R.string.desc_not_found) } ?: getString(R.string.desc_not_found)
+                textViewStarted.text = startedAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                textViewFirstData.text = firstDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                textViewLastData.text = lastDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                textViewDevStats.text = developmentStatus ?: getString(R.string.dash)
+                textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet ?: false))
                 textViewProofType.text = proofType
                 textViewOrganizationStatus.text = orgStructure
                 textViewHasiAlgo.text = hashAlgorithm
-                imageViewWhitePaper.loadImage(whitepaper.thumbnail.toString())
-                textViewWhitePaperSrc.text = whitepaper.link?.takeLast(10)
-
-                imageViewWhitePaper.setOnClickListener()
+                if (whitepaper?.link?.isBlank() == true || whitepaper?.link?.isEmpty() == true)
                 {
-                   UtilitiesFunction.openPDFFromUrl(requireContext(),whitepaper.link ?: "")
+                    imageViewWhitePaper.isVisible = false
+                    textViewWhitePaperSrc.text = getString(R.string.dash)
+                } else
+                {
+                    imageViewWhitePaper.loadImage(whitepaper?.thumbnail.toString())
+                    textViewWhitePaperSrc.text = whitepaper?.link ?: getString(R.string.dash)
+                    imageViewWhitePaper.setOnClickListener()
+                    {
+                        UtilitiesFunction.openPDFFromUrl(requireContext(),whitepaper?.link ?: "")
+                    }
                 }
+
+
+
                 setupPeopleSocialMedia(imageViewCoinFacebook,links)
                 setupPeopleSocialMedia(imageViewCoinWebsite,links)
                 setupPeopleSocialMedia(imageViewCoinYoutube,links)
@@ -234,111 +261,114 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
         }
     }
 
-    private fun setupPeopleSocialMedia(imageView: ImageView, links: Links)
+    private fun setupPeopleSocialMedia(imageView: ImageView, links: Links? = null)
     {
-        when(imageView)
+        if (links != null)
         {
-            _getBindingCoinDetailFragment?.imageViewCoinGithub ->
+            when(imageView)
             {
-                with(imageView)
+                _getBindingCoinDetailFragment?.imageViewCoinGithub ->
                 {
-                    if (links.sourceCode.isNullOrEmpty())
+                    with(imageView)
                     {
-                        visibility = UtilitiesFunction.setVisibility(false)
-                    }
-                    else
-                    {
-                        for (sourceCode in links.sourceCode)
+                        if (links.sourceCode.isNullOrEmpty())
                         {
-                            setOnClickListener()
+                            visibility = UtilitiesFunction.setVisibility(false)
+                        }
+                        else
+                        {
+                            for (sourceCode in links.sourceCode)
                             {
-                                UtilitiesFunction.openBrowserWithURL(requireContext(),sourceCode)
+                                setOnClickListener()
+                                {
+                                    UtilitiesFunction.openBrowserWithURL(requireContext(),sourceCode)
+                                }
+                            }
+                        }
+                    }
+                }
+                _getBindingCoinDetailFragment?.imageViewCoinFacebook ->
+                {
+                    with(imageView)
+                    {
+                        if (links.facebook.isNullOrEmpty())
+                        {
+                            visibility = UtilitiesFunction.setVisibility(false)
+                        }
+                        else
+                        {
+                            for (facebook in links.facebook)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),facebook)
+                            }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingCoinDetailFragment?.imageViewCoinYoutube ->
+                {
+                    with(imageView)
+                    {
+                        if (links.youtube.isNullOrEmpty())
+                        {
+                            visibility = UtilitiesFunction.setVisibility(false)
+                        }
+                        else
+                        {
+                            for (youtube in links.youtube)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),youtube)
+                            }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingCoinDetailFragment?.imageViewCoinReddit ->
+                {
+                    with(imageView)
+                    {
+                        if (links.reddit.isNullOrEmpty())
+                        {
+                            visibility = UtilitiesFunction.setVisibility(false)
+                        }
+                        else
+                        {
+                            for (reddit in links.reddit)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),reddit)
+                            }
+                            }
+                        }
+                    }
+                }
+
+                _getBindingCoinDetailFragment?.imageViewCoinWebsite ->
+                {
+                    with(imageView)
+                    {
+                        if (links.website.isNullOrEmpty())
+                        {
+                            visibility = UtilitiesFunction.setVisibility(false)
+                        }
+                        else
+                        {
+                            for (website in links.website)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),website)
+                            }
                             }
                         }
                     }
                 }
             }
-
-            _getBindingCoinDetailFragment?.imageViewCoinFacebook ->
-            {
-                with(imageView)
-                {
-                    if (links.facebook.isNullOrEmpty())
-                    {
-                        visibility = UtilitiesFunction.setVisibility(false)
-                    }
-                    else
-                    {
-                        for (facebook in links.facebook)
-                        { setOnClickListener()
-                        {
-                            UtilitiesFunction.openBrowserWithURL(requireContext(),facebook)
-                        }
-                        }
-                    }
-                }
-            }
-
-            _getBindingCoinDetailFragment?.imageViewCoinYoutube ->
-            {
-                with(imageView)
-                {
-                    if (links.youtube.isNullOrEmpty())
-                    {
-                        visibility = UtilitiesFunction.setVisibility(false)
-                    }
-                    else
-                    {
-                        for (youtube in links.youtube)
-                        { setOnClickListener()
-                        {
-                            UtilitiesFunction.openBrowserWithURL(requireContext(),youtube)
-                        }
-                        }
-                    }
-                }
-            }
-
-            _getBindingCoinDetailFragment?.imageViewCoinReddit ->
-            {
-                with(imageView)
-                {
-                    if (links.reddit.isNullOrEmpty())
-                    {
-                        visibility = UtilitiesFunction.setVisibility(false)
-                    }
-                    else
-                    {
-                        for (reddit in links.reddit)
-                        { setOnClickListener()
-                        {
-                            UtilitiesFunction.openBrowserWithURL(requireContext(),reddit)
-                        }
-                        }
-                    }
-                }
-            }
-
-            _getBindingCoinDetailFragment?.imageViewCoinWebsite ->
-            {
-                with(imageView)
-                {
-                    if (links.website.isNullOrEmpty())
-                    {
-                        visibility = UtilitiesFunction.setVisibility(false)
-                    }
-                    else
-                    {
-                        for (website in links.website)
-                        { setOnClickListener()
-                        {
-                            UtilitiesFunction.openBrowserWithURL(requireContext(),website)
-                        }
-                        }
-                    }
-                }
-            }
         }
+
     }
 
     override fun onResume() {
