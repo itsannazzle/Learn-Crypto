@@ -20,33 +20,20 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/what_is"/>
+            android:text="Crypto Market"/>
+
 
         <TextView
-            android:id="@+id/textViewWhatIsMarket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhatIs"
-            tools:text="@tools:sample/lorem/random"
-            android:maxLines="5"
-            android:layout_marginTop="@dimen/dimen_8"
-            style="@style/body"/>
-        <TextView
             android:id="@+id/textViewMarketBitcoin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/title"
+            style="@style/subtitle"
             android:text="@string/market_list"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhatIsMarket"
+            app:layout_constraintTop_toBottomOf="@id/textViewWhatIs"
             android:layout_marginTop="@dimen/dimen_16"/>
 
         <TextView
             android:id="@+id/textViewMarketBitcoinMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/caption"
             android:text="@string/more"
             android:textColor="@color/primary"
@@ -56,22 +43,17 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBitcoinMarket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/rv_grid_horizontal_match_wrap"
+            app:spanCount="2"
             tools:listitem="@layout/item_market_crypto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewMarketBitcoin"
             android:layout_marginTop="@dimen/dimen_8"
-            app:spanCount="2"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/textViewEthMarket"
-            style="@style/title"
+            style="@style/subtitle"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/recyclerViewBitcoinMarket"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +62,6 @@
 
         <TextView
             android:id="@+id/textViewMarketEthMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/caption"
             android:text="@string/more"
             android:textColor="@color/primary"
@@ -90,17 +70,40 @@
             app:layout_constraintBottom_toBottomOf="@id/textViewEthMarket"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/recyclerViewEthMarket"
             tools:listitem="@layout/item_market_crypto"
-            app:spanCount="2"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewEthMarket"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/dimen_8"/>
+            app:spanCount="2"
+            style="@style/rv_grid_horizontal_match_wrap" />
+
+        <TextView
+            android:id="@+id/textViewTetherMarket"
+            style="@style/subtitle"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewEthMarket"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/tether_market"
+            android:layout_marginTop="@dimen/dimen_16"/>
+
+        <TextView
+            android:id="@+id/textViewMarketTetherMore"
+            style="@style/caption"
+            android:text="@string/more"
+            android:textColor="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewTetherMarket"
+            app:layout_constraintBottom_toBottomOf="@id/textViewTetherMarket"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTetherMarket"
+            tools:listitem="@layout/item_market_crypto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTetherMarket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:spanCount="2"
+            style="@style/rv_grid_horizontal_match_wrap" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -94,5 +94,13 @@
         <item name="android:visibility">visible</item>
     </style>
 
+    <style name="rv_grid_horizontal_match_wrap">
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/dimen_8</item>
+    </style>
+
 
 </resources>

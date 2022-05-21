@@ -35,13 +35,16 @@
 
         <TextView
             android:id="@+id/textViewTrustScoreValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/body"
-            tools:text="High"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTrustScore"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewTrustScore"
+            tools:text="High" />
 
         <TextView
             android:id="@+id/textViewMarketExchange"
@@ -58,37 +61,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_begin="65dp" />
 
         <TextView
             android:id="@+id/textViewMarketExchangeValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Binance"
             style="@style/body"
-            android:maxLength="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:maxLength="8"
+            app:layout_constraintHorizontal_bias="0"
             android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline5"
-            app:layout_constraintTop_toBottomOf="@id/textViewMarketExchange"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketExchange"
+            tools:text="Binance" />
 
         <TextView
-            android:id="@+id/textViewMarket24hVol"
+            android:id="@+id/textViewFeeType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/volume_24h"
+            android:text="@string/fee_type"
             style="@style/caption"
             app:layout_constraintTop_toBottomOf="@id/textViewTrustScoreValue"
             android:layout_marginTop="@dimen/dimen_4"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/textViewMarket24hVolValue"
+            android:id="@+id/textViewFeeTypeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/body"
+            android:textSize="10sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/textViewMarket24hVol"
+            app:layout_constraintTop_toBottomOf="@id/textViewFeeType"
             tools:text="$1234"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -104,13 +111,16 @@
 
         <TextView
             android:id="@+id/textViewMarketPriceValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/body"
-            tools:text="$1234"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/guideline5"
             app:layout_constraintTop_toBottomOf="@id/textViewMarketPrice"
-            app:layout_constraintStart_toStartOf="@id/guideline5"/>
+            tools:text="$1234" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

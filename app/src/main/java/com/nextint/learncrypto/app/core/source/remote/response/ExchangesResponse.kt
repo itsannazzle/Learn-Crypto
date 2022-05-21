@@ -15,16 +15,16 @@ data class ExchangesResponse(
 data class ExchangesResponseItem(
 
 	@field:SerializedName("adjusted_rank")
-	val adjustedRank: Int,
+	val adjustedRank: Int?,
 
 	@field:SerializedName("last_updated")
-	val lastUpdated: String,
+	val lastUpdated: String? = null,
 
 	@field:SerializedName("active")
 	val active: Boolean,
 
 	@field:SerializedName("description")
-	val description: String,
+	val description: String?,
 
 	@field:SerializedName("message")
 	val message: String,
@@ -33,7 +33,7 @@ data class ExchangesResponseItem(
 	val quotes: BaseKeyVolume? = null,
 
 	@field:SerializedName("markets")
-	val markets: Int,
+	val markets: Int?,
 
 	@field:SerializedName("markets_data_fetched")
 	val marketsDataFetched: Boolean,
@@ -45,7 +45,7 @@ data class ExchangesResponseItem(
 	val name: String,
 
 	@field:SerializedName("reported_rank")
-	val reportedRank: Int,
+	val reportedRank: Int?,
 
 	@field:SerializedName("links")
 	val links: Links,
@@ -54,7 +54,7 @@ data class ExchangesResponseItem(
 	val id: String,
 
 	@field:SerializedName("currencies")
-	val currencies: Int,
+	val currencies: Int?,
 
 	@field:SerializedName("confidence_score")
 	val confidenceScore : Double? = 0.0,

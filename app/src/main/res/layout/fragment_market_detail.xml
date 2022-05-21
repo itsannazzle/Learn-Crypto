@@ -8,11 +8,214 @@
     tools:context=".features.market.MarketDetailFragment">
 
     <TextView
-        android:id="@+id/textViewMarketExchangeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
+        android:id="@+id/textViewMarketDetailPair"
+        style="@style/title"
+        android:textColor="@color/black"
+        tools:text="@string/hello_blank_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_marginTop="@dimen/dimen_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewMarketDetailPair"
+        style="@style/tableLayoutMatchWrap">
+
+        <TableRow>
+
+            <TextView
+                style="@style/body"
+                android:layout_marginEnd="105dp"
+                android:text="@string/label_market" />
+
+            <TextView
+                android:id="@+id/textViewMarketDetailMarket"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_category" />
+
+            <TextView
+                android:id="@+id/textViewCategory"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_fee_type" />
+
+            <TextView
+                android:id="@+id/textViewDetailFeeType"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_outlier" />
+
+            <TextView
+                android:id="@+id/textViewOutlier"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_trust_scone" />
+
+            <TextView
+                android:id="@+id/textViewDetailTrustScore"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_volume_24h" />
+
+            <TextView
+                android:id="@+id/textViewDetailVol24"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="412345" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_price" />
+
+            <TextView
+                android:id="@+id/textViewDetailPrice"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/updated" />
+
+            <TextView
+                android:id="@+id/textViewDetailLastUpdate"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textViewConverter"
+        style="@style/subtitle"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:text="@string/convert_a_to_b"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimes_48"
+        android:layout_marginBottom="@dimen/dimen_24"
+        android:background="@drawable/edit_text_backgroud"
+        android:hint="Search anything"
+        android:maxLength="23"
+        android:maxLines="1"
+        android:padding="@dimen/dimen_4"
+        android:paddingStart="@dimen/dimen_8"
+        android:layout_marginTop="@dimen/dimen_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConverter" />
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_marginTop="@dimen/dimen_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextSearch"
+        style="@style/tableLayoutMatchWrap">
+
+        <TableRow>
+
+            <TextView
+                style="@style/body"
+                android:layout_marginEnd="50dp"
+                android:text="@string/label_amount_to_convert" />
+
+            <TextView
+                android:id="@+id/textViewAmountToConvert"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_converted_price" />
+
+            <TextView
+                android:id="@+id/textViewConvertedPrice"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_base_last_update" />
+
+            <TextView
+                android:id="@+id/textViewBaseLastUpdate"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_base_last_update" />
+
+            <TextView
+                android:id="@+id/textViewQuotedLastUpdate"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

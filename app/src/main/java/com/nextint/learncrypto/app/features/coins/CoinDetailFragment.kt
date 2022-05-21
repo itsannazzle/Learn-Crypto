@@ -233,10 +233,10 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 textViewLastData.text = lastDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
                 textViewDevStats.text = developmentStatus ?: getString(R.string.dash)
                 textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet ?: false))
-                textViewProofType.text = proofType
-                textViewOrganizationStatus.text = orgStructure
-                textViewHasiAlgo.text = hashAlgorithm
-                if (whitepaper?.link?.isBlank() == true || whitepaper?.link?.isEmpty() == true)
+                textViewProofType.text = proofType ?: getString(R.string.dash)
+                textViewOrganizationStatus.text = orgStructure ?: getString(R.string.dash)
+                textViewHasiAlgo.text = hashAlgorithm ?: getString(R.string.dash)
+                if (whitepaper?.link?.isNullOrEmpty() == null)
                 {
                     imageViewWhitePaper.isVisible = false
                     textViewWhitePaperSrc.text = getString(R.string.dash)
@@ -244,13 +244,15 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 {
                     imageViewWhitePaper.loadImage(whitepaper?.thumbnail.toString())
                     textViewWhitePaperSrc.text = whitepaper?.link ?: getString(R.string.dash)
-                    imageViewWhitePaper.setOnClickListener()
+                    if (whitepaper?.link != null)
                     {
-                        UtilitiesFunction.openPDFFromUrl(requireContext(),whitepaper?.link ?: "")
+                        imageViewWhitePaper.setOnClickListener()
+                        {
+                            UtilitiesFunction.openPDFFromUrl(requireContext(), whitepaper.link)
+                        }
                     }
+
                 }
-
-
 
                 setupPeopleSocialMedia(imageViewCoinFacebook,links)
                 setupPeopleSocialMedia(imageViewCoinWebsite,links)

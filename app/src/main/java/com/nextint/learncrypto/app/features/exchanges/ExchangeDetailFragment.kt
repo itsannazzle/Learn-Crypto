@@ -24,7 +24,7 @@ import com.nextint.learncrypto.app.util.TAG_DIALOG
 class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
 {
     private var _bindingExchangeDetail : FragmentExchangeDetailBinding? = null
-    private val _getbindingExchangeDetail get() = _bindingExchangeDetail
+    private val _getBindingExchangeDetail get() = _bindingExchangeDetail
     private var _exchangeId : String? = null
 
     override fun setupViewModel(): Class<ExchangeViewModel> = ExchangeViewModel::class.java
@@ -49,7 +49,7 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
         _modelDialog = DialogModel()
         _activityMain = activity as MainActivity
         _activityMain._dialog.show()
-        return _getbindingExchangeDetail?.root
+        return _getBindingExchangeDetail?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -65,8 +65,7 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
         ) { response ->
             when (response) {
                 is ApiResponse.InternetConnection -> {
-                    _modelDialog?.retryActionAlert =
-                        { _viewModel.getExchangeById(_exchangeId ?: "") }
+                    _modelDialog?.retryActionAlert = { _viewModel.getExchangeById(_exchangeId ?: "") }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
                     _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
 
@@ -78,22 +77,22 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
                     {
                         with(response.data)
                         {
-                            _getbindingExchangeDetail?.textViewDetailExchangeName?.text = name
-                            _getbindingExchangeDetail?.indicatorExchangeActive?.textViewStatus?.apply {
+                            _getBindingExchangeDetail?.textViewDetailExchangeName?.text = name
+                            _getBindingExchangeDetail?.indicatorExchangeActive?.textViewStatus?.apply {
                                 if (active) text = getString(R.string.active) else visibility =
                                     View.GONE
                             }
-                            _getbindingExchangeDetail?.textViewAboutExchangeValue?.text = description
-                            _getbindingExchangeDetail?.textViewAdjRank?.text = adjustedRank.toString()
-                            _getbindingExchangeDetail?.textViewRepRank?.text = reportedRank.toString()
-                            _getbindingExchangeDetail?.textViewCurrencies?.text = currencies.toString()
-                            _getbindingExchangeDetail?.textViewMarket?.text = markets.toString()
+                            _getBindingExchangeDetail?.textViewAboutExchangeValue?.text = description?.ifEmpty { getString(R.string.desc_not_found) } ?: getString(R.string.desc_not_found)
+                            _getBindingExchangeDetail?.textViewAdjRank?.text = adjustedRank?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewRepRank?.text = reportedRank?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewCurrencies?.text = currencies?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewMarket?.text = markets?.toString() ?: getString(R.string.dash)
                             val stringFiats = fiats.joinToString { it.symbol }
-                            _getbindingExchangeDetail?.textViewFiats?.text = stringFiats
-                            _getbindingExchangeDetail?.textViewAdjVol24?.text = quotes?.adjustedVolume24h.toString()
-                            _getbindingExchangeDetail?.textViewRepVol24?.text = quotes?.reportedVolume24h.toString()
-                            _getbindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated.convertStringToDate()?.convertDateToStingPreviewSimple()
-                            _getbindingExchangeDetail?.textViewScore?.text = confidenceScore.toString()
+                            _getBindingExchangeDetail?.textViewFiats?.text = stringFiats.ifEmpty { getString(R.string.dash) }
+                            _getBindingExchangeDetail?.textViewAdjVol24?.text = quotes?.adjustedVolume24h?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewRepVol24?.text = quotes?.reportedVolume24h?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewScore?.text = confidenceScore?.toString() ?: getString(R.string.dash)
 
                         }
                     }

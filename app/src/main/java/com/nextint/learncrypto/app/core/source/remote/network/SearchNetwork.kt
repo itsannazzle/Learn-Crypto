@@ -29,13 +29,7 @@ class SearchNetwork @Inject constructor(private val searchService : SearchServic
                 try
                 {
                     val response = searchService.search(stringKeyword)
-                    if (!response.exchanges.isNullOrEmpty())
-                    {
-                        emit(ApiResponse.Success(response))
-                    } else
-                    {
-                        emit(ApiResponse.Empty)
-                    }
+                    emit(ApiResponse.Success(response))
                 }
                 catch (httpException : HttpException)
                 {

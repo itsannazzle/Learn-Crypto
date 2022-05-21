@@ -28,7 +28,7 @@ object UtilitiesFunction {
     }
 
     fun convertToUSD(numberToConvert : Long) : String {
-        val numberFormat = NumberFormat.getCurrencyInstance();
+        val numberFormat = NumberFormat.getCurrencyInstance()
         numberFormat.maximumFractionDigits = 0
         numberFormat.currency = Currency.getInstance("USD")
         return numberFormat.format(numberToConvert)

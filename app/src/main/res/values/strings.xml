@@ -7,6 +7,7 @@
     <string name="more">More</string>
     <string name="crypto_exchange">Crypto Exchange : %1$s\n\nVolume : %2$s\n\nBitcoin Dominant Percentage : %3$s\n\nTotal Cryptocurrencies : %4$s</string>
     <string name="before_you_begin">Before you begin</string>
+    <string name="convert_a_to_b">Convert the price of %1$s to %2$s</string>
     <string name="type">Type : %1$s</string>
     <string name="rank">Rank</string>
     <string name="status_new">New</string>
@@ -22,7 +23,7 @@
     <string name="about">About</string>
     <string name="started_at">Started at :</string>
     <string name="first_data">First data :</string>
-    <string name="last_data">Last data</string>
+    <string name="last_data">Last data :</string>
     <string name="development_status">Development status :</string>
     <string name="hardwallet">Hardware wallet :</string>
     <string name="proof_of_type">Proof of type :</string>
@@ -39,9 +40,20 @@
     <string name="coin_description">%1$s is %2$s</string>
     <string name="top_exchange">Top Exchange</string>
     <string name="volume_24h">Volume 24h</string>
+    <string name="fee_type">Fee Type</string>
     <string name="market">Market</string>
     <string name="confidence">Confidence</string>
     <string name="adjusted_rank">Adjusted rank :</string>
+    <string name="label_market">Market :</string>
+    <string name="label_category">Category :</string>
+    <string name="label_fee_type">Fee type :</string>
+    <string name="label_outlier">Outlier :</string>
+    <string name="label_trust_scone">Trust score :</string>
+    <string name="label_volume_24h">Volume 24h :</string>
+    <string name="label_price">Price :</string>
+    <string name="label_amount_to_convert">Amount to convert :</string>
+    <string name="label_converted_price">Converted price :</string>
+    <string name="label_base_last_update">%1$s last update :</string>
     <string name="reported_rank">Reported rank :</string>
     <string name="currencies">Currencies :</string>
     <string name="fiats">Fiats :</string>
@@ -74,6 +86,7 @@
     <string name="id_exchange">exchange</string>
     <string name="id_bitcoin">btc-bitcoin</string>
     <string name="id_eth">eth-ethereum</string>
+    <string name="id_usdt">usdt-tether</string>
     <string name="id_cryptocurrency">cryptocurrency</string>
     <string name="menu_concept">Concept</string>
     <string name="menu_number_01">01</string>
@@ -84,6 +97,9 @@
     <string name="menu_coins">Coins</string>
     <string name="menu_number_04">04</string>
     <string name="ethereum_market">Ethereum Market</string>
+    <string name="tether_market">Tether Market</string>
+    <string name="search_default">Search anything like coins, people, exchanges and more</string>
+    <string name="search_notfound">Sorry, we can\'t find it! Try another keyword</string>
     <string name="dash">-</string>
 
 </resources>

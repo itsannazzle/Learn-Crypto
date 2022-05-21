@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.*
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
@@ -34,6 +36,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.math.log
 
 
 class SearchFragment : BaseFragment<SearchViewModel>() {
@@ -43,7 +47,6 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
     private var jobDebounce: Job? = null
     private lateinit var _coinAdapter : BaseAdapter<CoinsResponseItem, CoinViewHolder>
     private lateinit var _exchangesAdapter : BaseAdapter<ExchangesResponseItem, ExchangeViewHolder>
-    private lateinit var _icosAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
     private lateinit var _teamAdapter : BaseAdapter<TeamItem, TeamViewHolder>
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
 
@@ -58,71 +61,81 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
         _bindingSearchFragment = FragmentSearchBinding.inflate(layoutInflater,container,false)
         _activityMain = activity as MainActivity
         _modelDialog = DialogModel()
+        _dialogFragment = BaseDialogFragment()
         with(_getBindingSearchFragment)
         {
-            this?.tvCurrencies?.isVisible = false
-            this?.tvExchanges?.isVisible = false
-            this?.tvICOS?.isVisible = false
-            this?.tvPeople?.isVisible = false
-            this?.tvTags?.isVisible = false
+            this?.imageViewButtonBack?.setOnClickListener()
+            {
+                parentFragmentManager.popBackStack()
+            }
         }
         return _getBindingSearchFragment?.root
     }
 
+
     override fun onResume() {
         super.onResume()
-        setupAdapter()
-        with(_getBindingSearchFragment!!)
+        val keyword = _getBindingSearchFragment?.editTextSearch?.text.toString()
+        if (!keyword.isNullOrEmpty())
         {
-            val textWatcher = object : TextWatcher
+            keyword.let { _viewModel.searchWithKeyword(it) }
+            observeLiveData()
+            setupAdapter()
+            displayView()
+        } else
+        {
+            with(_getBindingSearchFragment!!)
             {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int)
+                val textWatcher = object : TextWatcher
                 {
-                    if (p3 > 3)
-                    {
-                        _tagsAdapter.clear()
-                        _coinAdapter.clear()
-                        _teamAdapter.clear()
-                        _exchangesAdapter.clear()
-                    }
-                    _stringKeyword = p0.toString()
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-                    jobDebounce?.cancel()
-                    jobDebounce = lifecycleScope.launch(Dispatchers.Main)
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int)
                     {
-                        delay(1000)
-                        if (!_stringKeyword.isNullOrBlank() || !_stringKeyword.isNullOrEmpty())
-                        {
-                            _activityMain._dialog.show()
-                            _viewModel.searchWithKeyword(_stringKeyword!!)
-                            _tagsAdapter.clear()
-                            _coinAdapter.clear()
-                            _teamAdapter.clear()
-                            _exchangesAdapter.clear()
-                            observeLiveData()
-                            setupAdapter()
-                            displayView()
-                        } else
+                        if (p3 > 3)
                         {
                             _tagsAdapter.clear()
                             _coinAdapter.clear()
                             _teamAdapter.clear()
                             _exchangesAdapter.clear()
                         }
+                        _stringKeyword = p0.toString()
+
+                        jobDebounce?.cancel()
+                        jobDebounce = lifecycleScope.launch(Dispatchers.Main)
+                        {
+                            delay(1000)
+                            if (!_stringKeyword.isNullOrBlank() || !_stringKeyword.isNullOrEmpty())
+                            {
+                                _viewModel.searchWithKeyword(_stringKeyword!!)
+                                _activityMain._dialog.show()
+                                _tagsAdapter.clear()
+                                _coinAdapter.clear()
+                                _teamAdapter.clear()
+                                _exchangesAdapter.clear()
+                                observeLiveData()
+                                setupAdapter()
+                                displayView()
+                            } else
+                            {
+                                _activityMain._dialog.hide()
+                                _tagsAdapter.clear()
+                                _coinAdapter.clear()
+                                _teamAdapter.clear()
+                                _exchangesAdapter.clear()
+                            }
+                        }
                     }
 
-
-
-
+                    override fun afterTextChanged(p0: Editable?) { }
                 }
 
-                override fun afterTextChanged(p0: Editable?) { }
+                editTextSearch.addTextChangedListener(textWatcher)
             }
-            editTextSearch.addTextChangedListener(textWatcher)
-
         }
+
     }
 
     override fun setupViewModel(): Class<SearchViewModel> = SearchViewModel::class.java
@@ -132,7 +145,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupAdapter()
     }
 
 
@@ -156,22 +169,42 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                    {
                        with(_getBindingSearchFragment)
                        {
-                           this?.tvCurrencies?.isVisible = true
-                           this?.tvExchanges?.isVisible = true
-                           this?.tvICOS?.isVisible = true
-                           this?.tvPeople?.isVisible = true
-                           this?.tvTags?.isVisible = true
+                           this?.imageViewSearchDefault?.isVisible = false
+                           this?.tvResult?.isVisible = false
+                           val data = it
+                           if (data.tags.isNotEmpty()) _tagsAdapter.safeClearAndAddAll(data.tags)
+                           this?.tvTags?.isVisible = data.tags.isNotEmpty()
+
+                           if (data.exchanges.isNotEmpty()) _exchangesAdapter.safeClearAndAddAll(data.exchanges)
+                           this?.tvExchanges?.isVisible = data.exchanges.isNotEmpty()
+
+                           if (data.currencies.isNotEmpty()) _coinAdapter.safeClearAndAddAll(data.currencies)
+                           this?.tvCurrencies?.isVisible = data.currencies.isNotEmpty()
+
+                           if (data.people.isNotEmpty()) _teamAdapter.safeClearAndAddAll(data.people)
+                           this?.tvPeople?.isVisible = data.people.isNotEmpty()
+
+                           data.let {
+                               if (it.people.isEmpty() && it.exchanges.isEmpty() && it.icos.isEmpty() && it.currencies.isEmpty() && it.tags.isEmpty())
+                               {
+                                   this?.imageViewSearchDefault?.isVisible = true
+                                   this?.tvResult?.isVisible = true
+                                   this?.imageViewSearchDefault?.setImageResource(R.drawable.ic_search_not_found)
+                                   this?.tvResult?.text = getString(R.string.search_notfound)
+                               }
+                           }
                        }
-                       val data = response.data
-                       _tagsAdapter.safeClearAndAddAll(data.tags)
-                       _coinAdapter.safeClearAndAddAll(data.currencies)
-                       _teamAdapter.safeClearAndAddAll(data.people)
-                       _exchangesAdapter.safeClearAndAddAll(data.exchanges)
                    }
                 }
                 is ApiResponse.Error ->
                 {
-                    response.message
+                    _activityMain._dialog.hide()
+                    _modelDialog?.httpErrorCode = response.message
+                    val bundle = Bundle()
+                    bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
+                    _dialogFragment.arguments = bundle
+                    _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+
                 }
             }
         }
@@ -239,6 +272,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
     private fun displayView()
     {
+
         with(_getBindingSearchFragment)
         {
             this?.rvSearchCurrencies.apply()
@@ -252,6 +286,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                this?.setHorizontal()
                this?.adapter = _exchangesAdapter
             }
+
             this?.rvSearchPeople.apply()
             {
                this?.setHorizontal()
@@ -265,4 +300,5 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
             }
         }
     }
+
 }

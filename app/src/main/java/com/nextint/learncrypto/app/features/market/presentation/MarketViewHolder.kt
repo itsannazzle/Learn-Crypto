@@ -24,8 +24,8 @@ class MarketViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
                 findViewById<TextView>(R.id.textViewPair).text = pair
                 findViewById<TextView>(R.id.textViewTrustScoreValue).text = trustScore.uppercase()
                 findViewById<TextView>(R.id.textViewMarketExchangeValue).text = exchangeName
-                findViewById<TextView>(R.id.textViewMarket24hVolValue).text = UtilitiesFunction.convertToUSD(quotes.baseKeyPrice.volume24h.toLong()).take(6)
-                findViewById<TextView>(R.id.textViewMarketPriceValue).text = UtilitiesFunction.convertToUSD(quotes.baseKeyPrice.price.toLong()).take(6)
+                findViewById<TextView>(R.id.textViewFeeTypeValue).text = feeType
+                findViewById<TextView>(R.id.textViewMarketPriceValue).text = UtilitiesFunction.convertToUSD(quotes.baseKeyPrice.price.toLong()).take(8)
             }
         }
     }

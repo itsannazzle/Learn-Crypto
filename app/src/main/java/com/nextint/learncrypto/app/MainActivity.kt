@@ -14,10 +14,12 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var _viewModelMainActivity : MainActivityViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_LearnCrypto)
+        Timber.d("on create")
         _dialog = Dialog(this@MainActivity)
         _dialog.initiateDialogLoading()
 
@@ -48,8 +50,10 @@ class MainActivity : BaseActivity() {
     }
 
 
-    override fun onStart() {
+    override fun onStart()
+    {
         super.onStart()
+        Timber.d("on Start")
 
     }
 
@@ -78,5 +82,6 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Timber.d("on Destroy")
+        supportFragmentManager.beginTransaction().remove(OnBoardFragment())
     }
 }
