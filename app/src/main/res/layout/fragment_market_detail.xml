@@ -141,27 +141,39 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <EditText
-        android:id="@+id/editTextSearch"
+        android:id="@+id/editTextAmountConvert"
         android:layout_width="0dp"
         android:layout_height="@dimen/dimes_48"
-        android:layout_marginBottom="@dimen/dimen_24"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:layout_marginEnd="@dimen/dimen_24"
         android:background="@drawable/edit_text_backgroud"
-        android:hint="Search anything"
-        android:maxLength="23"
+        android:backgroundTint="@color/primaryAccent"
+        android:hint="Enter amount. ex : 1.2"
+        android:inputType="number"
+        android:maxLength="10"
         android:maxLines="1"
         android:padding="@dimen/dimen_4"
         android:paddingStart="@dimen/dimen_8"
-        android:layout_marginTop="@dimen/dimen_4"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonConvert"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewConverter" />
 
+    <Button
+        android:id="@+id/buttonConvert"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextAmountConvert"
+        style="@style/primaryButton_match"
+        android:text="Convert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextAmountConvert" />
     <TableLayout
-        android:id="@+id/tableLayout2"
+        android:id="@+id/tableLayoutConvertResult"
         android:layout_marginTop="@dimen/dimen_8"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextSearch"
+        app:layout_constraintTop_toBottomOf="@id/editTextAmountConvert"
         style="@style/tableLayoutMatchWrap">
 
         <TableRow>
@@ -194,6 +206,7 @@
         <TableRow android:layout_marginTop="@dimen/dimen_8">
 
             <TextView
+                android:id="@+id/tvBaseLastUpdate"
                 style="@style/body"
                 android:text="@string/label_base_last_update" />
 
@@ -207,6 +220,7 @@
         <TableRow android:layout_marginTop="@dimen/dimen_8">
 
             <TextView
+                android:id="@+id/tvQuotedLastUpdate"
                 style="@style/body"
                 android:text="@string/label_base_last_update" />
 

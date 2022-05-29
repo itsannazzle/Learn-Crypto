@@ -8,4 +8,5 @@ interface CryptoAppDeps {
     fun peopleService() : PeopleService
     fun searchService() : SearchService
     fun vocabularyService() : TagsService
+    fun priceConverterService() : PriceConverterService
 }

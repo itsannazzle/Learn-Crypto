@@ -76,6 +76,12 @@ class NetworkModule
         return retrofit.create(MarketService::class.java)
     }
 
+    @Provides
+    fun providePriceConverter(@Named("NetworkService") retrofit : Retrofit) : PriceConverterService
+    {
+        return retrofit.create(PriceConverterService::class.java)
+    }
+
     private fun okHttpClientFactory(): OkHttpClient
     {
         return OkHttpClient.Builder()

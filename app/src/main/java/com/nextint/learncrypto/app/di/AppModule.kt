@@ -19,6 +19,9 @@ import com.nextint.learncrypto.app.features.overview.presentation.OverviewViewMo
 import com.nextint.learncrypto.app.features.person.domain.PeopleUseCase
 import com.nextint.learncrypto.app.features.person.domain.PeopleUseCaseImpl
 import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModel
+import com.nextint.learncrypto.app.features.price_converter.domain.PriceConverterUseCase
+import com.nextint.learncrypto.app.features.price_converter.domain.PriceConverterUseCaseImpl
+import com.nextint.learncrypto.app.features.price_converter.presentation.PriceConverterViewModel
 import com.nextint.learncrypto.app.features.search.domain.SearchUseCase
 import com.nextint.learncrypto.app.features.search.domain.SearchUseCaseImpl
 import com.nextint.learncrypto.app.features.search.presentation.SearchViewModel
@@ -48,6 +51,9 @@ abstract class AppModule {
 
     @Binds
     abstract fun provideMarketUseCase(marketUseCaseImpl: MarketUseCaseImpl) : MarketUseCase
+
+    @Binds
+    abstract fun providePriceConverterUseCase(priceConverterUseCaseImpl: PriceConverterUseCaseImpl) : PriceConverterUseCase
 
     @Binds
     @IntoMap
@@ -83,4 +89,9 @@ abstract class AppModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     abstract fun bindSearchViewModel(viewModel: SearchViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PriceConverterViewModel::class)
+    abstract fun bindPriceConverterViewModel(viewModel: PriceConverterViewModel) : ViewModel
 }

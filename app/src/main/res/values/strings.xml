@@ -101,5 +101,8 @@
     <string name="search_default">Search anything like coins, people, exchanges and more</string>
     <string name="search_notfound">Sorry, we can\'t find it! Try another keyword</string>
     <string name="dash">-</string>
+    <string name="dollar">$%1$s</string>
+    <string name="dialog_input_invalid">Input not valid</string>
+    <string name="dialog_message_invalid">Please enter valid number. ex : 1 or 1.2</string>
 
 </resources>

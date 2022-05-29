@@ -8,6 +8,7 @@ import com.nextint.learncrypto.app.features.exchanges.data.IExchangeRepository
 import com.nextint.learncrypto.app.features.market.data.IMarketRepository
 import com.nextint.learncrypto.app.features.overview.data.IOverviewRepository
 import com.nextint.learncrypto.app.features.person.data.IPeopleRepository
+import com.nextint.learncrypto.app.features.price_converter.data.IPriceConverterRepository
 import com.nextint.learncrypto.app.features.search.data.ISearchRepository
 import dagger.BindsInstance
 import dagger.Component
@@ -18,7 +19,7 @@ import javax.inject.Singleton
     CoinModule::class, TagsModule::class,
     SearchModule::class, OverviewModule::class,
     PeopleModule::class, ExchangeModule::class,
-    MarketModule::class
+    MarketModule::class, PriceConvertedModule::class
 ])
 interface CoreComponent {
     @Component.Factory
@@ -26,7 +27,7 @@ interface CoreComponent {
         //why?
         fun create(@BindsInstance context: Context) : CoreComponent
     }
-    //prodive implementation for @Binds
+    //provide implementation for @Binds
 
     fun provideCoinsImpl() : ICoinsRepository
 
@@ -41,5 +42,7 @@ interface CoreComponent {
     fun provideExchangeImpl() : IExchangeRepository
 
     fun provideMarketImpl() : IMarketRepository
+
+    fun providePriceConverterImpl() : IPriceConverterRepository
 
 }

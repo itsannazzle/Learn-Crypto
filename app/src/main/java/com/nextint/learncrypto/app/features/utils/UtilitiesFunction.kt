@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.nextint.learncrypto.app.R
 import timber.log.Timber
+import java.math.RoundingMode
 import java.net.InetAddress
 import java.net.UnknownHostException
+import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
@@ -30,6 +32,7 @@ object UtilitiesFunction {
     fun convertToUSD(numberToConvert : Long) : String {
         val numberFormat = NumberFormat.getCurrencyInstance()
         numberFormat.maximumFractionDigits = 0
+        numberFormat.roundingMode = RoundingMode.FLOOR
         numberFormat.currency = Currency.getInstance("USD")
         return numberFormat.format(numberToConvert)
     }
