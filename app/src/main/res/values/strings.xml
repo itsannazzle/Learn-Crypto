@@ -95,6 +95,7 @@
     <string name="menu_market">Market</string>
     <string name="menu_number_03">03</string>
     <string name="menu_coins">Coins</string>
+    <string name="menu_price_converter">Price Converter</string>
     <string name="menu_number_04">04</string>
     <string name="ethereum_market">Ethereum Market</string>
     <string name="tether_market">Tether Market</string>

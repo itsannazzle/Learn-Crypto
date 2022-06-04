@@ -14,22 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimes_48"
         android:background="@drawable/edit_text_backgroud"
-        android:backgroundTint="@color/lightGrey"
+        android:backgroundTint="@color/primaryAccent"
         android:clickable="true"
         android:hint="Search"
-        android:paddingStart="@dimen/dimen_8"
+        android:padding="@dimen/dimen_8"
         android:singleLine="true"
         android:focusable="false"
         android:inputType="text"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/menuConcept"
-        layout="@layout/item_home_menu_layout"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
+        layout="@layout/item_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_24"
         app:layout_constraintEnd_toStartOf="@+id/menuExchanges"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,35 +38,39 @@
 
     <include
         android:id="@+id/menuExchanges"
-        layout="@layout/item_home_menu_layout"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
-        app:layout_constraintBottom_toBottomOf="@+id/menuConcept"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/menuConcept"
-        app:layout_constraintTop_toTopOf="@+id/menuConcept" />
+        layout="@layout/item_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menuConcept"/>
 
     <include
         android:id="@+id/menuMarket"
-        layout="@layout/item_home_menu_layout"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
-        app:layout_constraintBottom_toBottomOf="@+id/menuCoins"
-        app:layout_constraintEnd_toStartOf="@+id/menuCoins"
-        app:layout_constraintHorizontal_bias="0.5"
+        layout="@layout/item_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menuCoins" />
+        app:layout_constraintTop_toBottomOf="@id/menuExchanges"/>
 
     <include
         android:id="@+id/menuCoins"
-        layout="@layout/item_home_menu_layout"
-        android:layout_width="134dp"
-        android:layout_height="134dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_24"
-        app:layout_constraintStart_toEndOf="@+id/menuMarket"
-        app:layout_constraintTop_toBottomOf="@+id/menuConcept" />
+        layout="@layout/item_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menuMarket"/>
+
+    <include
+        android:id="@+id/menuPriceConverter"
+        layout="@layout/item_menu_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menuCoins"/>
 
 
     <ProgressBar
@@ -83,11 +88,10 @@
         style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_24"
         android:text="@string/market_overview"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menuMarket" />
+        app:layout_constraintTop_toBottomOf="@+id/menuPriceConverter" />
 
     <TextView
         android:id="@+id/textViewCapitalization"
