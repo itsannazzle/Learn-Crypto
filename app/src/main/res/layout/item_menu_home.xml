@@ -12,7 +12,6 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:background="@drawable/all_corner"
-        android:clipToOutline="true"
         tools:src="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

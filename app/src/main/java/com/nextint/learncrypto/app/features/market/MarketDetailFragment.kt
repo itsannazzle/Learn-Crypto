@@ -64,8 +64,8 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                 this?.textViewOutlier?.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(model.outlier))
                 this?.textViewDetailTrustScore?.text = model.trustScore.uppercase()
                 this?.textViewDetailVol24?.text = UtilitiesFunction.convertToUSD(model.quotes.baseKeyPrice.volume24h.toLong())
-                this?.tvBaseLastUpdate?.text = getString(R.string.label_base_last_update,model.baseCurrencyName)
-                this?.tvQuotedLastUpdate?.text = getString(R.string.label_base_last_update,model.quoteCurrencyName)
+                this?.tvBaseLastUpdate?.text = getString(R.string.label_base_last_update,model.baseCurrencyName.replaceFirstChar { it.uppercase() })
+                this?.tvQuotedLastUpdate?.text = getString(R.string.label_base_last_update,model.quoteCurrencyName.replaceFirstChar { it.uppercase() })
                 val stringPrice = model.quotes.baseKeyPrice.price.toString()
                 if (stringPrice.first() == '0')
                 {

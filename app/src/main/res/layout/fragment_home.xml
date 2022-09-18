@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,107 +9,114 @@
     tools:context=".features.overview.HomeFragment">
 
 
-    <EditText
-        android:id="@+id/textInputLayoutSearch"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimes_48"
-        android:background="@drawable/edit_text_backgroud"
-        android:backgroundTint="@color/primaryAccent"
-        android:clickable="true"
-        android:hint="Search"
-        android:padding="@dimen/dimen_8"
-        android:singleLine="true"
-        android:focusable="false"
-        android:inputType="text"
-        android:drawableEnd="@drawable/ic_baseline_search_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/menuConcept"
-        layout="@layout/item_menu_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_24"
-        app:layout_constraintEnd_toStartOf="@+id/menuExchanges"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearch" />
+        <EditText
+            android:id="@+id/textInputLayoutSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimes_48"
+            android:background="@drawable/edit_text_backgroud"
+            android:backgroundTint="@color/primaryAccent"
+            android:clickable="true"
+            android:hint="Search"
+            android:padding="@dimen/dimen_8"
+            android:singleLine="true"
+            android:focusable="false"
+            android:inputType="text"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/menuExchanges"
-        layout="@layout/item_menu_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menuConcept"/>
+        <include
+            android:id="@+id/menuConcept"
+            layout="@layout/item_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24"
+            app:layout_constraintEnd_toStartOf="@+id/menuExchanges"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearch" />
 
-    <include
-        android:id="@+id/menuMarket"
-        layout="@layout/item_menu_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menuExchanges"/>
+        <include
+            android:id="@+id/menuExchanges"
+            layout="@layout/item_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuConcept"/>
 
-    <include
-        android:id="@+id/menuCoins"
-        layout="@layout/item_menu_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menuMarket"/>
+        <include
+            android:id="@+id/menuMarket"
+            layout="@layout/item_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuExchanges"/>
 
-    <include
-        android:id="@+id/menuPriceConverter"
-        layout="@layout/item_menu_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menuCoins"/>
+        <include
+            android:id="@+id/menuCoins"
+            layout="@layout/item_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuMarket"/>
 
+        <include
+            android:id="@+id/menuPriceConverter"
+            layout="@layout/item_menu_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuCoins"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/primary"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewMarketOverview"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/market_overview"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuPriceConverter" />
+        <TextView
+            android:id="@+id/textViewMarketOverview"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/market_overview"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menuPriceConverter" />
 
-    <TextView
-        android:id="@+id/textViewCapitalization"
-        style="@style/body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"
-        tools:text="@string/crypto_exchange" />
+        <TextView
+            android:id="@+id/textViewCapitalization"
+            style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"
+            tools:text="@string/crypto_exchange" />
 
-    <TextView
-        android:id="@+id/textViewBuildBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/build_by_anna_karenina_jusuf"
-        android:textAlignment="center"
-        android:textColor="@color/lightGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textViewBuildBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/build_by_anna_karenina_jusuf"
+            android:textAlignment="center"
+            android:textColor="@color/lightGrey"
+            android:layout_marginTop="@dimen/dimes_48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

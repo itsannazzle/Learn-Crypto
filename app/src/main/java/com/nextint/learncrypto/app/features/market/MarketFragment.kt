@@ -10,6 +10,7 @@ import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
+import com.nextint.learncrypto.app.bases.BaseBlankFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
@@ -18,6 +19,7 @@ import com.nextint.learncrypto.app.features.market.presentation.MarketViewHolder
 import com.nextint.learncrypto.app.features.market.presentation.MarketViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.util.KEY_BUNDLE_DATA
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_MARKET_BY_ID
 import com.nextint.learncrypto.app.util.TAG_DIALOG
@@ -30,8 +32,6 @@ class MarketFragment : BaseFragment<MarketViewModel>()
     private lateinit var _bitcoinMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
     private lateinit var _ethMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
     private lateinit var _usdtMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
-
-
 
 
     override fun setupViewModel(): Class<MarketViewModel> = MarketViewModel::class.java
@@ -125,6 +125,15 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 {
                     response.data?.let { _bitcoinMarketAdapter.safeClearAndAddAll(response.data) }
                     _viewModel.getMarketByCoin2(getString(R.string.id_eth))
+                    val dataBitcoinMarket = response.data
+                    var arr = arrayListOf<MarketsByCoinIdResponseItem>()
+                    dataBitcoinMarket?.map { arr.addAll(listOf(it)) }
+                    val bundle = Bundle()
+                    bundle.putParcelableArrayList(KEY_BUNDLE_DATA,arr)
+                    _getBindingMarketFragment?.textViewMarketEthMore?.setOnClickListener()
+                    {
+                        UtilitiesFunction.replaceFragment(parentFragmentManager,BaseBlankFragment(),bundle)
+                    }
                 }
 
                 is ApiResponse.Error ->
@@ -294,6 +303,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
         {
             adapter = _usdtMarketAdapter
         }
+
     }
 
 

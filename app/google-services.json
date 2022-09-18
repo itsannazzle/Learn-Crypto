@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "998668378802",
+    "project_id": "learn-crypto-4edc2",
+    "storage_bucket": "learn-crypto-4edc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998668378802:android:2ce3429343e2e192a31fab",
+        "android_client_info": {
+          "package_name": "com.nextint.learncrypto.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998668378802-bmo7eouakj93cce341ftr73phci37dju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUxYPGBnSX2nusrVOhm6FSfC61toEV5X8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998668378802-bmo7eouakj93cce341ftr73phci37dju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

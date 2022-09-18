@@ -167,6 +167,7 @@
         android:text="Convert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextAmountConvert" />
+
     <TableLayout
         android:id="@+id/tableLayoutConvertResult"
         android:layout_marginTop="@dimen/dimen_8"

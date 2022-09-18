@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_8"
+    tools:context=".features.price_converter.PriceConverterFragment">
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/dropDownCoins1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimes_48"
+        android:layout_margin="@dimen/dimen_4"
+        android:background="@drawable/base_dropdown"
+        android:dropDownAnchor="@id/dropDownCoins1"
+        android:ellipsize="end"
+        android:hint="Select first coin"
+        android:inputType="textCapCharacters"
+        android:paddingLeft="@dimen/dimen_16"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/dropDownCoins2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimes_48"
+        android:layout_margin="@dimen/dimen_4"
+        android:background="@drawable/base_dropdown"
+        android:dropDownAnchor="@id/dropDownCoins2"
+        android:ellipsize="end"
+        android:hint="Select first coin"
+        android:inputType="textCapCharacters"
+        android:paddingLeft="@dimen/dimen_16"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextAmountConvert"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimes_48"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:background="@drawable/edit_text_backgroud"
+        android:backgroundTint="@color/primaryAccent"
+        android:hint="Enter amount. ex : 1.2"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:padding="@dimen/dimen_4"
+        android:paddingStart="@dimen/dimen_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropDownCoins1" />
+
+    <Button
+        android:id="@+id/buttonConvert"
+        style="@style/primaryButton_match"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Convert"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextAmountConvert"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAmountConvert" />
+
+    <TableLayout
+        android:id="@+id/tableLayoutConvertResult"
+        style="@style/tableLayoutMatchWrap"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextAmountConvert">
+
+        <TableRow>
+
+            <TextView
+                style="@style/body"
+                android:layout_marginEnd="50dp"
+                android:text="@string/label_amount_to_convert" />
+
+            <TextView
+                android:id="@+id/textViewAmountToConvert"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                style="@style/body"
+                android:text="@string/label_converted_price" />
+
+            <TextView
+                android:id="@+id/textViewConvertedPrice"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                android:id="@+id/tvBaseLastUpdate"
+                style="@style/body"
+                android:text="@string/label_base_last_update" />
+
+            <TextView
+                android:id="@+id/textViewBaseLastUpdate"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+            <TextView
+                android:id="@+id/tvQuotedLastUpdate"
+                style="@style/body"
+                android:text="@string/label_base_last_update" />
+
+            <TextView
+                android:id="@+id/textViewQuotedLastUpdate"
+                style="@style/body"
+                android:layout_weight="1"
+                tools:text="@string/started_at" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,6 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
     private var _bindingCoinsFragment : FragmentCoinsBinding? = null
     private val _getbindingCoinsFragment get() = _bindingCoinsFragment
 
-
     private lateinit var _coinAdapter : BaseAdapter<CoinsResponseItem, CoinViewHolder>
 
     override fun setupViewModel(): Class<CoinsViewModel> = CoinsViewModel::class.java

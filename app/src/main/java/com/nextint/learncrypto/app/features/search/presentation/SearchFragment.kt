@@ -142,7 +142,6 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
     override fun setObserver(): Fragment = this
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
