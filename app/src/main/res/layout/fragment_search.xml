@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/editTextSearch"
         android:layout_width="0dp"
-        android:layout_height="@dimen/dimes_48"
+        android:layout_height="@dimen/dimen_48"
         android:maxLines="1"
         android:maxLength="23"
         android:drawableEnd="@drawable/ic_baseline_search_24"
@@ -137,7 +137,7 @@
             android:id="@+id/imageViewSearchDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimes_48"
+            android:layout_marginTop="@dimen/dimen_48"
             android:src="@drawable/ic_search_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

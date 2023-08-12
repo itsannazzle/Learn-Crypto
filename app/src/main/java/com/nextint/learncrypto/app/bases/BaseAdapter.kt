@@ -3,16 +3,16 @@ package com.nextint.learncrypto.app.bases
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-open class BaseAdapter<T, VH : RecyclerView.ViewHolder>
+open class BaseAdapter<Model, VH : RecyclerView.ViewHolder>
     (
     //ini untuk inflate layout
     private val onCreateViewHolder : (parent : ViewGroup, viewType : Int) -> VH,
-    private val onBindViewHolder : (viewHolder : VH, position : Int, item : T) -> Unit,
-    private val onViewType : ((viewType : Int, item : List<T>) -> Int)? = null,
+    private val onBindViewHolder : (viewHolder : VH, position : Int, item : Model) -> Unit,
+    private val onViewType : ((viewType : Int, item : List<Model>) -> Int)? = null,
     private val onDetachFromWindow : ((VH) -> Unit)? = null
-    ) : RecyclerView.Adapter<VH>(), AdapterObserver<T> {
+    ) : RecyclerView.Adapter<VH>(), AdapterObserver<Model> {
 
-    var item = mutableListOf<T>()
+    var item = mutableListOf<Model>()
     private var onGetItemViewType: ((position : Int) -> Int)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH = onCreateViewHolder.invoke(parent,viewType)
 
@@ -24,26 +24,26 @@ open class BaseAdapter<T, VH : RecyclerView.ViewHolder>
 
     override fun getItemCount(): Int = item.size
 
-    override fun addAll(collection: Collection<T>) {
+    override fun addAll(collection: Collection<Model>) {
         item.addAll(collection)
         notifyDataSetChanged()
     }
 
-    override fun safeAddAll(collection: Collection<T>?) {
+    override fun safeAddAll(collection: Collection<Model>?) {
         collection?.let {
             item.addAll(collection)
             notifyDataSetChanged()
         }
     }
 
-    override fun safeClearAndAddAll(collection: Collection<T>) {
+    override fun safeClearAndAddAll(collection: Collection<Model>) {
         collection.let {
             clear()
             addAll(collection)
         }
     }
 
-    override fun add(list: List<T>) {
+    override fun add(list: List<Model>) {
         clear()
         addAll(list)
     }

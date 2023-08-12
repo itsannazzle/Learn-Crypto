@@ -99,7 +99,8 @@ class NetworkModule
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
-            .baseUrl(BuildConfig.BASE_URL)
+//            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl("https://api.coinpaprika.com/v1/")
             .build()
     }
 

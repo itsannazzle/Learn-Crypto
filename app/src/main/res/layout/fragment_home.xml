@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_16"
+    android:padding="@dimen/dimen_8"
     android:scrollbars="none"
     tools:context=".features.overview.HomeFragment">
 
@@ -13,10 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <EditText
             android:id="@+id/textInputLayoutSearch"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimes_48"
+            android:layout_height="@dimen/dimen_48"
             android:background="@drawable/edit_text_backgroud"
             android:backgroundTint="@color/primaryAccent"
             android:clickable="true"
@@ -30,15 +37,161 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textViewMarketOverview"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/market_overview"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearch" />
+
+        <TextView
+            android:id="@+id/textViewMarketCap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"
+            android:text="@string/label_market_capitalization"/>
+
+        <TextView
+            android:id="@+id/valueMarketCap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="$1234567"
+            app:layout_constraintTop_toTopOf="@id/textViewMarketCap"
+            app:layout_constraintBottom_toBottomOf="@id/textViewMarketCap"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/smalltext_all_corner"
+            android:backgroundTint="@color/green"/>
+
+        <TextView
+            android:id="@+id/textViewMarketCapATH"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketCap"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/label_market_capitalization_all_time_high"/>
+
+        <TextView
+            android:id="@+id/valueMarketCapATH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="$1234567"
+            app:layout_constraintTop_toTopOf="@id/textViewMarketCapATH"
+            app:layout_constraintBottom_toBottomOf="@id/textViewMarketCapATH"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/smalltext_all_corner"
+            android:backgroundTint="@color/green"/>
+
+        <TextView
+            android:id="@+id/textViewDiffMarketCapATH"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewMarketCapATH"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/label_difference_from_all_time_high"/>
+
+        <TextView
+            android:id="@+id/valueDiffMarketCapATH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="-0.98%"
+            app:layout_constraintTop_toTopOf="@id/textViewDiffMarketCapATH"
+            app:layout_constraintBottom_toBottomOf="@id/textViewDiffMarketCapATH"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/smalltext_all_corner"
+            android:backgroundTint="@color/red"/>
+
+        <TextView
+            android:id="@+id/textViewBitcoinDominance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDiffMarketCapATH"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/label_bitcoin_dominance_percentage"/>
+
+        <TextView
+            android:id="@+id/valueBitcoinDominance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="-38.78%"
+            app:layout_constraintTop_toTopOf="@id/textViewBitcoinDominance"
+            app:layout_constraintBottom_toBottomOf="@id/textViewBitcoinDominance"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/smalltext_all_corner"
+            android:backgroundTint="@color/red"/>
+
+        <TextView
+            android:id="@+id/textViewTotalCrypto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewBitcoinDominance"
+            android:layout_marginTop="@dimen/dimen_4"
+            android:text="@string/label_bitcoin_dominance_percentage"/>
+
+        <TextView
+            android:id="@+id/valueTotalCrypto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="123456%"
+            app:layout_constraintTop_toTopOf="@id/textViewTotalCrypto"
+            app:layout_constraintBottom_toBottomOf="@id/textViewTotalCrypto"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/smalltext_all_corner"
+            android:backgroundTint="@color/red"/>
+
+        <TextView
+            android:id="@+id/textViewTopics"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_topics"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dimen_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotalCrypto" />
+
         <include
             android:id="@+id/menuConcept"
             layout="@layout/item_menu_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_24"
+            android:layout_marginTop="@dimen/dimen_8"
             app:layout_constraintEnd_toStartOf="@+id/menuExchanges"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSearch" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewTopics" />
 
         <include
             android:id="@+id/menuExchanges"
@@ -76,6 +229,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/menuCoins"/>
 
+        <TextView
+            android:id="@+id/textViewBuildBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/build_by_anna_karenina_jusuf"
+            android:textAlignment="center"
+            android:layout_marginTop="@dimen/dimen_48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menuPriceConverter"/>
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -86,36 +250,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewMarketOverview"
-            style="@style/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/market_overview"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menuPriceConverter" />
-
-        <TextView
-            android:id="@+id/textViewCapitalization"
-            style="@style/body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewMarketOverview"
-            tools:text="@string/crypto_exchange" />
-
-        <TextView
-            android:id="@+id/textViewBuildBy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/build_by_anna_karenina_jusuf"
-            android:textAlignment="center"
-            android:textColor="@color/lightGrey"
-            android:layout_marginTop="@dimen/dimes_48"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

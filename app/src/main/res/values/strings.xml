@@ -5,14 +5,14 @@
     <string name="onboard_message">Learn about crypto and how it works. \n No login needed, just learn</string>
     <string name="learn_now">Learn Now</string>
     <string name="more">More</string>
-    <string name="crypto_exchange">Crypto Exchange : %1$s\n\nVolume : %2$s\n\nBitcoin Dominant Percentage : %3$s\n\nTotal Cryptocurrencies : %4$s</string>
+    <string name="crypto_exchange">Crypto Exchange : %1$s\nVolume : %2$s\nBitcoin Dominant Percentage : %3$s\nTotal Cryptocurrencies : %4$s</string>
     <string name="before_you_begin">Before you begin</string>
     <string name="convert_a_to_b">Convert the price of %1$s to %2$s</string>
     <string name="type">Type : %1$s</string>
     <string name="rank">Rank</string>
     <string name="status_new">New</string>
     <string name="status_not_new">Not New</string>
-    <string name="market_overview">Market Overview</string>
+    <string name="market_overview">Today\'s Stats</string>
     <string name="coin">Coin</string>
     <string name="what_is">What is %1$s ?</string>
     <string name="concept">Concept</string>
@@ -105,5 +105,10 @@
     <string name="dollar">$%1$s</string>
     <string name="dialog_input_invalid">Input not valid</string>
     <string name="dialog_message_invalid">Please enter valid number. ex : 1 or 1.2</string>
+    <string name="label_topics">Topics</string>
+    <string name="label_market_capitalization">Market capitalization :</string>
+    <string name="label_market_capitalization_all_time_high">Market capitalization all time high :</string>
+    <string name="label_difference_from_all_time_high">Difference from all time high :</string>
+    <string name="label_bitcoin_dominance_percentage">Bitcoin dominance percentage :</string>
 
 </resources>

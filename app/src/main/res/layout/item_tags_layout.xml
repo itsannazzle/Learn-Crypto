@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="@dimen/dimes_48"
+    app:cardCornerRadius="@dimen/dimen_48"
     android:layout_marginBottom="@dimen/dimen_8"
     android:layout_marginEnd="@dimen/dimen_8"
     android:backgroundTint="@color/primaryAccent"

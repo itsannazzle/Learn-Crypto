@@ -23,7 +23,7 @@ data class Links(
     val reddit: List<String>,
 
     @field:SerializedName("medium")
-    val medium: String? = "",
+    val medium: List<String>,
 
     @field:SerializedName("source_code")
     val sourceCode: List<String>

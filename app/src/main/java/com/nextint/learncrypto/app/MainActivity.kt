@@ -15,6 +15,11 @@ import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_CHANNELNAME
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_ID
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_STATE
 import timber.log.Timber
+import android.content.Intent
+import android.net.Uri
+import com.nextint.learncrypto.app.features.coins.CoinsFragment
+import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
+import com.nextint.learncrypto.app.features.overview.HomeFragment
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,6 +31,8 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_LearnCrypto)
         Timber.d("on create")
+        val action: String? = intent?.action
+        val data: Uri? = intent?.data
         val stringChannelName = intent.getStringExtra(STRING_NOTIFICATION_CHANNELNAME)
         val stringChannelId = intent.getStringExtra(STRING_NOTIFICATION_CHANNELID)
         val stringNotificationId = intent.getIntExtra(STRING_NOTIFICATION_ID,1)
@@ -45,7 +52,7 @@ class MainActivity : BaseActivity() {
 
         FirebaseMessaging.getInstance().token.addOnSuccessListener()
         {
-            deviceToken ->
+                deviceToken ->
             Timber.d("device token :  $deviceToken")
         }
 
@@ -63,16 +70,33 @@ class MainActivity : BaseActivity() {
                 _modelDialog?.let { showDialogFromModelResponseWithRetry(it) }
             } else {
                 this._dialog.hide()
-                inflateFragment()
+                inflateFragment(data?.lastPathSegment)
             }
         }
         setContentView(binding.root)
+        // ATTENTION: This was auto-generated to handle app links.
+        val appLinkIntent: Intent = intent
+        val appLinkAction: String? = appLinkIntent.action
+        val appLinkData: Uri? = appLinkIntent.data
     }
 
-    private fun inflateFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.mainActivityContainer, OnBoardFragment())
-            .commitNow()
+    private fun inflateFragment(stringPath : String?) {
+        when(stringPath)
+        {
+            "coins" ->
+            {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.mainActivityContainer, CoinsFragment())
+                    .commitNow()
+            }
+            else ->
+            {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.mainActivityContainer, OnBoardFragment())
+                    .commitNow()
+            }
+        }
+
     }
 
 

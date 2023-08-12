@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/dropDownCoins1"
         android:layout_width="0dp"
-        android:layout_height="@dimen/dimes_48"
+        android:layout_height="@dimen/dimen_48"
         android:layout_margin="@dimen/dimen_4"
         android:background="@drawable/base_dropdown"
         android:dropDownAnchor="@id/dropDownCoins1"
@@ -34,7 +34,7 @@
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/dropDownCoins2"
         android:layout_width="0dp"
-        android:layout_height="@dimen/dimes_48"
+        android:layout_height="@dimen/dimen_48"
         android:layout_margin="@dimen/dimen_4"
         android:background="@drawable/base_dropdown"
         android:dropDownAnchor="@id/dropDownCoins2"
@@ -51,7 +51,7 @@
     <EditText
         android:id="@+id/editTextAmountConvert"
         android:layout_width="0dp"
-        android:layout_height="@dimen/dimes_48"
+        android:layout_height="@dimen/dimen_48"
         android:layout_marginTop="@dimen/dimen_16"
         android:background="@drawable/edit_text_backgroud"
         android:backgroundTint="@color/primaryAccent"

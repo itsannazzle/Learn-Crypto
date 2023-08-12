@@ -2,13 +2,22 @@ package com.nextint.learncrypto.app.bases
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.utils.*
+import com.nextint.learncrypto.app.features.utils.dismissDialog
+import com.nextint.learncrypto.app.features.utils.hideDialog
+import com.nextint.learncrypto.app.features.utils.hideDialogForSoftDialog
+import com.nextint.learncrypto.app.features.utils.initiateAlertDialogResponse
+import com.nextint.learncrypto.app.features.utils.initiateDialogLoading
+import com.nextint.learncrypto.app.features.utils.showDialog
+
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var _dialog : Dialog
@@ -20,6 +29,14 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _dialog = Dialog(this)
         _dialog.initiateDialogLoading()
+
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+//
+//        val windowInsetsController =
+//            ViewCompat.getWindowInsetsController(window.decorView)
+//
+//        windowInsetsController?.isAppearanceLightNavigationBars = true
+
     }
 
     private fun checkAlertDialog() : Boolean
