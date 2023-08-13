@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.nextint.learncrypto.app",
+               "sha256_cert_fingerprints": ["6F:7D:6B:07:AA:C1:1F:4A:65:78:E4:70:90:3C:07:6A:23:F6:11:31:9D:17:6D:1D:6E:47:B6:2B:4F:03:95:EC"] }
+}]
