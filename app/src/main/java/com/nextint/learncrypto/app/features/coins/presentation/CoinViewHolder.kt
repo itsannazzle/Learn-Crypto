@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
@@ -19,6 +20,18 @@ class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
             return CoinViewHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_coins_layout,parent,false)
             )
+        }
+
+        val differCallback = object : DiffUtil.ItemCallback<CoinsResponseItem>(){
+            override fun areItemsTheSame(oldItem: CoinsResponseItem, newItem: CoinsResponseItem): Boolean
+            {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: CoinsResponseItem, newItem: CoinsResponseItem): Boolean
+            {
+                return oldItem == newItem
+            }
         }
     }
 

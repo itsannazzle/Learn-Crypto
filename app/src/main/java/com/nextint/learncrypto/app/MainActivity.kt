@@ -17,9 +17,11 @@ import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_STATE
 import timber.log.Timber
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatDelegate
 import com.nextint.learncrypto.app.features.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.overview.HomeFragment
+import java.util.logging.Level.OFF
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,6 +32,10 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_LearnCrypto)
+
+
+        AppCompatDelegate.setDefaultNightMode((AppCompatDelegate.MODE_NIGHT_NO))
+
         Timber.d("on create")
         val action: String? = intent?.action
         val data: Uri? = intent?.data

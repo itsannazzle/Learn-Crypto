@@ -9,5 +9,3 @@ class NotificationModel
     var stringNotificationTitle : String? = null,
     var stringNotificationBody : String? = null
             )
-{
-}

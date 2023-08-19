@@ -101,7 +101,7 @@ object UtilitiesFunction {
     {
         val intent  = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(Uri.parse(stringUrl), "application/pdf")
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         context.startActivity(intent)
     }
 

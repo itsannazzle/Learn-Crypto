@@ -2,10 +2,13 @@ package com.nextint.learncrypto.app.features.overview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.CryptoApp
@@ -89,10 +92,30 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
                     {
                         with(_getBindingHomeFragment)
                         {
+                            if(response.data.marketCapChange24h > 0.00)
+                            {
+                                this?.valueDiffMarketCapATH?.text = UtilitiesFunction.convertToPercentage(response.data.marketCapChange24h)
+                            }
+                            else
+                            {
+                                val greenColor = ContextCompat.getColor(requireContext(), R.color.red)
+                                this?.valueDiffMarketCapATH?.backgroundTintList = ColorStateList.valueOf(greenColor)
+                                this?.valueDiffMarketCapATH?.text = UtilitiesFunction.convertToPercentage(response.data.marketCapChange24h)
+                            }
+
+                            if(response.data.bitcoinDominancePercentage > 0.00)
+                            {
+                                this?.valueBitcoinDominance?.text = UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage)
+                            }
+                            else
+                            {
+                                val greenColor = ContextCompat.getColor(requireContext(), R.color.red)
+                                this?.valueBitcoinDominance?.backgroundTintList = ColorStateList.valueOf(greenColor)
+                                this?.valueBitcoinDominance?.text = UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage)
+                            }
+
                             this?.valueMarketCap?.text = UtilitiesFunction.convertToUSD(response.data.marketCapUsd)
                             this?.valueMarketCapATH?.text = UtilitiesFunction.convertToUSD(response.data.marketCapAthValue)
-                            this?.valueDiffMarketCapATH?.text = UtilitiesFunction.convertToPercentage(response.data.marketCapChange24h)
-                            this?.valueBitcoinDominance?.text = UtilitiesFunction.convertToPercentage(response.data.bitcoinDominancePercentage)
                             this?.valueTotalCrypto?.text = response.data.cryptocurrenciesNumber.toString()
                         }
                     }
@@ -134,7 +157,7 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         with(_getBindingHomeFragment?.menuConcept!!){
             textViewTitle.text = getString(R.string.menu_concept)
             imageMenu.clipToOutline = true
-            imageMenu.cornerImage("https://images.unsplash.com/photo-1621932953986-15fcf084da0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nZWNvaW58ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",200)
+            imageMenu.loadImage("https://images.unsplash.com/photo-1621932953986-15fcf084da0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nZWNvaW58ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60")
             cardMenu.setOnClickListener()
             {
                 //it.background = context?.getDrawable(R.color.primary)
@@ -144,7 +167,7 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         with(_getBindingHomeFragment?.menuMarket!!){
             textViewTitle.text = getString(R.string.menu_market)
             imageMenu.clipToOutline = true
-            imageMenu.cornerImage("https://images.unsplash.com/photo-1621264448270-9ef00e88a935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y3J5cHRvJTIwbWFya2V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",200)
+            imageMenu.loadImage("https://images.unsplash.com/photo-1621264448270-9ef00e88a935?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y3J5cHRvJTIwbWFya2V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60")
             cardMenu.setOnClickListener()
             {
                 //it.background = context?.getDrawable(R.color.primary)
@@ -154,7 +177,7 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         with(_getBindingHomeFragment?.menuExchanges!!){
             textViewTitle.text = getString(R.string.menu_exchanges)
             imageMenu.clipToOutline = true
-            imageMenu.cornerImage("https://images.unsplash.com/photo-1651054558996-03455fe2702f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80",200)
+            imageMenu.loadImage("https://images.unsplash.com/photo-1651054558996-03455fe2702f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80")
             cardMenu.setOnClickListener {
                 //it.background = context?.getDrawable(R.color.primary)
                 UtilitiesFunction.replaceFragment(parentFragmentManager, ExchangesFragment())
@@ -163,7 +186,7 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         with(_getBindingHomeFragment?.menuCoins!!){
             textViewTitle.text = getString(R.string.menu_coins)
             imageMenu.clipToOutline = true
-            imageMenu.cornerImage("https://images.unsplash.com/photo-1634024521600-0772a6b89fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",200)
+            imageMenu.loadImage("https://images.unsplash.com/photo-1634024521600-0772a6b89fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80")
             cardMenu.setOnClickListener {
                 //it.background = context?.getDrawable(R.color.primary)
                 UtilitiesFunction.replaceFragment(parentFragmentManager, CoinsFragment())
@@ -172,7 +195,7 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         with(_getBindingHomeFragment?.menuPriceConverter!!){
             textViewTitle.text = getString(R.string.menu_price_converter)
             imageMenu.clipToOutline = true
-            imageMenu.cornerImage("https://images.unsplash.com/photo-1625208012722-1a8ab026b846?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTZ8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",200)
+            imageMenu.loadImage("https://images.unsplash.com/photo-1625208012722-1a8ab026b846?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTZ8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60")
             cardMenu.setOnClickListener {
                 //it.background = context?.getDrawable(R.color.primary)
                 UtilitiesFunction.replaceFragment(parentFragmentManager, PriceConverterFragment())

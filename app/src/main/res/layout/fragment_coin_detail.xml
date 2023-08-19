@@ -16,10 +16,12 @@
         <TextView
             android:id="@+id/textViewCoinName"
             style="@style/title"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="36sp"
+            android:maxLines="3"
+            android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Bitcoin" />
@@ -29,22 +31,10 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_16"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginEnd="@dimen/dimen_8"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
-            app:layout_constraintEnd_toStartOf="@+id/indicatorNew"
             app:layout_constraintStart_toEndOf="@+id/textViewCoinName"
-            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
-
-        <include
-            android:id="@+id/indicatorNew"
-            layout="@layout/item_indicator_status_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_8"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
-            app:layout_constraintEnd_toStartOf="@+id/indicatorOpenSource"
-            app:layout_constraintStart_toEndOf="@+id/indicatorActive"
             app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
 
         <include
@@ -52,10 +42,22 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewCoinName"
-            app:layout_constraintStart_toEndOf="@+id/indicatorNew"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_marginTop="@dimen/dimen_16"
+
+            app:layout_constraintStart_toEndOf="@+id/indicatorActive"
+            app:layout_constraintTop_toTopOf="@id/textViewCoinName" />
+
+        <include
+            android:id="@+id/indicatorNew"
+            layout="@layout/item_indicator_status_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_marginTop="@dimen/dimen_16"
+
+            app:layout_constraintStart_toEndOf="@+id/indicatorOpenSource"
+            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
 
         <TextView
             android:id="@+id/textViewSymbol"
@@ -307,46 +309,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinSocMed"
             android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintStart_toStartOf="parent">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewCoinSocMed">
 
             <ImageView
                 android:id="@+id/imageViewCoinWebsite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_web_browser"/>
+                android:src="@drawable/ic_web_browser" />
 
             <ImageView
                 android:id="@+id/imageViewCoinFacebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_fb_32"
-                android:layout_marginEnd="@dimen/dimen_24"/>
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:src="@drawable/ic_fb_32" />
 
             <ImageView
                 android:id="@+id/imageViewCoinYoutube"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_youtube_32"
-                android:layout_marginEnd="@dimen/dimen_24"/>
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:src="@drawable/ic_youtube_32" />
 
             <ImageView
                 android:id="@+id/imageViewCoinReddit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_reddit_32"
-                android:layout_marginEnd="@dimen/dimen_24"/>
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:src="@drawable/ic_reddit_32" />
 
             <ImageView
                 android:id="@+id/imageViewCoinGithub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_ant_design_github_filled_32"
-                android:layout_marginEnd="@dimen/dimen_24" />
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:src="@drawable/ic_ant_design_github_filled_32" />
 
         </LinearLayout>
 

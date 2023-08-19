@@ -32,11 +32,6 @@ class WebViewFragment : Fragment() {
         return _getBinding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

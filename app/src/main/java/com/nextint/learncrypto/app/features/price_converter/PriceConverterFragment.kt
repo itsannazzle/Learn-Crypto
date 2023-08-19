@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.nextint.learncrypto.app.CryptoApp
+import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
+import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentPriceConverterBinding
 import com.nextint.learncrypto.app.databinding.FragmentSearchBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
@@ -18,6 +22,7 @@ import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel_Fa
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory
 import com.nextint.learncrypto.app.features.price_converter.presentation.PriceConverterViewModel
+import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import javax.inject.Inject
 
 class PriceConverterFragment : BaseFragment<PriceConverterViewModel>()
@@ -48,7 +53,37 @@ class PriceConverterFragment : BaseFragment<PriceConverterViewModel>()
     {
         // Inflate the layout for this fragment
         _bindingPriceConverter = FragmentPriceConverterBinding.inflate(layoutInflater,container,false)
+        _activityMain = activity as MainActivity
+        _coinsViewModel.getCoins()
+        _modelDialog = DialogModel()
+        _dialogFragment = BaseDialogFragment()
         return _getBindingPriceConverter?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+        observeLiveData()
+        setObserver()
+    }
+
+    private fun observeLiveData()
+    {
+        _coinsViewModel.coins.observe(viewLifecycleOwner)
+        {
+            response ->
+            when(response)
+            {
+                is ApiResponse.InternetConnection ->
+                {
+                    _modelDialog?.retryActionAlert = { _coinsViewModel.getCoins() }
+                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
+
+                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                }
+            }
+        }
     }
 
 

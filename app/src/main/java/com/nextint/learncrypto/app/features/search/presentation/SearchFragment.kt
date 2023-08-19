@@ -49,6 +49,10 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
     private lateinit var _exchangesAdapter : BaseAdapter<ExchangesResponseItem, ExchangeViewHolder>
     private lateinit var _teamAdapter : BaseAdapter<TeamItem, TeamViewHolder>
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
+    private val _lazyCoinAdapter by lazy { _coinAdapter }
+    private val _lazyExchangeAdapter by lazy { _exchangesAdapter }
+    private val _lazyTeamAdapter by lazy { _teamAdapter }
+    private val _lazyTagsAdapter by lazy { _tagsAdapter }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -96,10 +100,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                     {
                         if (p3 > 3)
                         {
-                            _tagsAdapter.clear()
-                            _coinAdapter.clear()
-                            _teamAdapter.clear()
-                            _exchangesAdapter.clear()
+
                         }
                         _stringKeyword = p0.toString()
 
@@ -111,20 +112,12 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                             {
                                 _viewModel.searchWithKeyword(_stringKeyword!!)
                                 _activityMain._dialog.show()
-                                _tagsAdapter.clear()
-                                _coinAdapter.clear()
-                                _teamAdapter.clear()
-                                _exchangesAdapter.clear()
                                 observeLiveData()
                                 setupAdapter()
                                 displayView()
                             } else
                             {
                                 _activityMain._dialog.hide()
-                                _tagsAdapter.clear()
-                                _coinAdapter.clear()
-                                _teamAdapter.clear()
-                                _exchangesAdapter.clear()
                             }
                         }
                     }
@@ -156,7 +149,9 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
             {
                 is ApiResponse.InternetConnection ->
                 {
-                    _modelDialog?.retryActionAlert = { _viewModel.searchWithKeyword(_getBindingSearchFragment?.editTextSearch.toString() ?: "") }
+                    _modelDialog?.retryActionAlert = { _viewModel.searchWithKeyword(
+                        _getBindingSearchFragment?.editTextSearch.toString()
+                    ) }
                     _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
                     _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
                     _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
@@ -171,16 +166,16 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                            this?.imageViewSearchDefault?.isVisible = false
                            this?.tvResult?.isVisible = false
                            val data = it
-                           if (data.tags.isNotEmpty()) _tagsAdapter.safeClearAndAddAll(data.tags)
+                           if (data.tags.isNotEmpty()) _lazyTagsAdapter.differ.submitList(data.tags)
                            this?.tvTags?.isVisible = data.tags.isNotEmpty()
 
-                           if (data.exchanges.isNotEmpty()) _exchangesAdapter.safeClearAndAddAll(data.exchanges)
+                           if (data.exchanges.isNotEmpty()) _lazyExchangeAdapter.differ.submitList(data.exchanges)
                            this?.tvExchanges?.isVisible = data.exchanges.isNotEmpty()
 
-                           if (data.currencies.isNotEmpty()) _coinAdapter.safeClearAndAddAll(data.currencies)
+                           if (data.currencies.isNotEmpty()) _lazyCoinAdapter.differ.submitList(data.currencies)
                            this?.tvCurrencies?.isVisible = data.currencies.isNotEmpty()
 
-                           if (data.people.isNotEmpty()) _teamAdapter.safeClearAndAddAll(data.people)
+                           if (data.people.isNotEmpty()) _lazyTeamAdapter.differ.submitList(data.people)
                            this?.tvPeople?.isVisible = data.people.isNotEmpty()
 
                            data.let {
@@ -230,7 +225,8 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                    bundle.putString(ID_COIN_CONSTANT,item.id)
                    UtilitiesFunction.replaceFragment(parentFragmentManager, CoinDetailFragment(),bundle)
                }
-           }
+           },
+           CoinViewHolder.differCallback
        )
 
         _exchangesAdapter = BaseAdapter(
@@ -241,7 +237,8 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                     bundle.putString(ID_EXCHANGE_CONSTANT,item.id)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, ExchangeDetailFragment(),bundle)
                 }
-            }
+            },
+            ExchangeViewHolder.differCallback
         )
 
         _teamAdapter = BaseAdapter(
@@ -252,7 +249,8 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                     bundle.putString(ID_TEAM_CONSTANT,item.id)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, PeopleFragment(),bundle)
                 }
-            }
+            },
+            TeamViewHolder.differCallback
         )
 
         _tagsAdapter = BaseAdapter(
@@ -265,7 +263,8 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                     bottomSheetDialog.arguments = bundle
                     bottomSheetDialog.show(parentFragmentManager, TAG_BOTTOM_SHEET_DIALOG)
                 }
-            }
+            },
+            TagsViewHolder.differCallback
         )
     }
 
@@ -277,25 +276,25 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
             this?.rvSearchCurrencies.apply()
             {
                this?.setHorizontal()
-               this?.adapter = _coinAdapter
+               this?.adapter = _lazyCoinAdapter
             }
 
             this?.rvSearchExchanges.apply()
             {
                this?.setHorizontal()
-               this?.adapter = _exchangesAdapter
+               this?.adapter = _lazyExchangeAdapter
             }
 
             this?.rvSearchPeople.apply()
             {
                this?.setHorizontal()
-               this?.adapter = _teamAdapter
+               this?.adapter = _lazyTeamAdapter
             }
 
             this?.rvSearchTags.apply()
             {
                this?.setHorizontal()
-               this?.adapter = _tagsAdapter
+               this?.adapter = _lazyTagsAdapter
             }
         }
     }

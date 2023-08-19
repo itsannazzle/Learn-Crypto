@@ -38,7 +38,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/inter_bold</item>
-        <item name="android:letterSpacing">0.05</item>
+        <item name="android:letterSpacing">0.02</item>
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/textColor</item>
     </style>

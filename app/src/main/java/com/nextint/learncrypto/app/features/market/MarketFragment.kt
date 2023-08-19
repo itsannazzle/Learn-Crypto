@@ -32,6 +32,9 @@ class MarketFragment : BaseFragment<MarketViewModel>()
     private lateinit var _bitcoinMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
     private lateinit var _ethMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
     private lateinit var _usdtMarketAdapter : BaseAdapter<MarketsByCoinIdResponseItem, MarketViewHolder>
+    private val _lazyBTCAdapter by lazy { _bitcoinMarketAdapter }
+    private val _lazyETHAdapter by lazy { _ethMarketAdapter }
+    private val _lazyUSDTAdapter by lazy { _usdtMarketAdapter }
 
 
     override fun setupViewModel(): Class<MarketViewModel> = MarketViewModel::class.java
@@ -76,7 +79,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 bundle.putParcelable(MODEL_PARCEL_MARKET_BY_ID,item)
                 UtilitiesFunction.replaceFragment(parentFragmentManager, MarketDetailFragment(),bundle)
             }
-            }
+            }, MarketViewHolder.differCallback
         )
 
         _ethMarketAdapter = BaseAdapter(
@@ -88,7 +91,8 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                     bundle.putParcelable(MODEL_PARCEL_MARKET_BY_ID,item)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, MarketDetailFragment(),bundle)
                 }
-            }
+            },
+            MarketViewHolder.differCallback
         )
 
         _usdtMarketAdapter = BaseAdapter(
@@ -100,7 +104,8 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                     bundle.putParcelable(MODEL_PARCEL_MARKET_BY_ID,item)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, MarketDetailFragment(),bundle)
                 }
-            }
+            },
+            MarketViewHolder.differCallback
         )
     }
 
@@ -123,10 +128,10 @@ class MarketFragment : BaseFragment<MarketViewModel>()
 
                 is ApiResponse.Success ->
                 {
-                    response.data?.let { _bitcoinMarketAdapter.safeClearAndAddAll(response.data) }
+                    response.data?.let { _lazyBTCAdapter.differ.submitList(response.data) }
                     _viewModel.getMarketByCoin2(getString(R.string.id_eth))
                     val dataBitcoinMarket = response.data
-                    var arr = arrayListOf<MarketsByCoinIdResponseItem>()
+                    val arr = arrayListOf<MarketsByCoinIdResponseItem>()
                     dataBitcoinMarket?.map { arr.addAll(listOf(it)) }
                     val bundle = Bundle()
                     bundle.putParcelableArrayList(KEY_BUNDLE_DATA,arr)
@@ -185,7 +190,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 {
                     response.data?.let()
                     {
-                        _ethMarketAdapter.safeClearAndAddAll(response.data)
+                        _lazyETHAdapter.differ.submitList(response.data)
                     }
                     _viewModel.getMarketByCoin3(getString(R.string.id_usdt))
                 }
@@ -239,7 +244,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
                 {
                     response.data?.let()
                     {
-                        _usdtMarketAdapter.safeClearAndAddAll(response.data)
+                        _lazyUSDTAdapter.differ.submitList(response.data)
                     }
                     _activityMain._dialog.hide()
                 }
@@ -292,16 +297,16 @@ class MarketFragment : BaseFragment<MarketViewModel>()
     {
         _getBindingMarketFragment?.recyclerViewBitcoinMarket?.apply()
         {
-            adapter = _bitcoinMarketAdapter
+            adapter = _lazyBTCAdapter
         }
 
         _getBindingMarketFragment?.recyclerViewEthMarket?.apply()
         {
-            adapter = _ethMarketAdapter
+            adapter = _lazyETHAdapter
         }
         _getBindingMarketFragment?.recyclerViewTetherMarket?.apply()
         {
-            adapter = _usdtMarketAdapter
+            adapter = _lazyUSDTAdapter
         }
 
     }

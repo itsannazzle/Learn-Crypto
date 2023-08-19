@@ -39,7 +39,7 @@ class BaseBlankFragment : Fragment()
         val getBundle = arguments?.getParcelableArrayList<MarketsByCoinIdResponseItem>(KEY_BUNDLE_DATA)
         getBundle
         if (getBundle != null) {
-            _bitcoinMarketAdapter.safeClearAndAddAll(getBundle)
+            _bitcoinMarketAdapter.differ.submitList(getBundle)
         }
     }
 
@@ -54,7 +54,8 @@ class BaseBlankFragment : Fragment()
                     bundle.putParcelable(MODEL_PARCEL_MARKET_BY_ID,item)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, MarketDetailFragment(),bundle)
                 }
-            }
+            },
+            MarketViewHolder.differCallback
         )
     }
 

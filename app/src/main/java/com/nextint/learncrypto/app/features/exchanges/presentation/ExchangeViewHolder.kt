@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 
 class ExchangeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
@@ -16,6 +18,15 @@ class ExchangeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         fun inflate(parent : ViewGroup) : ExchangeViewHolder
         {
             return ExchangeViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_exchanges_layout,parent,false))
+        }
+        val differCallback = object : DiffUtil.ItemCallback<ExchangesResponseItem>(){
+            override fun areItemsTheSame(oldItem: ExchangesResponseItem, newItem: ExchangesResponseItem): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: ExchangesResponseItem, newItem: ExchangesResponseItem): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 

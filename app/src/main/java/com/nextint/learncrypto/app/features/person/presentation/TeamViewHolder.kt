@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.features.utils.circleImage
 import com.nextint.learncrypto.app.util.STRING_URL_AVATAR_APE
@@ -18,6 +20,15 @@ class TeamViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         fun inflate(parent : ViewGroup) : TeamViewHolder
         {
             return TeamViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_team_layout, parent,false))
+        }
+        val differCallback = object : DiffUtil.ItemCallback<TeamItem>(){
+            override fun areItemsTheSame(oldItem: TeamItem, newItem: TeamItem): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: TeamItem, newItem: TeamItem): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 

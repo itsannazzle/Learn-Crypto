@@ -10,13 +10,13 @@ plugins {
 
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.nextint.learncrypto.app"
-        minSdk 22
-        targetSdk 31
-        versionCode 1
+        minSdk 26
+        targetSdk 33
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

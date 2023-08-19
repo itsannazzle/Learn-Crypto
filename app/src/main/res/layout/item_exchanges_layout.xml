@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/textViewExchangeName"
             style="@style/title"
-            android:ems="5"
+            android:ems="4"
             android:maxLines="2"
             android:ellipsize="end"
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:id="@+id/textViewVol24h"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_24"
+
             android:text="@string/volume_24h"
             app:layout_constraintEnd_toStartOf="@+id/textViewExchangeMarket"
             app:layout_constraintStart_toEndOf="@+id/textViewExchangeName"

@@ -34,6 +34,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
     private val _getBindingExchangeFragment get() = _bindingExchangeFragment
     
     private lateinit var _exchangeAdapter : BaseAdapter<ExchangesResponseItem, ExchangeViewHolder>
+    private val _lazyExchangeAdapter by lazy { _exchangeAdapter }
     
     override fun setupViewModel(): Class<ExchangeViewModel> = ExchangeViewModel::class.java
 
@@ -96,7 +97,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                         response.data?.let()
                         {
                             _activityMain._dialog.hide()
-                            _exchangeAdapter.safeClearAndAddAll(response.data)
+                            _lazyExchangeAdapter.differ.submitList(response.data)
                         }
                         //setupView()
                     }
@@ -222,7 +223,8 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                 bundle.putString(ID_EXCHANGE_CONSTANT,item.id)
                 UtilitiesFunction.replaceFragment(parentFragmentManager, ExchangeDetailFragment(),bundle)
             }
-            }
+            },
+            ExchangeViewHolder.differCallback
         )
     }
 
@@ -230,7 +232,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
     {
         _getBindingExchangeFragment?.recyclerViewExchange?.apply {
             setVertical()
-            adapter = _exchangeAdapter
+            adapter = _lazyExchangeAdapter
         }
     }
 

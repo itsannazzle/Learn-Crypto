@@ -13,6 +13,3 @@ class DialogModel(
     var dialogTitle : Int? = R.string.dialog_default_title,
     var dialogMessage : String? = null
 ) : Parcelable
-{
-
-}

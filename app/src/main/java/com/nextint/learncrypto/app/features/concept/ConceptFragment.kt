@@ -30,6 +30,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
     private val _getBindingFragmentConcept get() = _bindingFragmentConcept
 
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
+    private val _lazyTagsAdapter by lazy { _tagsAdapter }
 
     override fun setupViewModel(): Class<TagsViewModel> = TagsViewModel::class.java
 
@@ -137,7 +138,9 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                     is ApiResponse.Success ->
                     {
                         response.data?.sortedBy { it.name  }
-                            ?.let { _tagsAdapter.safeClearAndAddAll(it) }
+                            ?.let {
+                                _lazyTagsAdapter.differ.submitList(it)
+                            }
 
                         displayView()
 
@@ -165,7 +168,8 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
                     bottomSheetDialog.arguments = bundle
                     bottomSheetDialog.show(parentFragmentManager, TAG_BOTTOM_SHEET_DIALOG)
                 }
-            }
+            },
+            TagsViewHolder.differCallback
         )
     }
 
@@ -173,7 +177,7 @@ class ConceptFragment : BaseFragment<TagsViewModel>()
     {
         _getBindingFragmentConcept?.recylerViewHelpfullDefiniton?.apply()
         {
-            adapter = _tagsAdapter
+            adapter = _lazyTagsAdapter
         }
     }
 

@@ -16,6 +16,7 @@ import com.nextint.learncrypto.app.features.exchanges.presentation.ExchangeViewM
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
+import com.nextint.learncrypto.app.features.utils.removeHTMLFormat
 import com.nextint.learncrypto.app.util.ID_EXCHANGE_CONSTANT
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
@@ -82,7 +83,8 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
                                 if (active) text = getString(R.string.active) else visibility =
                                     View.GONE
                             }
-                            _getBindingExchangeDetail?.textViewAboutExchangeValue?.text = description?.ifEmpty { getString(R.string.desc_not_found) } ?: getString(R.string.desc_not_found)
+                            _getBindingExchangeDetail?.textViewAboutExchangeValue?.text =
+                                description?.removeHTMLFormat()?.ifEmpty { getString(R.string.desc_not_found) } ?: description?.removeHTMLFormat()
                             _getBindingExchangeDetail?.textViewAdjRank?.text = adjustedRank?.toString() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewRepRank?.text = reportedRank?.toString() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewCurrencies?.text = currencies?.toString() ?: getString(R.string.dash)
@@ -91,7 +93,7 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
                             _getBindingExchangeDetail?.textViewFiats?.text = stringFiats.ifEmpty { getString(R.string.dash) }
                             _getBindingExchangeDetail?.textViewAdjVol24?.text = quotes?.adjustedVolume24h?.toString() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewRepVol24?.text = quotes?.reportedVolume24h?.toString() ?: getString(R.string.dash)
-                            _getBindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated?.convertStringToDate() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewScore?.text = confidenceScore?.toString() ?: getString(R.string.dash)
 
                         }

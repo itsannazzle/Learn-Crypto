@@ -110,5 +110,6 @@
     <string name="label_market_capitalization_all_time_high">Market capitalization all time high :</string>
     <string name="label_difference_from_all_time_high">Difference from all time high :</string>
     <string name="label_bitcoin_dominance_percentage">Bitcoin dominance percentage :</string>
+    <string name="label_total_cyrptocurrencies">Total Cryptocurrencies : </string>
 
 </resources>

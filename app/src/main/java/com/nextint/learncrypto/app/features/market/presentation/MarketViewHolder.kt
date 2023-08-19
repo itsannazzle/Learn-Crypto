@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
+import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 
@@ -13,6 +15,16 @@ class MarketViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     companion object {
         fun inflate(parent: ViewGroup) : MarketViewHolder {
             return MarketViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_market_crypto,parent,false))
+        }
+
+        val differCallback = object : DiffUtil.ItemCallback<MarketsByCoinIdResponseItem>(){
+            override fun areItemsTheSame(oldItem: MarketsByCoinIdResponseItem, newItem: MarketsByCoinIdResponseItem): Boolean {
+                return oldItem.exchangeId == newItem.exchangeId
+            }
+
+            override fun areContentsTheSame(oldItem: MarketsByCoinIdResponseItem, newItem: MarketsByCoinIdResponseItem): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 

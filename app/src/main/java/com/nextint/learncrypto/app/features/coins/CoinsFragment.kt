@@ -31,6 +31,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
     private val _getbindingCoinsFragment get() = _bindingCoinsFragment
 
     private lateinit var _coinAdapter : BaseAdapter<CoinsResponseItem, CoinViewHolder>
+    private val _lazyCoinAdapter by lazy { _coinAdapter }
 
     override fun setupViewModel(): Class<CoinsViewModel> = CoinsViewModel::class.java
 
@@ -74,7 +75,8 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
                     bundle.putString(ID_COIN_CONSTANT,item.id)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, CoinDetailFragment(),bundle)
                 }
-            }
+            },
+            CoinViewHolder.differCallback
         )
     }
 
@@ -92,13 +94,11 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
 
                         _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                     }
-
                     is ApiResponse.Success ->
                     {
                         _activityMain._dialog.hide()
-                        response.data?.let { _coinAdapter.safeClearAndAddAll(it) }
+                        response.data?.let { _lazyCoinAdapter.differ.submitList(it) }
                     }
-
                     is ApiResponse.Error ->
                     {
                         if (_dialogFragment.isAdded)
@@ -152,7 +152,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
     {
         _bindingCoinsFragment?.recylerViewCoins.apply {
             this?.setVertical()
-            this?.adapter = _coinAdapter
+            this?.adapter = _lazyCoinAdapter
         }
     }
 

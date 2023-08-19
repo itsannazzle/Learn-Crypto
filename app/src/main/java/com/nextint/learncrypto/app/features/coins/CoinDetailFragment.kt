@@ -33,7 +33,6 @@ import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimpl
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.*
-import kotlinx.coroutines.Job
 
 class CoinDetailFragment : BaseFragment<CoinsViewModel>()
 {
@@ -42,6 +41,8 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
     private var _coinId : String? = null
     private lateinit var _teamAdapter : BaseAdapter<TeamItem, TeamViewHolder>
     private lateinit var _tagsAdapter : BaseAdapter<TagByIdResponse, TagsViewHolder>
+    private val _lazyTeamAdapter by lazy { _teamAdapter }
+    private val _lazyTagsAdapter by lazy { _tagsAdapter }
 
     override fun setupViewModel(): Class<CoinsViewModel> = CoinsViewModel::class.java
 
@@ -97,13 +98,13 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                         with(response.data)
                         {
                             displayView(this)
-                            if (team != null)
+                            if (!team.isNullOrEmpty())
                             {
-                                _teamAdapter.safeClearAndAddAll(team)
+                                _lazyTeamAdapter.differ.submitList(team)
                             }
-                            if (tags != null)
+                            if (!tags.isNullOrEmpty())
                             {
-                                _tagsAdapter.safeClearAndAddAll(tags)
+                                _lazyTagsAdapter.differ.submitList(tags)
                             }
                         }
                     }
@@ -169,7 +170,8 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                     bundle.putString(ID_TEAM_CONSTANT,item.id)
                     UtilitiesFunction.replaceFragment(parentFragmentManager, PeopleFragment(),bundle)
                 }
-            }
+            },
+            TeamViewHolder.differCallback
         )
 
         _tagsAdapter = BaseAdapter(
@@ -186,7 +188,8 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                     bottomSheetDialog.arguments = bundle
                     bottomSheetDialog.show(parentFragmentManager,"TAG")
                 }
-            }
+            },
+            TagsViewHolder.differCallback
         )
     }
 
@@ -204,11 +207,11 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
         setupIndicatorColor()
         _getBindingCoinDetailFragment?.recylerViewTeam?.apply()
         {
-            adapter = _teamAdapter
+            adapter = _lazyTeamAdapter
         }
         _getBindingCoinDetailFragment?.recyclerViewTags?.apply()
         {
-            adapter = _tagsAdapter
+            adapter = _lazyTagsAdapter
         }
 
         with(_getBindingCoinDetailFragment!!)
@@ -228,9 +231,9 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 textViewSymbol.text = getString(R.string.symbol, symbol)
                 textViewType.text = getString(R.string.type,type?.replaceFirstChar { it.uppercase() } ?: R.string.dash)
                 textViewAboutCoin.text = description?.ifEmpty { getString(R.string.desc_not_found) } ?: getString(R.string.desc_not_found)
-                textViewStarted.text = startedAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
-                textViewFirstData.text = firstDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
-                textViewLastData.text = lastDataAt?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                textViewStarted.text = startedAt?.convertStringToDate() ?: getString(R.string.dash)
+                textViewFirstData.text = firstDataAt?.convertStringToDate()?: getString(R.string.dash)
+                textViewLastData.text = lastDataAt?.convertStringToDate() ?: getString(R.string.dash)
                 textViewDevStats.text = developmentStatus ?: getString(R.string.dash)
                 textViewHardWallet.text = getString(UtilitiesFunction.convertBooleanToYesOrNo(isHardwareWallet ?: false))
                 textViewProofType.text = proofType ?: getString(R.string.dash)
@@ -242,9 +245,9 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                     textViewWhitePaperSrc.text = getString(R.string.dash)
                 } else
                 {
-                    imageViewWhitePaper.loadImage(whitepaper?.thumbnail.toString())
-                    textViewWhitePaperSrc.text = whitepaper?.link ?: getString(R.string.dash)
-                    if (whitepaper?.link != null)
+                    imageViewWhitePaper.loadImage(whitepaper.thumbnail.toString())
+                    textViewWhitePaperSrc.text = whitepaper.link
+                    if (whitepaper.link != null)
                     {
                         imageViewWhitePaper.setOnClickListener()
                         {

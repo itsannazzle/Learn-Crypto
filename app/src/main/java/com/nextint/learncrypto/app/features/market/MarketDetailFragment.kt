@@ -18,6 +18,7 @@ import com.nextint.learncrypto.app.databinding.FragmentMarketDetailBinding
 import com.nextint.learncrypto.app.features.price_converter.presentation.PriceConverterViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+
 import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
@@ -75,7 +76,7 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                     this?.textViewDetailPrice?.text = UtilitiesFunction.convertToUSD(model.quotes.baseKeyPrice.price.toLong()).take(8)
                 }
 
-                this?.textViewDetailLastUpdate?.text = model.lastUpdated.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(
+                this?.textViewDetailLastUpdate?.text = model.lastUpdated.convertStringToDate() ?: getString(
                     R.string.dash)
                 this?.textViewConverter?.text = getString(R.string.convert_a_to_b,model.baseCurrencyName, model.quoteCurrencyName)
 
@@ -147,8 +148,8 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                         this?.textViewAmountToConvert?.text = data?.amount.toString()
                         this?.textViewConvertedPrice?.text = data?.price?.toLong()
                             ?.let { UtilitiesFunction.convertToUSD(it) }
-                        this?.textViewQuotedLastUpdate?.text = data?.quotePriceLastUpdated?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
-                        this?.textViewBaseLastUpdate?.text =data?.basePriceLastUpdated?.convertStringToDate()?.convertDateToStingPreviewSimple() ?: getString(R.string.dash)
+                        this?.textViewQuotedLastUpdate?.text = data?.quotePriceLastUpdated?.convertStringToDate() ?: getString(R.string.dash)
+                        this?.textViewBaseLastUpdate?.text =data?.basePriceLastUpdated?.convertStringToDate() ?: getString(R.string.dash)
                     }
                 }
                 is ApiResponse.Error ->
