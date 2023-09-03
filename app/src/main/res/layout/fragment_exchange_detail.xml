@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_16"
+    android:layout_margin="@dimen/dimen_16"
     android:orientation="vertical"
     android:scrollbars="none"
     tools:context=".features.exchanges.ExchangeDetailFragment">
@@ -52,8 +52,10 @@
             tools:text="@tools:sample/lorem/random"
             android:justificationMode="inter_word"
             tools:maxLines="5"
+            android:layout_gravity="fill"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAboutExchange"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/dimen_4"
             style="@style/body"
             android:textColor="@color/textColor"/>

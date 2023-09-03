@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import com.nextint.learncrypto.app.R
@@ -81,8 +82,13 @@ open class BaseActivity : AppCompatActivity() {
                             _dialog.show()
                         }
 
+
                         _dialog.hideDialog(this@BaseActivity)
                         _dialogAlert!!.showDialog(this@BaseActivity)
+                        _dialogAlert!!.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(
+                            ContextCompat.getColor(this@BaseActivity, R.color.primary))
+                        _dialogAlert!!.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(
+                            ContextCompat.getColor(this@BaseActivity, R.color.green))
                     }
 
                 }

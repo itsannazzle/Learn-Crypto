@@ -15,6 +15,11 @@ class BaseAdapter<Model : Any, ViewHolder : RecyclerView.ViewHolder>
     private val onDetachFromWindow : ((ViewHolder) -> Unit)? = null
     ) : RecyclerView.Adapter<ViewHolder>()
     {
+        companion object
+        {
+            private var intSize : Int? = null
+        }
+
         private var item = listOf<Model>()
         private var onGetItemViewType: ((position : Int) -> Int)? = null
         val differ = AsyncListDiffer(this, differCallback)

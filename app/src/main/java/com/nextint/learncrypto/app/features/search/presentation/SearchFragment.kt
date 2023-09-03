@@ -158,6 +158,8 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                 }
                 is ApiResponse.Success ->
                 {
+                    _tagsAdapter.notifyDataSetChanged()
+
                     _activityMain._dialog.hide()
                    response.data?.let()
                    {
@@ -166,16 +168,16 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
                            this?.imageViewSearchDefault?.isVisible = false
                            this?.tvResult?.isVisible = false
                            val data = it
-                           if (data.tags.isNotEmpty()) _lazyTagsAdapter.differ.submitList(data.tags)
+                            _lazyTagsAdapter.differ.submitList(data.tags)
                            this?.tvTags?.isVisible = data.tags.isNotEmpty()
 
-                           if (data.exchanges.isNotEmpty()) _lazyExchangeAdapter.differ.submitList(data.exchanges)
+                           _lazyExchangeAdapter.differ.submitList(data.exchanges)
                            this?.tvExchanges?.isVisible = data.exchanges.isNotEmpty()
 
-                           if (data.currencies.isNotEmpty()) _lazyCoinAdapter.differ.submitList(data.currencies)
+                           _lazyCoinAdapter.differ.submitList(data.currencies)
                            this?.tvCurrencies?.isVisible = data.currencies.isNotEmpty()
 
-                           if (data.people.isNotEmpty()) _lazyTeamAdapter.differ.submitList(data.people)
+                           _lazyTeamAdapter.differ.submitList(data.people)
                            this?.tvPeople?.isVisible = data.people.isNotEmpty()
 
                            data.let {

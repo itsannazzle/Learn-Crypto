@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.BuildConfig
@@ -198,7 +199,8 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
             imageMenu.loadImage("https://images.unsplash.com/photo-1625208012722-1a8ab026b846?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTZ8fGV0aGVyZXVtfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60")
             cardMenu.setOnClickListener {
                 //it.background = context?.getDrawable(R.color.primary)
-                UtilitiesFunction.replaceFragment(parentFragmentManager, PriceConverterFragment())
+//                UtilitiesFunction.replaceFragment(parentFragmentManager, PriceConverterFragment())
+                Toast.makeText(_activityMain, "Coming Soon!", Toast.LENGTH_SHORT).show()
             }
         }
         with(_getBindingHomeFragment!!)

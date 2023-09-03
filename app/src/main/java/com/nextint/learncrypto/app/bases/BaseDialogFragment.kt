@@ -46,7 +46,7 @@ class BaseDialogFragment : DialogFragment()
         dialog?.window?.setBackgroundDrawableResource(R.drawable.backgroud_dialog)
         _getbindingBaseDialogFragment?.textViewDialogReportError?.setOnClickListener()
         {
-            Toast.makeText(requireContext(), "Nanti dulu", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Santai dulu ga sih", Toast.LENGTH_SHORT).show()
         }
         modelDialog?.let { showErrorDialog(it) }
     }
@@ -72,6 +72,26 @@ class BaseDialogFragment : DialogFragment()
                     {
                         this?.imageViewDialog?.setImageResource(R.drawable.ic_error_404)
                         this?.textViewDialogMessage?.text = getString(R.string.dialog_404_message)
+                        this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
+                        this?.buttonDialog?.setOnClickListener()
+                        {
+                            modelDialog.retryActionDialog?.invoke() ?: dismiss()
+                        }
+                    }
+                } else
+                {
+                    Toast.makeText(requireContext(), getString(R.string.dialog_default_title),Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            400 ->
+            {
+                if (_getbindingBaseDialogFragment!= null)
+                {
+                    with(_getbindingBaseDialogFragment)
+                    {
+                        this?.imageViewDialog?.setImageResource(R.drawable.badrequest)
+                        this?.textViewDialogMessage?.text = modelDialog.dialogMessage
                         this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
                         this?.buttonDialog?.setOnClickListener()
                         {

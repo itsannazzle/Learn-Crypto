@@ -16,7 +16,7 @@ android {
         applicationId "com.nextint.learncrypto.app"
         minSdk 26
         targetSdk 33
-        versionCode 3
+        versionCode 6
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -30,9 +30,8 @@ android {
         }
         development
                 {
-                    debuggable true
                     minifyEnabled false
-                    shrinkResources false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                     signingConfig signingConfigs.debug
                     buildConfigField "String", 'BASE_URL', '"https://api.coinpaprika.com/v1/"'
                 }

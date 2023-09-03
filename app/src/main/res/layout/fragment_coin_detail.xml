@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/textViewCoinName"
             style="@style/title"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="36sp"
@@ -31,11 +31,10 @@
             layout="@layout/item_indicator_status_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:layout_marginEnd="@dimen/dimen_8"
-            app:layout_constraintStart_toEndOf="@+id/textViewCoinName"
-            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
+            android:layout_marginTop="@dimen/dimen_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"
+            app:layout_goneMarginTop="@dimen/dimen_8"/>
 
         <include
             android:id="@+id/indicatorOpenSource"
@@ -43,10 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_16"
-
-            app:layout_constraintStart_toEndOf="@+id/indicatorActive"
-            app:layout_constraintTop_toTopOf="@id/textViewCoinName" />
+            android:layout_marginTop="@dimen/dimen_8"
+            app:layout_constraintStart_toEndOf="@id/indicatorActive"
+            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
 
         <include
             android:id="@+id/indicatorNew"
@@ -54,10 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_16"
-
+            android:layout_marginTop="@dimen/dimen_8"
             app:layout_constraintStart_toEndOf="@+id/indicatorOpenSource"
-            app:layout_constraintTop_toTopOf="@+id/textViewCoinName" />
+            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
 
         <TextView
             android:id="@+id/textViewSymbol"
@@ -68,7 +65,7 @@
             android:text="@string/symbol"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinName" />
+            app:layout_constraintTop_toBottomOf="@id/indicatorActive" />
 
         <TextView
             android:id="@+id/textViewType"

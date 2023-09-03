@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/dimen_16"
         android:background="@drawable/edit_text_backgroud"
         android:backgroundTint="@color/primaryAccent"
-        android:hint="Enter amount. ex : 1.2"
+        android:hint="Enter amount. ex : 1"
         android:inputType="number"
         android:maxLength="10"
         android:maxLines="1"

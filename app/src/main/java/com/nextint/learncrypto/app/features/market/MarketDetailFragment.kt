@@ -50,6 +50,7 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
         // Inflate the layout for this fragment
         val model = arguments?.getParcelable<MarketsByCoinIdResponseItem>(MODEL_PARCEL_MARKET_BY_ID)
         _dialogFragment = BaseDialogFragment()
+        _modelDialog = DialogModel()
         _activityMain = activity as MainActivity
         _bindingFragmentMarketDetail= FragmentMarketDetailBinding.inflate(layoutInflater,container,false)
         if (model!= null)
@@ -93,10 +94,13 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                     } catch (exception : Exception)
                     {
                         _modelDialog?.dialogTitle = R.string.dialog_input_invalid
+                        _modelDialog?.httpErrorCode = 400
                         _modelDialog?.dialogMessage = getString(R.string.dialog_message_invalid)
+
                         val bundle = Bundle()
                         bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
                         _dialogFragment.arguments = bundle
+//                        _modelDialog?.let { _dialogFragment.show(childFragmentManager, TAG_DIALOG) }
                         _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                     }
 //                    if (!stringText.isNullOrEmpty())
