@@ -11,6 +11,7 @@ import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
 import com.nextint.learncrypto.app.bases.BaseBlankFragment
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
@@ -56,6 +57,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
         _viewModel.getMarketByCoin(getString(R.string.id_bitcoin))
         _activityMain = activity as MainActivity
         _modelDialog = DialogModel()
+        _dialogFragment = BaseDialogFragment()
         _activityMain._dialog.show()
         return _getBindingMarketFragment?.root
     }
@@ -112,7 +114,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
 
     private fun observeLiveData()
     {
-        _viewModel.marketByCoin.observe(viewLifecycleOwner
+        _viewModel.marketByCoinBTC.observe(viewLifecycleOwner
         ) { response ->
 
             when (response)
@@ -173,7 +175,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
             }
         }
 
-        _viewModel.marketByCoin2.observe(viewLifecycleOwner
+        _viewModel.marketByCoinETH.observe(viewLifecycleOwner
         ) { response ->
 
             when (response) {
@@ -227,7 +229,7 @@ class MarketFragment : BaseFragment<MarketViewModel>()
             }
         }
 
-        _viewModel.marketByCoin3.observe(viewLifecycleOwner
+        _viewModel.marketByCoinUSDT.observe(viewLifecycleOwner
         ) { response ->
 
             when (response) {

@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
 
 
@@ -16,7 +17,7 @@ android {
         applicationId "com.nextint.learncrypto.app"
         minSdk 26
         targetSdk 33
-        versionCode 6
+        versionCode 8
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -82,5 +83,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.7'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
     implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
+    implementation("com.google.firebase:firebase-perf-ktx:20.4.1")
+
+
+
+
 
 }

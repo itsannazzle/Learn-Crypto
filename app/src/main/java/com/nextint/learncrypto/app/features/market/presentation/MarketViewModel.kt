@@ -8,20 +8,19 @@ import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdRe
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.features.market.domain.MarketUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MarketViewModel @Inject constructor(private val useCase: MarketUseCase) : ViewModel()
 {
     private val _marketByCoin : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
-    val marketByCoin : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin
+    val marketByCoinBTC : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin
 
     private val _marketByCoin2 : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
-    val marketByCoin2 : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin2
+    val marketByCoinETH : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin2
 
     private val _marketByCoin3 : MutableLiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> = MutableLiveData()
-    val marketByCoin3 : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin3
+    val marketByCoinUSDT : LiveData<ApiResponse<List<MarketsByCoinIdResponseItem>>> get() = _marketByCoin3
 
     private val _message : MutableLiveData<String> = MutableLiveData()
     val message : LiveData<String> get() = _message
