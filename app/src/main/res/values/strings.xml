@@ -73,9 +73,10 @@
     <string name="market_list">Bitcoin Market</string>
     <string name="BUTTON_CANCEL">Cancel</string>
     <string name="BUTTON_RETRY">Retry</string>
-    <string name="BUTTON_OK">Ok</string>
+    <string name="BUTTON_OK">OK</string>
     <string name="report_error">Report error?</string>
     <string name="desc_not_found">Description not found</string>
+    <string name="not_found">Not found</string>
     <string name="dialog_no_internet_title">Oops, No internet connection</string>
     <string name="dialog_no_internet_message">Don\'t worry you can comeback anytime</string>
     <string name="dialog_default_title">Hhmm..something went wrong\n</string>

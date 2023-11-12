@@ -3,6 +3,7 @@ package com.nextint.learncrypto.app.features.coins
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -102,9 +103,17 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                             {
                                 _lazyTeamAdapter.differ.submitList(team)
                             }
+                            else
+                            {
+                                _getBindingCoinDetailFragment?.textViewTeamNotFound?.visibility = View.VISIBLE
+                            }
                             if (!tags.isNullOrEmpty())
                             {
                                 _lazyTagsAdapter.differ.submitList(tags)
+                            }
+                            else
+                            {
+                                _getBindingCoinDetailFragment?.textViewTagsNotFound?.visibility = View.VISIBLE
                             }
                         }
                     }

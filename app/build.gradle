@@ -77,6 +77,8 @@ dependencies {
 
     implementation "androidx.activity:activity-ktx:1.5.1"
     implementation "androidx.fragment:fragment-ktx:1.5.1"
+    implementation "androidx.datastore:datastore-preferences-core:1.0.0"
+
 
     /* FIREBASE */
     implementation "com.google.firebase:firebase-bom:30.3.2"

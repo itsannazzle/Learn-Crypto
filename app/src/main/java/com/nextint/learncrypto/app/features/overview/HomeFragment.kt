@@ -1,16 +1,16 @@
 package com.nextint.learncrypto.app.features.overview
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
@@ -24,14 +24,14 @@ import com.nextint.learncrypto.app.features.concept.ConceptFragment
 import com.nextint.learncrypto.app.features.exchanges.ExchangesFragment
 import com.nextint.learncrypto.app.features.market.MarketFragment
 import com.nextint.learncrypto.app.features.overview.presentation.OverviewViewModel
-import com.nextint.learncrypto.app.features.price_converter.PriceConverterFragment
 import com.nextint.learncrypto.app.features.search.presentation.SearchFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
-import com.nextint.learncrypto.app.features.utils.cornerImage
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : BaseFragment<OverviewViewModel>() {
@@ -57,6 +57,10 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
         _modelDialog = DialogModel()
         _activityMain = activity as MainActivity
         _activityMain._dialog.show()
+        lifecycleScope.launch(Dispatchers.IO)
+        {
+            _activityMain.saveValue(MainActivity.keyOnBoardingSession,true)
+        }
         return _getBindingHomeFragment?.root
     }
 
@@ -155,6 +159,10 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
 
     private fun displayView()
     {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val result = _activityMain.readValue(stringPreferencesKey("a"))
+
+        }
         with(_getBindingHomeFragment?.menuConcept!!){
             textViewTitle.text = getString(R.string.menu_concept)
             imageMenu.clipToOutline = true

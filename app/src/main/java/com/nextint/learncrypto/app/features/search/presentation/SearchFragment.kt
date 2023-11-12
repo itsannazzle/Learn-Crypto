@@ -4,12 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
@@ -17,7 +16,10 @@ import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
 import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
-import com.nextint.learncrypto.app.core.source.remote.response.*
+import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
+import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
+import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
 import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentSearchBinding
 import com.nextint.learncrypto.app.features.coins.CoinDetailFragment
@@ -31,13 +33,17 @@ import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.setHorizontal
-import com.nextint.learncrypto.app.util.*
+import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
+import com.nextint.learncrypto.app.util.ID_EXCHANGE_CONSTANT
+import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
+import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
+import com.nextint.learncrypto.app.util.MODEL_PARCEL_TAG
+import com.nextint.learncrypto.app.util.TAG_BOTTOM_SHEET_DIALOG
+import com.nextint.learncrypto.app.util.TAG_DIALOG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.math.log
 
 
 class SearchFragment : BaseFragment<SearchViewModel>() {

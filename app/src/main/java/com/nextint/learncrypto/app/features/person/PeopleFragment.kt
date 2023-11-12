@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
@@ -94,6 +93,10 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                                         setupPeopleSocialMedia(imageViewPeopleLinkedin,response.data)
                                         setupPeopleSocialMedia(imageViewPeopleGitHub,response.data)
                                     }
+                                    else
+                                    {
+                                        textViewLinksNotFound.visibility = View.VISIBLE
+                                    }
 
                                 }
                             }
@@ -111,6 +114,26 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     {
         when(imageView)
         {
+                _getBindingFragmentPeople?.imageViewPeopleWebLink ->
+                {
+                    with(imageView)
+                    {
+                        if (peopleResponse.links?.additional.isNullOrEmpty())
+                        {
+                            visibility = setVisibility(false)
+                        }
+                        else
+                        {
+                            for (webLink in peopleResponse.links!!.additional)
+                            { setOnClickListener()
+                            {
+                                UtilitiesFunction.openBrowserWithURL(requireContext(),webLink.url)
+                            }
+                            }
+                        }
+                    }
+                }
+
                 _getBindingFragmentPeople?.imageViewPeopleGitHub ->
                 {
                     with(imageView)

@@ -79,45 +79,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPeopleTotalPosition" />
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/textViewFindPeople"
-       android:orientation="horizontal"
-       android:layout_marginTop="@dimen/dimen_16"
-       android:gravity="center">
+    <TextView
+        android:id="@+id/textViewLinksNotFound"
+        style="@style/body"
+        android:text="@string/not_found"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewFindPeople"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:visibility="gone" />
 
-       <ImageView
-           android:id="@+id/imageViewPeopleMedium"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@drawable/ic_bi_medium_32"
-           android:layout_marginEnd="@dimen/dimen_24"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_48"
+        android:paddingEnd="@dimen/dimen_48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewFindPeople">
 
-       <ImageView
-           android:id="@+id/imageViewPeopleGitHub"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@drawable/ic_ant_design_github_filled_32"
-           android:layout_marginEnd="@dimen/dimen_24"
-           />
+        <ImageView
+            android:id="@+id/imageViewPeopleWebLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_web_browser" />
 
-       <ImageView
-           android:id="@+id/imageViewPeopleLinkedin"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@drawable/ic_logos_linkedin_32"
-           android:layout_marginEnd="@dimen/dimen_24"/>
+        <ImageView
+            android:id="@+id/imageViewPeopleMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bi_medium_32" />
 
-       <ImageView
-           android:id="@+id/imageViewPeopleTwitter"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@drawable/ic_logos_twitter_32" />
+        <ImageView
+            android:id="@+id/imageViewPeopleGitHub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ant_design_github_filled_32"
+
+            />
+
+        <ImageView
+            android:id="@+id/imageViewPeopleLinkedin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_logos_linkedin_32" />
+
+        <ImageView
+            android:id="@+id/imageViewPeopleTwitter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_logos_twitter_32" />
 
 
-   </LinearLayout>
+    </LinearLayout>
 
 
 

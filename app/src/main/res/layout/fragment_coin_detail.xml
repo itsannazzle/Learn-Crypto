@@ -94,7 +94,7 @@
             style="@style/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_4"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAbout"
@@ -257,6 +257,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewWhitePaperSrc" />
 
+        <TextView
+            android:id="@+id/textViewTeamNotFound"
+            style="@style/body"
+            android:text="@string/not_found"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTeam"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylerViewTeam"
             android:layout_width="wrap_content"
@@ -277,6 +286,15 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recylerViewTeam" />
+
+        <TextView
+            android:id="@+id/textViewTagsNotFound"
+            style="@style/body"
+            android:text="@string/not_found"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTags"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTags"
