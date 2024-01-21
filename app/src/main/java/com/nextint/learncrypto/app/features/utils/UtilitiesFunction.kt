@@ -19,6 +19,7 @@ import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.services.FirebaseNotificationService
 import com.nextint.learncrypto.app.models.NotificationModel
+import com.nextint.learncrypto.app.util.EnumConstants
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_CHANNELID
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_CHANNELNAME
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_ID
@@ -34,6 +35,21 @@ import java.util.*
 object UtilitiesFunction {
     fun setVisibility(visible : Boolean) : Int {
         return if (visible) View.VISIBLE else View.GONE
+    }
+
+    fun setVisibilityNew(visible : Boolean, visibilityState : EnumConstants.ENUM_VISIBILITY_STATE) : Int
+    {
+        if (visible)
+        {
+            return View.VISIBLE
+        } else
+        {
+            return when(visibilityState)
+            {
+                EnumConstants.ENUM_VISIBILITY_STATE.GONE -> View.GONE
+                EnumConstants.ENUM_VISIBILITY_STATE.INVINSIBLE -> View.INVISIBLE
+            }
+        }
     }
 
     fun replaceFragment(fragmentManager: FragmentManager, fragment: Fragment, bundle : Bundle? = null) {
@@ -53,7 +69,8 @@ object UtilitiesFunction {
     }
 
     fun convertToPercentage(value : Double) : String {
-        return value.toString().plus("%")
+        val stringConfidenceScore = value * 100
+        return stringConfidenceScore.toString().take(5).plus("%")
     }
 
     fun convertBooleanToYesOrNo(boolean: Boolean) : Int

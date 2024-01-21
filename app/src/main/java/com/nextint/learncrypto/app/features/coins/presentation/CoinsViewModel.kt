@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.coins.domain.CoinsUseCase
 import com.nextint.learncrypto.app.features.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

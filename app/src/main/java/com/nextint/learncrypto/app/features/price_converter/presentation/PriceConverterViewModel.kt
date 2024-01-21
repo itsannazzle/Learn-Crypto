@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nextint.learncrypto.app.core.source.remote.response.PriceConvertedResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.price_converter.domain.PriceConverterUseCase
 import com.nextint.learncrypto.app.features.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers

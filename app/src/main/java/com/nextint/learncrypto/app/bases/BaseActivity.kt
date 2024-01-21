@@ -2,14 +2,15 @@ package com.nextint.learncrypto.app.bases
 
 import android.app.Dialog
 import android.content.DialogInterface
-import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.dismissDialog
@@ -18,12 +19,17 @@ import com.nextint.learncrypto.app.features.utils.hideDialogForSoftDialog
 import com.nextint.learncrypto.app.features.utils.initiateAlertDialogResponse
 import com.nextint.learncrypto.app.features.utils.initiateDialogLoading
 import com.nextint.learncrypto.app.features.utils.showDialog
+import com.nextint.learncrypto.app.features.utils.showLoading
 
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var _dialog : Dialog
     var _dialogAlert : AlertDialog? = null
-    protected lateinit var _dialogFragment : BaseDialogFragment
+    val _remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+    val _configSettings = remoteConfigSettings {
+        minimumFetchIntervalInSeconds = 36000
+    }
+//    protected lateinit var _dialogFragment : BaseDialogFragment
     protected var _modelDialog : DialogModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +55,7 @@ open class BaseActivity : AppCompatActivity() {
         if (isShowing)
         {
             _dialogAlert = AlertDialog.Builder(this).create()
+//            _dialogAlert?.setView(layoutInflater.inflate(R.layout.fragment_base_dialog))
             _dialogAlert!!.initiateAlertDialogResponse()
         }
         return isShowing

@@ -22,12 +22,13 @@
 
         <EditText
             android:id="@+id/textInputLayoutSearch"
+            style="@style/body"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
             android:background="@drawable/edit_text_backgroud"
             android:backgroundTint="@color/primaryAccent"
             android:clickable="true"
-            android:hint="Search"
+            android:hint="Search anything"
             android:padding="@dimen/dimen_8"
             android:singleLine="true"
             android:focusable="false"
@@ -40,6 +41,7 @@
         <TextView
             android:id="@+id/textViewMarketOverview"
             style="@style/title"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/market_overview"
@@ -175,6 +177,7 @@
         <TextView
             android:id="@+id/textViewTopics"
             style="@style/title"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_topics"

@@ -1,192 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/dimen_16"
     android:orientation="vertical"
-    android:scrollbars="none"
     tools:context=".features.exchanges.ExchangeDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/imageViewButtonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_primary_arrow_back_24" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingStart="@dimen/dimen_16"
+            android:paddingEnd="@dimen/dimen_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewDetailExchangeName"
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Exchange name" />
+
+            <include
+                android:id="@+id/indicatorExchangeActive"
+                layout="@layout/item_indicator_status_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/textViewDetailExchangeName"
+                app:layout_constraintTop_toTopOf="@id/textViewDetailExchangeName"
+                app:layout_constraintBottom_toBottomOf="@id/textViewDetailExchangeName"
+                android:layout_marginStart="@dimen/dimen_8"/>
+
+            <TextView
+                android:id="@+id/textViewAboutExchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about"
+                style="@style/subtitle"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDetailExchangeName"
+                android:layout_marginTop="@dimen/dimen_8"/>
+
+            <TextView
+                android:id="@+id/textViewAboutExchangeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@tools:sample/lorem/random"
+                android:justificationMode="inter_word"
+                tools:maxLines="5"
+                android:layout_gravity="fill"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAboutExchange"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dimen_4"
+                style="@style/body"
+                android:textColor="@color/textColor"/>
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_marginTop="@dimen/dimen_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAboutExchangeValue"
+                style="@style/tableLayoutMatchWrap">
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/body"
+                        android:layout_marginEnd="105dp"
+                        android:text="@string/adjusted_rank" />
+
+                    <TextView
+                        android:id="@+id/textViewAdjRank"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/reported_rank" />
+
+                    <TextView
+                        android:id="@+id/textViewRepRank"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/currencies" />
+
+                    <TextView
+                        android:id="@+id/textViewCurrencies"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/market" />
+
+                    <TextView
+                        android:id="@+id/textViewMarket"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/fiats" />
+
+                    <TextView
+                        android:id="@+id/textViewFiats"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/adjusted_volume_24h" />
+
+                    <TextView
+                        android:id="@+id/textViewAdjVol24"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="412345" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/reported_volume_24h" />
+
+                    <TextView
+                        android:id="@+id/textViewRepVol24"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/updated" />
+
+                    <TextView
+                        android:id="@+id/textViewLastUpdate"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                    <TextView
+                        style="@style/body"
+                        android:text="@string/confidence_score" />
+
+                    <TextView
+                        android:id="@+id/textViewScore"
+                        style="@style/body"
+                        android:layout_weight="1"
+                        tools:text="@string/started_at" />
+                </TableRow>
+            </TableLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
-        <TextView
-            android:id="@+id/textViewDetailExchangeName"
-            style="@style/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Exchange name" />
-
-        <include
-            android:id="@+id/indicatorExchangeActive"
-            layout="@layout/item_indicator_status_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/textViewDetailExchangeName"
-            app:layout_constraintTop_toTopOf="@id/textViewDetailExchangeName"
-            app:layout_constraintBottom_toBottomOf="@id/textViewDetailExchangeName"
-            android:layout_marginStart="@dimen/dimen_8"/>
-
-        <TextView
-            android:id="@+id/textViewAboutExchange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about"
-            style="@style/subtitle"
-            android:textColor="@color/textColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewDetailExchangeName"
-            android:layout_marginTop="@dimen/dimen_8"/>
-
-        <TextView
-            android:id="@+id/textViewAboutExchangeValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@tools:sample/lorem/random"
-            android:justificationMode="inter_word"
-            tools:maxLines="5"
-            android:layout_gravity="fill"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAboutExchange"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/dimen_4"
-            style="@style/body"
-            android:textColor="@color/textColor"/>
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_marginTop="@dimen/dimen_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAboutExchangeValue"
-            style="@style/tableLayoutMatchWrap">
-
-            <TableRow>
-
-                <TextView
-                    style="@style/body"
-                    android:layout_marginEnd="105dp"
-                    android:text="@string/adjusted_rank" />
-
-                <TextView
-                    android:id="@+id/textViewAdjRank"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/reported_rank" />
-
-                <TextView
-                    android:id="@+id/textViewRepRank"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/currencies" />
-
-                <TextView
-                    android:id="@+id/textViewCurrencies"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/market" />
-
-                <TextView
-                    android:id="@+id/textViewMarket"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/fiats" />
-
-                <TextView
-                    android:id="@+id/textViewFiats"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/adjusted_volume_24h" />
-
-                <TextView
-                    android:id="@+id/textViewAdjVol24"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="412345" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/reported_volume_24h" />
-
-                <TextView
-                    android:id="@+id/textViewRepVol24"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/updated" />
-
-                <TextView
-                    android:id="@+id/textViewLastUpdate"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/confidence_score" />
-
-                <TextView
-                    android:id="@+id/textViewScore"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-        </TableLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</LinearLayout>

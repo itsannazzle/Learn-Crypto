@@ -11,13 +11,16 @@ import androidx.core.content.ContextCompat
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.remoteconfig.ConfigUpdate
+import com.google.firebase.remoteconfig.ConfigUpdateListener
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.nextint.learncrypto.app.BuildConfig
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentHomeBinding
 import com.nextint.learncrypto.app.features.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.concept.ConceptFragment
@@ -32,6 +35,8 @@ import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import kotlin.system.exitProcess
 
 
 class HomeFragment : BaseFragment<OverviewViewModel>() {
@@ -74,6 +79,62 @@ class HomeFragment : BaseFragment<OverviewViewModel>() {
     override fun onResume() {
         super.onResume()
         observeLiveData()
+        val param3State = _activityMain._remoteConfig.getBoolean("PARAM3")
+        if (param3State) {
+            if (_dialogFragment.isAdded) {
+                _dialogFragment.dismiss()
+//                                _viewModel.getMarketOverview()
+            } else {
+                val modelDialog = DialogModel()
+                modelDialog.httpErrorCode = 409
+                modelDialog.retryActionDialog = {
+                    exitProcess(1);
+                }
+                val bundle = Bundle()
+                bundle.putParcelable("MODEL_DIALOG", modelDialog)
+                _dialogFragment.arguments = bundle
+                _dialogFragment.show(childFragmentManager, "TAG")
+            }
+        }
+
+
+
+
+        _activityMain._remoteConfig.addOnConfigUpdateListener(object : ConfigUpdateListener {
+            override fun onUpdate(configUpdate : ConfigUpdate) {
+                Timber.d("Updated keys: " + configUpdate.updatedKeys);
+
+                if (configUpdate.updatedKeys.contains("PARAM3")) {
+                    _activityMain._remoteConfig.activate().addOnCompleteListener {
+                        val param3State = _activityMain._remoteConfig.getBoolean("PARAM3")
+
+                        if (param3State) {
+                            if (_dialogFragment.isAdded) {
+                                _dialogFragment.dismiss()
+//                                _viewModel.getMarketOverview()
+                            } else {
+                                val modelDialog = DialogModel()
+                                modelDialog.httpErrorCode = 409
+                                modelDialog.retryActionDialog = {
+                                    exitProcess(1);
+                                }
+                                val bundle = Bundle()
+                                bundle.putParcelable("MODEL_DIALOG", modelDialog)
+                                _dialogFragment.arguments = bundle
+                                _dialogFragment.show(childFragmentManager, "TAG")
+                            }
+                        } else {
+
+//                            Toast.makeText(requireContext(), "falseee", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onError(error : FirebaseRemoteConfigException) {
+                Timber.d("Config update error with code: " + error.code)
+            }
+        })
     }
 
 

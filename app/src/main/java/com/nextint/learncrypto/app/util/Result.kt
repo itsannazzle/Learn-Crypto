@@ -1,4 +1,4 @@
-package com.nextint.learncrypto.app.core.source.remote.service
+package com.nextint.learncrypto.app.util
 
 sealed class ApiResponse<out R> {
     class Success<out T>(val data: T? = null) : ApiResponse<T>()

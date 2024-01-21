@@ -3,7 +3,6 @@ package com.nextint.learncrypto.app.features.coins
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +20,7 @@ import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.Links
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinDetailBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewHolder
@@ -30,7 +29,6 @@ import com.nextint.learncrypto.app.features.person.presentation.TeamViewHolder
 import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
-import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.features.utils.loadImage
 import com.nextint.learncrypto.app.util.*
@@ -222,6 +220,9 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
         {
             adapter = _lazyTagsAdapter
         }
+        _getBindingCoinDetailFragment?.imageViewButtonBack?.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         with(_getBindingCoinDetailFragment!!)
         {
@@ -248,7 +249,8 @@ class CoinDetailFragment : BaseFragment<CoinsViewModel>()
                 textViewProofType.text = proofType ?: getString(R.string.dash)
                 textViewOrganizationStatus.text = orgStructure ?: getString(R.string.dash)
                 textViewHasiAlgo.text = hashAlgorithm ?: getString(R.string.dash)
-                if (whitepaper?.link?.isNullOrEmpty() == null)
+                textViewRank.text = rank?.toString() ?: "-"
+                if (whitepaper?.link?.isEmpty() == null)
                 {
                     imageViewWhitePaper.isVisible = false
                     textViewWhitePaperSrc.text = getString(R.string.dash)

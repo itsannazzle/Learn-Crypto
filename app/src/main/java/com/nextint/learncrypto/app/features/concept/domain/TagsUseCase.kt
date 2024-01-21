@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.features.concept.domain
 
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.concept.data.ITagsRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

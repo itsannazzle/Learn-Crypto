@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>PARAM3</key>
+    <value>false</value>
+  </entry>
+  <entry>
+    <key>PARAM1</key>
+    <value />
+  </entry>
+  <entry>
+    <key>PARAM2</key>
+    <value />
+  </entry>
+</defaults>

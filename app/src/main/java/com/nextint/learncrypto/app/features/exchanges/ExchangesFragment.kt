@@ -13,7 +13,7 @@ import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseAdapter
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentExchangesBinding
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory
@@ -22,6 +22,7 @@ import com.nextint.learncrypto.app.features.exchanges.presentation.ExchangeViewM
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.setVertical
+import com.nextint.learncrypto.app.util.EnumConstants
 import com.nextint.learncrypto.app.util.ID_EXCHANGE_CONSTANT
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
@@ -97,7 +98,8 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                         response.data?.let()
                         {
                             _activityMain._dialog.hide()
-                            _lazyExchangeAdapter.differ.submitList(response.data)
+                            val responseDataSorted = response.data.sortedBy { it.reportedRank }
+                            _lazyExchangeAdapter.differ.submitList(responseDataSorted)
                         }
                         //setupView()
                     }
@@ -154,7 +156,6 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                         response.data?.let()
                         {
                             _getBindingExchangeFragment?.textViewExchangeDesc?.text = response.data.description
-                            _getBindingExchangeFragment?.textViewWhatIs?.text = getString(R.string.what_is, response.data.name)
                         }
 
                     }
@@ -193,11 +194,6 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
                 }
             }
 
-//        _viewModel.loading.observe(viewLifecycleOwner,
-//            {
-//
-//            })
-
         _viewModel.message.observe(viewLifecycleOwner)
             {
                 _modelDialog?.dialogMessage = it
@@ -216,7 +212,7 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
     {
         _exchangeAdapter = BaseAdapter(
             { parent, _ -> ExchangeViewHolder.inflate(parent) },
-            { viewHolder, _, item -> viewHolder.bind(item)
+            { viewHolder, _, item -> viewHolder.bind(item,EnumConstants.ENUM_SOURCE_VIEW.EXCHANGE)
             viewHolder.setAction()
             {
                 val bundle = Bundle()
@@ -233,6 +229,10 @@ class ExchangesFragment : BaseFragment<ExchangeViewModel>() {
         _getBindingExchangeFragment?.recyclerViewExchange?.apply {
             setVertical()
             adapter = _lazyExchangeAdapter
+        }
+
+        _getBindingExchangeFragment?.imageViewButtonBack?.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
     }
 

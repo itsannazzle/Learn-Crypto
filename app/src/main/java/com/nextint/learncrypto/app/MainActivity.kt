@@ -16,7 +16,9 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.nextint.learncrypto.app.bases.BaseActivity
+import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.databinding.ActivityMainBinding
 import com.nextint.learncrypto.app.features.coins.CoinsFragment
 import com.nextint.learncrypto.app.features.onboarding.OnBoardFragment
@@ -24,12 +26,14 @@ import com.nextint.learncrypto.app.features.overview.HomeFragment
 import com.nextint.learncrypto.app.features.search.presentation.SearchFragment
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.initiateDialogLoading
+import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.STRING_DATASTORE_NAME
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_CHANNELID
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_CHANNELNAME
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_ID
 import com.nextint.learncrypto.app.util.STRING_NOTIFICATION_STATE
 import com.nextint.learncrypto.app.util.STRING_ONBOARDING_SESSION
+import com.nextint.learncrypto.app.util.TAG_DIALOG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -91,6 +95,30 @@ class MainActivity : BaseActivity()
             Timber.d("device token :  $deviceToken")
         }
 
+        _remoteConfig.setConfigSettingsAsync(_configSettings)
+
+        _remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+
+        _remoteConfig.fetchAndActivate()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val updated = task.result
+                    Timber.d("Config params updated: $updated")
+//                    Toast.makeText(
+//                        this,
+//                        "Fetch and activate succeeded",
+//                        Toast.LENGTH_SHORT,
+//                    ).show()
+                } else {
+//                    Toast.makeText(
+//                        this,
+//                        "Fetch failed",
+//                        Toast.LENGTH_SHORT,
+//                    ).show()
+                }
+            }
+
+
         // ATTENTION: This was auto-generated to handle app links.
         val appLinkIntent: Intent = intent
         val appLinkAction: String? = appLinkIntent.action
@@ -100,9 +128,6 @@ class MainActivity : BaseActivity()
 
         //region SESSION
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            booleanOnBoarding = readValue(keyOnBoardingSession) ?: false
-        }
 
         //endregion
     }
@@ -132,7 +157,27 @@ class MainActivity : BaseActivity()
     }
     override fun onResume() {
         super.onResume()
+        lifecycleScope.launch(Dispatchers.IO) {
+            booleanOnBoarding = readValue(keyOnBoardingSession) ?: false
+        }
         Timber.d("on Resume")
+    }
+
+    private fun displayToast(remoteConfig: FirebaseRemoteConfig) {
+        val param3State = remoteConfig.getBoolean("PARAM3")
+
+        if (param3State) {
+            Toast.makeText(this@MainActivity, "Hellooooooo", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this@MainActivity, "falseee", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        lifecycleScope.launch(Dispatchers.IO) {
+            booleanOnBoarding = readValue(keyOnBoardingSession) ?: false
+        }
     }
 
     override fun onPause() {

@@ -2,7 +2,7 @@ package com.nextint.learncrypto.app.core.source.remote.network
 
 import com.nextint.learncrypto.app.bases.BaseService
 import com.nextint.learncrypto.app.core.source.remote.response.MarketOverviewResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.core.source.remote.service.GlobalOverviewService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

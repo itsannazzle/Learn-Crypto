@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.features.overview.domain
 
 import com.nextint.learncrypto.app.core.source.remote.response.MarketOverviewResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.overview.data.IOverviewRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentBottomSheetDialogBinding
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModel
 import com.nextint.learncrypto.app.features.concept.presentation.TagsViewModelFactory

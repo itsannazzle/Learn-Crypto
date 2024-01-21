@@ -14,7 +14,7 @@ import com.nextint.learncrypto.app.bases.BaseBlankFragment
 import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentMarketBinding
 import com.nextint.learncrypto.app.features.market.presentation.MarketViewHolder
 import com.nextint.learncrypto.app.features.market.presentation.MarketViewModel
@@ -309,6 +309,10 @@ class MarketFragment : BaseFragment<MarketViewModel>()
         _getBindingMarketFragment?.recyclerViewTetherMarket?.apply()
         {
             adapter = _lazyUSDTAdapter
+        }
+
+        _getBindingMarketFragment?.imageViewButtonBack?.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
 
     }

@@ -13,13 +13,14 @@ import com.nextint.learncrypto.app.bases.BaseAdapter
 import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentCoinsBinding
 import com.nextint.learncrypto.app.features.coins.presentation.CoinViewHolder
 import com.nextint.learncrypto.app.features.coins.presentation.CoinsViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.setVertical
+import com.nextint.learncrypto.app.util.EnumConstants
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.TAG_DIALOG
@@ -69,7 +70,7 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
     {
         _coinAdapter = BaseAdapter(
             { parent, _ -> CoinViewHolder.inflate(parent) },
-            { viewHolder, _, item -> viewHolder.bind(item)
+            { viewHolder, _, item -> viewHolder.bind(item,EnumConstants.ENUM_SOURCE_VIEW.COINS)
                 viewHolder.setAction {
                     val bundle = Bundle()
                     bundle.putString(ID_COIN_CONSTANT,item.id)
@@ -150,10 +151,29 @@ class CoinsFragment : BaseFragment<CoinsViewModel>()
 
     private fun displayView()
     {
-        _bindingCoinsFragment?.recylerViewCoins.apply {
-            this?.setVertical()
-            this?.adapter = _lazyCoinAdapter
+        with(_getbindingCoinsFragment)
+        {
+            this?.imageViewButtonBack?.setOnClickListener()
+            {
+                parentFragmentManager.popBackStack()
+            }
+
+            this?.recylerViewCoins.apply {
+                this?.setVertical()
+                this?.adapter = _lazyCoinAdapter
+            }
         }
+
+//        _bindingCoinsFragment?.imageViewSearch?.setOnClickListener {
+//            _bindingCoinsFragment?.editTextSearch?.visibility = View.VISIBLE
+//        }
+//
+//        if(_bindingCoinsFragment?.editTextSearch?.hasPointerCapture() == false)
+//        {
+//            _bindingCoinsFragment?.editTextSearch?.visibility = View.GONE
+//        }
+
+
     }
 
 

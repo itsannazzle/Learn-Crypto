@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.features.person.domain
 
 import com.nextint.learncrypto.app.core.source.remote.response.PeopleResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.person.data.IPeopleRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

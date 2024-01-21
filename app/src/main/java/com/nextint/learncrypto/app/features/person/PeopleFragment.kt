@@ -12,7 +12,7 @@ import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.PeopleResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentPeopleBinding
 import com.nextint.learncrypto.app.features.person.presentation.PeopleViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
@@ -57,6 +57,9 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeLiveData()
+        _getBindingFragmentPeople?.imageViewButtonBack?.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun observeLiveData()
@@ -102,6 +105,7 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                             }
                         }
                     }
+                else -> { }
                 }
             }
     }
@@ -213,7 +217,6 @@ class PeopleFragment : BaseFragment<PeopleViewModel>()
                     }
                 }
             }
-
     }
 
     //endregion

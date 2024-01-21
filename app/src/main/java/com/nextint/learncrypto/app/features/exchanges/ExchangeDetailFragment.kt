@@ -10,11 +10,11 @@ import com.nextint.learncrypto.app.CryptoApp
 import com.nextint.learncrypto.app.MainActivity
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseFragment
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentExchangeDetailBinding
 import com.nextint.learncrypto.app.features.exchanges.presentation.ExchangeViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
-import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
+import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.features.utils.removeHTMLFormat
 import com.nextint.learncrypto.app.util.ID_EXCHANGE_CONSTANT
@@ -57,6 +57,9 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
     {
         super.onViewCreated(view, savedInstanceState)
         observeLiveData()
+        _getBindingExchangeDetail?.imageViewButtonBack?.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
 
@@ -94,7 +97,8 @@ class ExchangeDetailFragment : BaseFragment<ExchangeViewModel>()
                             _getBindingExchangeDetail?.textViewAdjVol24?.text = quotes?.adjustedVolume24h?.toString() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewRepVol24?.text = quotes?.reportedVolume24h?.toString() ?: getString(R.string.dash)
                             _getBindingExchangeDetail?.textViewLastUpdate?.text = lastUpdated?.convertStringToDate() ?: getString(R.string.dash)
-                            _getBindingExchangeDetail?.textViewScore?.text = confidenceScore?.toString() ?: getString(R.string.dash)
+                            _getBindingExchangeDetail?.textViewScore?.text = if(confidenceScore != null) UtilitiesFunction.convertToPercentage(confidenceScore) else  getString(R.string.dash)
+
 
                         }
                     }

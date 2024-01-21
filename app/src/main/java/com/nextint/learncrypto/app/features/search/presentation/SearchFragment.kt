@@ -20,7 +20,7 @@ import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.TeamItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentSearchBinding
 import com.nextint.learncrypto.app.features.coins.CoinDetailFragment
 import com.nextint.learncrypto.app.features.coins.presentation.CoinViewHolder
@@ -33,6 +33,7 @@ import com.nextint.learncrypto.app.features.ui.dialog.BottomSheetDialog
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 import com.nextint.learncrypto.app.features.utils.setHorizontal
+import com.nextint.learncrypto.app.util.EnumConstants
 import com.nextint.learncrypto.app.util.ID_COIN_CONSTANT
 import com.nextint.learncrypto.app.util.ID_EXCHANGE_CONSTANT
 import com.nextint.learncrypto.app.util.ID_TEAM_CONSTANT
@@ -227,7 +228,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
     {
        _coinAdapter = BaseAdapter(
            { parent: ViewGroup, _: Int -> CoinViewHolder.inflate(parent)},
-           {viewHolder, position, item -> viewHolder.bind(item)
+           {viewHolder, position, item -> viewHolder.bind(item,EnumConstants.ENUM_SOURCE_VIEW.SEARCH)
                viewHolder.setAction {
                    val bundle = Bundle()
                    bundle.putString(ID_COIN_CONSTANT,item.id)
@@ -239,7 +240,7 @@ class SearchFragment : BaseFragment<SearchViewModel>() {
 
         _exchangesAdapter = BaseAdapter(
             {parent, viewType -> ExchangeViewHolder.inflate(parent) },
-            {viewHolder, position, item -> viewHolder.bind(item)
+            {viewHolder, position, item -> viewHolder.bind(item,EnumConstants.ENUM_SOURCE_VIEW.SEARCH)
                 viewHolder.setAction {
                     val bundle = Bundle()
                     bundle.putString(ID_EXCHANGE_CONSTANT,item.id)

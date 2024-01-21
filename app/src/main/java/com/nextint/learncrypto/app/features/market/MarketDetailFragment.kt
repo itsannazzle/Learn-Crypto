@@ -13,13 +13,12 @@ import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.bases.BaseDialogFragment
 import com.nextint.learncrypto.app.bases.BaseFragment
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.databinding.FragmentMarketDetailBinding
 import com.nextint.learncrypto.app.features.price_converter.presentation.PriceConverterViewModel
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
 
-import com.nextint.learncrypto.app.features.utils.convertDateToStingPreviewSimple
 import com.nextint.learncrypto.app.features.utils.convertStringToDate
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 import com.nextint.learncrypto.app.util.MODEL_PARCEL_MARKET_BY_ID
@@ -103,17 +102,10 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
 //                        _modelDialog?.let { _dialogFragment.show(childFragmentManager, TAG_DIALOG) }
                         _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                     }
-//                    if (!stringText.isNullOrEmpty())
-//                    {
-//
-//                    } else
-//                    {
-//
-//                    }
-
                 }
-
-
+                this?.imageViewButtonBack?.setOnClickListener {
+                    parentFragmentManager.popBackStack()
+                }
             }
         }
         return _getBindingFragmentMarketDetail?.root
@@ -123,8 +115,6 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-
-
         observeLiveData()
     }
 
@@ -138,9 +128,18 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                 is ApiResponse.InternetConnection ->
                 {
                     _modelDialog?.retryActionAlert = { _viewModel.convertPrice(_stringBaseCurrency, _stringQuotedCurrency, _stringAmountToConvert) }
-                    _modelDialog?.dialogTitle = R.string.dialog_no_internet_title
-                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_message)
-                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
+                    _modelDialog?.dialogMessage = getString(R.string.dialog_no_internet_title)
+                    _modelDialog?.httpErrorCode = 502
+                    _modelDialog?.buttonText = R.string.BUTTON_RETRY
+                    val bundle = Bundle()
+                    bundle.putParcelable(KEY_BUNDLE_MODEL_DIALOG, _modelDialog)
+                    _dialogFragment.arguments = bundle
+//                    if(_dialogFragment.isAdded)
+//                    {
+//                        _dialogFragment.dismiss()
+//                    }
+                    _dialogFragment.show(childFragmentManager, TAG_DIALOG)
+//                    _modelDialog?.let { _activityMain.showDialogFromModelResponseWithRetry(it) }
                 }
                 is ApiResponse.Success ->
                 {
@@ -176,6 +175,8 @@ class MarketDetailFragment : BaseFragment<PriceConverterViewModel>() {
                         _dialogFragment.show(childFragmentManager, TAG_DIALOG)
                     }
                 }
+
+                else -> { }
             }
         }
     }

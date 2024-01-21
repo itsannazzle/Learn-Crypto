@@ -1,9 +1,8 @@
 package com.nextint.learncrypto.app.features.price_converter.data
 
-import com.nextint.learncrypto.app.core.source.remote.network.CoinsNetwork
 import com.nextint.learncrypto.app.core.source.remote.network.PriceConverterNetwork
 import com.nextint.learncrypto.app.core.source.remote.response.*
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

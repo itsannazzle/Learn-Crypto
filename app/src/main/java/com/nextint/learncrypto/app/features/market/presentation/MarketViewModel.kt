@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.market.domain.MarketUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

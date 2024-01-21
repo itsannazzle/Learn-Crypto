@@ -16,6 +16,8 @@
         <TextView
             android:id="@+id/textViewPair"
             style="@style/subtitle"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

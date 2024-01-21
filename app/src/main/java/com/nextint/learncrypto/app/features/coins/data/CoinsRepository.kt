@@ -5,7 +5,7 @@ import com.nextint.learncrypto.app.core.source.remote.response.CoinByIdResponse
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangeByCoinIdResponseItem
 import com.nextint.learncrypto.app.core.source.remote.response.MarketsByCoinIdResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton

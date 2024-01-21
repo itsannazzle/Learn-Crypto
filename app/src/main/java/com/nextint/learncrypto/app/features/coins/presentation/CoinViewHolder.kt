@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.CoinsResponseItem
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.util.EnumConstants
 
 class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 {
@@ -35,13 +36,22 @@ class CoinViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         }
     }
 
-    fun bind(coinsResponseItem: CoinsResponseItem)
+    fun bind(coinsResponseItem: CoinsResponseItem, coinView: EnumConstants.ENUM_SOURCE_VIEW)
     {
         with(itemView)
         {
             coinsResponseItem.apply()
             {
-                findViewById<TextView>(R.id.coin_name).text = name
+                if (coinView == EnumConstants.ENUM_SOURCE_VIEW.SEARCH)
+                {
+                    findViewById<TextView>(R.id.coin_name).setEms(5)
+                    findViewById<TextView>(R.id.coin_name).text = name
+                }
+                else
+                {
+                    findViewById<TextView>(R.id.coin_name).text = name
+                }
+
                 findViewById<TextView>(R.id.coin_rank).text = rank.toString()
                 findViewById<TextView>(R.id.coin_symbol).text = symbol
                 findViewById<TextView>(R.id.label_coin_type).text = resources.getString(R.string.type, type)

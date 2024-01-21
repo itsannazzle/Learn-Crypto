@@ -1,147 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_16"
+    android:orientation="vertical"
     tools:context=".features.person.PeopleFragment">
-
-    <ImageView
-        android:id="@+id/imageViewPeople"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textViewPeopleName"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:ems="8"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewPeople"
-        tools:text="@string/hello_blank_fragment" />
-
-    <TextView
-        android:id="@+id/textViewPeopleDesc"
-        style="@style/body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:maxLines="3"
-        android:textColor="@color/textColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPeopleName"
-        tools:text="@tools:sample/lorem/random" />
-
-    <TextView
-        android:id="@+id/textViewPeoplePosition"
-        style="@style/title"
-        android:layout_width="0dp"
-        tools:text="something at somewhere"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:text="@string/position"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPeopleDesc" />
-
-    <TextView
-        android:id="@+id/textViewPeopleTotalPosition"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:text="@string/total_position"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPeoplePosition" />
-
-    <TextView
-        android:id="@+id/textViewFindPeople"
-        style="@style/body"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/find_him_her_on"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPeopleTotalPosition" />
-
-    <TextView
-        android:id="@+id/textViewLinksNotFound"
-        style="@style/body"
-        android:text="@string/not_found"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewFindPeople"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/dimen_48"
-        android:paddingEnd="@dimen/dimen_48"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewFindPeople">
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageViewPeopleWebLink"
-            android:layout_width="0dp"
+            android:id="@+id/imageViewButtonBack"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_web_browser" />
+            android:src="@drawable/ic_primary_arrow_back_24" />
 
-        <ImageView
-            android:id="@+id/imageViewPeopleMedium"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textViewAllCoins"
+            style="@style/subtitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_bi_medium_32" />
-
-        <ImageView
-            android:id="@+id/imageViewPeopleGitHub"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_ant_design_github_filled_32"
-
-            />
-
-        <ImageView
-            android:id="@+id/imageViewPeopleLinkedin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_logos_linkedin_32" />
-
-        <ImageView
-            android:id="@+id/imageViewPeopleTwitter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_logos_twitter_32" />
-
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:text="People"/>
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16">
+
+        <ImageView
+            android:id="@+id/imageViewPeople"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textViewPeopleName"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:ems="8"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewPeople"
+            tools:text="@string/hello_blank_fragment" />
+
+        <TextView
+            android:id="@+id/textViewPeopleDesc"
+            style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:maxLines="3"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPeopleName"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/textViewPeoplePosition"
+            style="@style/title"
+            android:layout_width="0dp"
+            tools:text="something at somewhere"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:text="@string/position"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPeopleDesc" />
+
+        <TextView
+            android:id="@+id/textViewPeopleTotalPosition"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:text="@string/total_position"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPeoplePosition" />
+
+        <TextView
+            android:id="@+id/textViewFindPeople"
+            style="@style/body"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_him_her_on"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPeopleTotalPosition" />
+
+        <TextView
+            android:id="@+id/textViewLinksNotFound"
+            style="@style/body"
+            android:text="@string/not_found"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewFindPeople"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dimen_48"
+            android:paddingEnd="@dimen/dimen_48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewFindPeople">
+
+            <ImageView
+                android:id="@+id/imageViewPeopleWebLink"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_web_browser" />
+
+            <ImageView
+                android:id="@+id/imageViewPeopleMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_bi_medium_32" />
+
+            <ImageView
+                android:id="@+id/imageViewPeopleGitHub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_ant_design_github_filled_32" />
+
+            <ImageView
+                android:id="@+id/imageViewPeopleLinkedin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_logos_linkedin_32" />
+
+            <ImageView
+                android:id="@+id/imageViewPeopleTwitter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_logos_twitter_32" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

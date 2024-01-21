@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/dimen_16"
-    android:scrollbars="none"
+    android:orientation="vertical"
     tools:context=".features.exchanges.ExchangesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewButtonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_primary_arrow_back_24" />
 
         <TextView
             android:id="@+id/textViewWhatIs"
             android:layout_width="wrap_content"
             style="@style/title"
-            android:text="@string/what_is"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Crypto Exchange"
+            android:layout_gravity="center"
             android:textColor="@color/black"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/textViewExchangeDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/body"
-            android:textColor="@color/textColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhatIs"
-            tools:text="@tools:sample/lorem/random"/>
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewTopExchange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/title"
-            android:text="@string/top_exchange"
-            android:layout_marginTop="@dimen/dimen_24"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewExchangeDesc"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewExchange"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingStart="@dimen/dimen_16"
+            android:paddingEnd="@dimen/dimen_16"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_exchanges_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTopExchange"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/dimen_8"/>
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textViewExchangeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/body"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem/random"/>
 
-</ScrollView>
+            <TextView
+                android:id="@+id/textViewTopExchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/title"
+                android:text="@string/top_exchange"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewExchangeDesc"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewExchange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_exchanges_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewTopExchange"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dimen_8"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
-import com.nextint.learncrypto.app.core.source.remote.response.TagByIdResponse
 import com.nextint.learncrypto.app.features.utils.UtilitiesFunction
+import com.nextint.learncrypto.app.util.EnumConstants
 
 class ExchangeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 {
@@ -30,16 +30,26 @@ class ExchangeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
         }
     }
 
-    fun bind(exchangesResponseItem: ExchangesResponseItem)
+    fun bind(exchangesResponseItem: ExchangesResponseItem, sourceView: EnumConstants.ENUM_SOURCE_VIEW)
     {
         with(itemView)
         {
             exchangesResponseItem.apply()
             {
+                if (sourceView == EnumConstants.ENUM_SOURCE_VIEW.SEARCH)
+                {
+                    findViewById<TextView>(R.id.textViewRankValue).text = rank.toString()
+                }
+                else
+                {
+                    findViewById<TextView>(R.id.textViewRankValue).text = reportedRank.toString()
+                }
+
                 findViewById<TextView>(R.id.textViewExchangeName).text = name
-                findViewById<TextView>(R.id.textViewVol24hValue).text = UtilitiesFunction.convertToUSD(quotes?.adjustedVolume24h?.toLong() ?: 0)
-                findViewById<TextView>(R.id.textViewExchangeMarketValue).text = markets.toString()
-                findViewById<TextView>(R.id.textViewExchangeConfidenceValue).text = UtilitiesFunction.convertToPercentage(confidenceScore ?: 0.0).take(3)
+                findViewById<TextView>(R.id.textViewExchangeMarketValue).text =
+                    markets?.toString() ?: itemView.context.getString(R.string.dash)
+                findViewById<TextView>(R.id.textViewExchangeConfidenceValue).text =
+                    if (confidenceScore != null) UtilitiesFunction.convertToPercentage(confidenceScore) else itemView.context.getString(R.string.dash)
             }
 
         }

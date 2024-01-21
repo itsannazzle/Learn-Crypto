@@ -29,23 +29,22 @@
             tools:text="Binance" />
 
         <TextView
-            android:id="@+id/textViewVol24h"
+            android:id="@+id/textViewRank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="@string/volume_24h"
+            android:text="@string/rank"
             app:layout_constraintEnd_toStartOf="@+id/textViewExchangeMarket"
             app:layout_constraintStart_toEndOf="@+id/textViewExchangeName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewVol24hValue"
+            android:id="@+id/textViewRankValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_4"
-            app:layout_constraintEnd_toEndOf="@+id/textViewVol24h"
-            app:layout_constraintStart_toStartOf="@+id/textViewVol24h"
-            app:layout_constraintTop_toBottomOf="@+id/textViewVol24h"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRank"
+            app:layout_constraintStart_toStartOf="@+id/textViewRank"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRank"
             tools:text="$1234.454554" />
 
         <TextView
@@ -53,10 +52,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/market"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewVol24h"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRank"
             app:layout_constraintEnd_toStartOf="@+id/textViewExchangeConfidence"
-            app:layout_constraintStart_toEndOf="@+id/textViewVol24h"
-            app:layout_constraintTop_toTopOf="@+id/textViewVol24h" />
+            app:layout_constraintStart_toEndOf="@+id/textViewRank"
+            app:layout_constraintTop_toTopOf="@+id/textViewRank" />
 
         <TextView
             android:id="@+id/textViewExchangeMarketValue"

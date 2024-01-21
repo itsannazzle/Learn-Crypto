@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.features.exchanges.data
 
 import com.nextint.learncrypto.app.core.source.remote.response.ExchangesResponseItem
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

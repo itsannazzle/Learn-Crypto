@@ -1,7 +1,7 @@
 package com.nextint.learncrypto.app.features.search.domain
 
 import com.nextint.learncrypto.app.core.source.remote.response.SearchResponse
-import com.nextint.learncrypto.app.core.source.remote.service.ApiResponse
+import com.nextint.learncrypto.app.util.ApiResponse
 import com.nextint.learncrypto.app.features.search.data.ISearchRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

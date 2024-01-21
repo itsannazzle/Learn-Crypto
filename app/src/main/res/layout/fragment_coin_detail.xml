@@ -1,371 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dimen_16"
     android:orientation="vertical"
     android:scrollbars="none"
     tools:context=".features.coins.CoinDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textViewCoinName"
-            style="@style/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="36sp"
-            android:maxLines="3"
-            android:singleLine="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Bitcoin" />
-
-        <include
-            android:id="@+id/indicatorActive"
-            layout="@layout/item_indicator_status_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"
-            app:layout_goneMarginTop="@dimen/dimen_8"/>
-
-        <include
-            android:id="@+id/indicatorOpenSource"
-            layout="@layout/item_indicator_status_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintStart_toEndOf="@id/indicatorActive"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
-
-        <include
-            android:id="@+id/indicatorNew"
-            layout="@layout/item_indicator_status_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_8"
-            app:layout_constraintStart_toEndOf="@+id/indicatorOpenSource"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
-
-        <TextView
-            android:id="@+id/textViewSymbol"
-            style="@style/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="@string/symbol"
-            android:textColor="@color/textColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/indicatorActive" />
-
-        <TextView
-            android:id="@+id/textViewType"
-            style="@style/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_4"
-            android:text="@string/type"
-            android:textColor="@color/textColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewSymbol" />
-
-        <TextView
-            android:id="@+id/textViewAbout"
-            style="@style/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:text="@string/about"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewType" />
-
-        <TextView
-            android:id="@+id/textViewAboutCoin"
-            style="@style/body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_4"
-            android:textColor="@color/textColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAbout"
-            tools:text="@string/lorem" />
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            style="@style/tableLayoutMatchWrap"
-            android:layout_marginTop="@dimen/dimen_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAboutCoin">
-
-            <TableRow>
-
-                <TextView
-                    style="@style/body"
-                    android:layout_marginEnd="105dp"
-                    android:text="@string/started_at" />
-
-                <TextView
-                    android:id="@+id/textViewStarted"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/first_data" />
-
-                <TextView
-                    android:id="@+id/textViewFirstData"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/last_data" />
-
-                <TextView
-                    android:id="@+id/textViewLastData"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/development_status" />
-
-                <TextView
-                    android:id="@+id/textViewDevStats"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/hardwallet" />
-
-                <TextView
-                    android:id="@+id/textViewHardWallet"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/proof_of_type" />
-
-                <TextView
-                    android:id="@+id/textViewProofType"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/organization_nstatus" />
-
-                <TextView
-                    android:id="@+id/textViewOrganizationStatus"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-
-            <TableRow android:layout_marginTop="@dimen/dimen_8">
-
-                <TextView
-                    style="@style/body"
-                    android:text="@string/hash_algorithm" />
-
-                <TextView
-                    android:id="@+id/textViewHasiAlgo"
-                    style="@style/body"
-                    android:layout_weight="1"
-                    tools:text="@string/started_at" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
-            android:id="@+id/textViewWhitePaper"
-            style="@style/body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="@string/whitepaper"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tableLayout" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageViewWhitePaper"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhitePaper"
-            app:strokeColor="@color/primary"
-            app:strokeWidth="2dp"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/textViewWhitePaperSrc"
-            style="@style/caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageViewWhitePaper"
-            tools:text="Whitaepaper.pdf" />
-
-        <TextView
-            android:id="@+id/textViewTeam"
-            style="@style/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_24"
-            android:text="@string/team"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewWhitePaperSrc" />
-
-        <TextView
-            android:id="@+id/textViewTeamNotFound"
-            style="@style/body"
-            android:text="@string/not_found"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTeam"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylerViewTeam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTeam" />
-
-        <TextView
-            android:id="@+id/textViewTags"
-            style="@style/subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_24"
-            android:text="@string/tags"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recylerViewTeam" />
-
-        <TextView
-            android:id="@+id/textViewTagsNotFound"
-            style="@style/body"
-            android:text="@string/not_found"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTags"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTags"
-            app:spanCount="2"
-            tools:listitem="@layout/item_tags_layout" />
-
-        <TextView
-            android:id="@+id/textViewCoinSocMed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_16"
-            android:layout_marginBottom="@dimen/dimen_16"
-            android:text="@string/find_out_more_about_1_s_on"
-            android:textColor="@color/textColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerViewTags"
-            app:layout_goneMarginTop="@dimen/dimen_24" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewCoinSocMed">
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageViewCoinWebsite"
+                android:id="@+id/imageViewButtonBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_web_browser" />
+                android:src="@drawable/ic_primary_arrow_back_24" />
 
-            <ImageView
-                android:id="@+id/imageViewCoinFacebook"
+            <TextView
+                android:id="@+id/textViewAllCoins"
+                style="@style/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_fb_32" />
-
-            <ImageView
-                android:id="@+id/imageViewCoinYoutube"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_youtube_32" />
-
-            <ImageView
-                android:id="@+id/imageViewCoinReddit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_reddit_32" />
-
-            <ImageView
-                android:id="@+id/imageViewCoinGithub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_24"
-                android:src="@drawable/ic_ant_design_github_filled_32" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:text="Coins"/>
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:scrollbars="none">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginStart="@dimen/dimen_16"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewCoinName"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="36sp"
+                    android:maxLines="3"
+                    android:singleLine="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Bitcoin" />
+
+                <include
+                    android:id="@+id/indicatorActive"
+                    layout="@layout/item_indicator_status_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoinName"
+                    app:layout_goneMarginTop="@dimen/dimen_8"/>
+
+                <include
+                    android:id="@+id/indicatorOpenSource"
+                    layout="@layout/item_indicator_status_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    app:layout_constraintStart_toEndOf="@id/indicatorActive"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
+
+                <include
+                    android:id="@+id/indicatorNew"
+                    layout="@layout/item_indicator_status_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    app:layout_constraintStart_toEndOf="@+id/indicatorOpenSource"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoinName"/>
+
+                <TextView
+                    android:id="@+id/textViewSymbol"
+                    style="@style/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="@string/symbol"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/indicatorActive" />
+
+                <TextView
+                    android:id="@+id/textViewType"
+                    style="@style/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:text="@string/type"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewSymbol" />
+
+                <TextView
+                    android:id="@+id/textViewAbout"
+                    style="@style/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:text="@string/about"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewType" />
+
+                <TextView
+                    android:id="@+id/textViewAboutCoin"
+                    style="@style/body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewAbout"
+                    tools:text="@string/lorem" />
+
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    style="@style/tableLayoutMatchWrap"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewAboutCoin">
+
+                    <TableRow>
+
+                        <TextView
+                            style="@style/body"
+                            android:layout_marginEnd="105dp"
+                            android:text="@string/rank_colon" />
+
+                        <TextView
+                            android:id="@+id/textViewRank"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:layout_marginEnd="105dp"
+                            android:text="@string/started_at" />
+
+                        <TextView
+                            android:id="@+id/textViewStarted"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/first_data" />
+
+                        <TextView
+                            android:id="@+id/textViewFirstData"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/last_data" />
+
+                        <TextView
+                            android:id="@+id/textViewLastData"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/development_status" />
+
+                        <TextView
+                            android:id="@+id/textViewDevStats"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/hardwallet" />
+
+                        <TextView
+                            android:id="@+id/textViewHardWallet"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/proof_of_type" />
+
+                        <TextView
+                            android:id="@+id/textViewProofType"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/organization_nstatus" />
+
+                        <TextView
+                            android:id="@+id/textViewOrganizationStatus"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+                        <TextView
+                            style="@style/body"
+                            android:text="@string/hash_algorithm" />
+
+                        <TextView
+                            android:id="@+id/textViewHasiAlgo"
+                            style="@style/body"
+                            android:layout_weight="1"
+                            tools:text="@string/started_at" />
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/textViewWhitePaper"
+                    style="@style/body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:text="@string/whitepaper"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tableLayout" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageViewWhitePaper"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewWhitePaper"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="2dp"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/textViewWhitePaperSrc"
+                    style="@style/caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageViewWhitePaper"
+                    tools:text="Whitaepaper.pdf" />
+
+                <TextView
+                    android:id="@+id/textViewTeam"
+                    style="@style/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:text="@string/team"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewWhitePaperSrc" />
+
+                <TextView
+                    android:id="@+id/textViewTeamNotFound"
+                    style="@style/body"
+                    android:text="@string/not_found"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewTeam"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recylerViewTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewTeam" />
+
+                <TextView
+                    android:id="@+id/textViewTags"
+                    style="@style/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_24"
+                    android:text="@string/tags"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recylerViewTeam" />
+
+                <TextView
+                    android:id="@+id/textViewTagsNotFound"
+                    style="@style/body"
+                    android:text="@string/not_found"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewTags"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewTags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewTags"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_tags_layout" />
+
+                <TextView
+                    android:id="@+id/textViewCoinSocMed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_16"
+                    android:layout_marginBottom="@dimen/dimen_16"
+                    android:text="@string/find_out_more_about_1_s_on"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerViewTags"
+                    app:layout_goneMarginTop="@dimen/dimen_24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCoinSocMed">
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinWebsite"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_web_browser" />
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinFacebook"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_fb_32" />
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinYoutube"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_youtube_32" />
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinReddit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_reddit_32" />
+
+                    <ImageView
+                        android:id="@+id/imageViewCoinGithub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_ant_design_github_filled_32" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+</LinearLayout>

@@ -9,10 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.nextint.learncrypto.app.R
 import com.nextint.learncrypto.app.databinding.FragmentBaseDialogBinding
 import com.nextint.learncrypto.app.features.ui.dialog.DialogModel
+import com.nextint.learncrypto.app.features.utils.dismissDialog
+import com.nextint.learncrypto.app.features.utils.hideDialog
+import com.nextint.learncrypto.app.features.utils.hideDialogForSoftDialog
+import com.nextint.learncrypto.app.features.utils.initiateAlertDialogResponse
+import com.nextint.learncrypto.app.features.utils.showDialog
+import com.nextint.learncrypto.app.features.utils.showLoading
 import com.nextint.learncrypto.app.util.KEY_BUNDLE_MODEL_DIALOG
 
 
@@ -115,7 +122,7 @@ class BaseDialogFragment : DialogFragment()
                         this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
                         this?.buttonDialog?.setOnClickListener()
                         {
-                            dismiss()
+                            modelDialog.retryActionDialog?.invoke() ?: dismiss()
                         }
                     }
                 } else
@@ -161,6 +168,39 @@ class BaseDialogFragment : DialogFragment()
                     Toast.makeText(requireContext(), getString(R.string.dialog_default_title),Toast.LENGTH_SHORT).show()
                 }
             }
+            502 ->
+            {
+                if(checkAlertDialog())
+                {
+                    if (_getbindingBaseDialogFragment!= null)
+                    {
+                        with(_getbindingBaseDialogFragment)
+                        {
+                            this@BaseDialogFragment.isCancelable = true
+                            this?.imageViewDialog?.setImageResource(R.drawable.ic_noconnection)
+                            this?.textViewDialogMessage?.text = modelDialog.dialogMessage ?: getString( R.string.dialog_default_message)
+                            this?.buttonDialog?.text = getString(modelDialog.buttonText ?: R.string.BUTTON_CANCEL)
+                            this?.buttonDialog?.setOnClickListener()
+                            {
+
+                                this@BaseDialogFragment.dismiss()
+                                dialog?.hideDialogForSoftDialog(requireActivity())
+                                modelDialog.retryActionDialog?.invoke() ?: dismiss()
+//                                dialog?.showLoading()
+//                                this@BaseDialogFragment.dialog?.showLoading()
+
+                            }
+                            dialog?.hide()
+//                            this@BaseDialogFragment.dialog?.dismiss()
+
+                        }
+                    } else
+                    {
+                        Toast.makeText(requireContext(), getString(R.string.dialog_default_title),Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
             else ->
             {
                 with(_getbindingBaseDialogFragment)
@@ -181,6 +221,22 @@ class BaseDialogFragment : DialogFragment()
     override fun onDestroy() {
         super.onDestroy()
         _bindingBaseDialogFragment = null
+        dialog?.hide()
+        dialog?.dismissDialog(requireActivity())
+    }
+
+    private fun checkAlertDialog() : Boolean
+    {
+        var isShowing = true
+
+        if (dialog?.isShowing == true) isShowing = false
+
+        if (isShowing)
+        {
+            dialog?.show()
+            dialog!!.initiateAlertDialogResponse()
+        }
+        return isShowing
     }
 
 }
